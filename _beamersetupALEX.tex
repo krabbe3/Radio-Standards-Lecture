@@ -1,0 +1,128 @@
+% https://tex.stackexchange.com/questions/57383/how-do-i-set-the-default-beamer-font-to-computer-modern-serif
+%\usefonttheme{serif}
+% https://latex-beamer.com/tutorials/beamer-font/
+\usefonttheme{professionalfonts}
+
+%\setbeamertemplate{caption}[numbered]
+%\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+
+
+%%%%%%%%% setup theme %%%%%%%%%%%%%%%
+%\mode<presentation>{
+%\usetheme{Warsaw}
+%\usetheme{AnnArbor}
+%\usetheme{Ilmenau}
+\usetheme{CambridgeUS}
+% https://www.matthiaspospiech.de/latex/templates/beamer/preambel/beamer-settings/3/
+%\usecolortheme{dove} % einfaches Grau
+\usecolortheme{seahorse} % leichte Färbung
+%\usecolortheme{dolphin} % stärkere Färbung
+%\usecolortheme{structure} %xcolor problem
+%\usecolortheme{default} %warum ist das rot???
+%}
+
+%%%%% parskip %%%%%%%%%%%%%
+% https://tex.stackexchange.com/questions/338592/beamer-set-global-parskip-for-all-columns
+\setlength{\parskip}{1.0ex}
+\makeatletter
+\newcommand{\@minipagerestore}{\setlength{\parskip}{1.0ex}}
+\makeatother
+
+%\input{mymetropolis}
+\newcommand{\sectionFrame}[1]{
+\section{#1}
+}
+
+
+%%%%%%%%%% BEGIN  \footlineextra   %%%%%%%%%%%%
+% https://tex.stackexchange.com/questions/5491/how-do-i-insert-text-into-the-footline-of-a-specific-slide-in-beamer
+\makeatletter
+% add a macro that saves its argument
+\newcommand{\footlineextra}[1]{\gdef\insertfootlineextra{#1}}
+\newbox\footlineextrabox
+
+% add a beamer template that sets the saved argument in a box.
+% The * means that the beamer font and color "footline extra" are automatically added. 
+\defbeamertemplate*{footline extra}{default}{
+    \begin{beamercolorbox}[ht=2.25ex,dp=1ex,leftskip=\Gm@lmargin]{footline extra}
+    \insertfootlineextra
+    %\par\vspace{2.5pt}
+    \end{beamercolorbox}
+}
+
+\addtobeamertemplate{footline}{%
+    % set the box with the extra footline material but make it add no vertical space
+    \setbox\footlineextrabox=\vbox{\usebeamertemplate*{footline extra}}
+    \vskip -\ht\footlineextrabox
+    \vskip -\dp\footlineextrabox
+    \box\footlineextrabox%
+}
+{}
+
+% patch \begin{frame} to reset the footline extra material
+\let\beamer@original@frame=\frame
+\def\frame{\gdef\insertfootlineextra{}\beamer@original@frame}
+\footlineextra{}
+\makeatother
+
+\setbeamercolor{footline extra}{fg=structure.fg}% for instance
+%%%%%%%%%% END  \footlineextra   %%%%%%%%%%%%
+
+
+%%%%%%%%%% Bibliography %%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+
+%%%%%%%%%% Chapter page %%%%%%%%%%%%%%%%%%%%%
+% https://tex.stackexchange.com/questions/316762/how-to-make-chapter-page-in-beamer
+\AtBeginSection[]{
+    \begin{frame}
+    \vfill
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{section page}
+        \usebeamerfont{title}%
+        \textbf{\thesection.~}%
+                \textbf{{\color{black} \insertsectionhead}}\par%
+    \end{beamercolorbox}
+    \vfill
+    \end{frame}
+}
+
+
+
+%%%%%%%%%% page counter reset at sections %%%%%%%%%%%%%%%%%%%%%
+% https://tex.stackexchange.com/questions/610874/reset-frame-number-and-total-frame-count-per-beamer-section
+% !!!!! conflicts with %\usepackage{appendixnumberbeamer}
+\usepackage{chngcntr}
+\counterwithin{framenumber}{section}% Number frames within \section
+
+% Make slide numbers appear, and they appear next to navigation
+%\addtobeamertemplate{navigation symbols}{}{%
+%  \usebeamerfont{footline}%
+%  \usebeamercolor[fg]{footline}%
+%  \hspace{1em}%
+%  \thesection.\insertframenumber/\inserttotalframenumberbysection
+%}
+
+\makeatletter
+\let\oldsection\section
+\renewcommand{\section}{% Store current \section's frame count
+  \immediate\write\@auxout{\global\noexpand\@namedef{s@totalsectionframes-\arabic{section}}{\arabic{framenumber}}}%
+  \oldsection
+}
+\AtEndDocument{% Store final \section's frame count
+  \immediate\write\@auxout{\global\noexpand\@namedef{s@totalsectionframes-\arabic{section}}{\arabic{framenumber}}}%
+}
+\newcommand{\inserttotalframenumberbysection}{\csname s@totalsectionframes-\arabic{section}\endcsname}%
+\makeatother
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% correct numbering in footline %%%%%%%%%%%%%%%%%%%%%%%%
+% https://tex.stackexchange.com/questions/185742/i-need-to-change-color-of-beamer-itemize-and-subitem-separately
+% adapted from beamerbaseauxtemplates.sty
+\makeatletter
+\setbeamertemplate{page number in head/foot}{\setbox\beamer@tempbox=\hbox{\thesection.\inserttotalframenumber\,/\,\inserttotalframenumberbysection}%
+	\beamer@tempdim=\wd\beamer@tempbox%
+	\makebox[\beamer@tempdim][r]{\thesection.\insertframenumber\,/\,\inserttotalframenumberbysection}}
+\makeatother

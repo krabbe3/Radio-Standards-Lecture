@@ -1,0 +1,136 @@
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{arrows.meta} % for arrowheads
+\usetikzlibrary{intersections}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{positioning, shapes.geometric, arrows, shapes}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+\usepackage{forest}
+
+\usepackage[most]{tcolorbox}
+
+\usepackage{pfdicons}
+
+
+\tikzset{
+  green arrow/.style={
+    midway,green,sloped,fill, minimum height=3cm, single arrow, single arrow head extend=.5cm, single arrow head indent=.25cm,xscale=0.3,yscale=0.15,
+    allow upside down
+  },
+  black arrow/.style 2 args={-stealth, shorten >=#1, shorten <=#2},
+  black arrow/.default={3mm}{3mm},
+  tree box/.style={draw, rounded corners, inner sep=0.5em},
+  node box/.style={white, draw=black, text=black, rectangle, rounded corners},
+}
+
+\tcbuselibrary{listings, skins, breakable}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+% Define your custom orange shades
+\definecolor{softorange}{RGB}{255, 153, 51}   % Title background (darker orange)
+\definecolor{lightorange}{RGB}{255, 235, 204} % Body background (faded orange)
+\usepackage{circuitikz}
+% Set Beamer block colors
+\setbeamercolor{block title example}{bg=softorange, fg=black}
+\setbeamercolor{block body example}{bg=lightorange, fg=black}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\tikzset{
+  medtube/.style args={#1/#2}{ % #1=color, #2=height
+    draw, fill=#1,
+    shape=rectangle,
+    rounded corners=1mm,
+    minimum width=0.8cm,
+    minimum height=#2,
+    path picture={
+      % draw neck & cap inside the rectangle shape
+      \draw[fill=#1!70!black] 
+        ([xshift=0.1cm,yshift=-0.3cm]path picture bounding box.north west) -- 
+        ([xshift=0.7cm,yshift=-0.3cm]path picture bounding box.north west) -- 
+        ([xshift=0.6cm,yshift=0]path picture bounding box.north west) -- 
+        ([xshift=0.2cm,yshift=0]path picture bounding box.north west) -- cycle;
+      % inner "liquid" fill with lighter color
+      \fill[#1!50] 
+        ([xshift=0.2cm,yshift=-#2*0.7]path picture bounding box.north west) rectangle
+        ([xshift=0.6cm,yshift=0]path picture bounding box.north west);
+      % small label line
+      \draw[white, line width=0.5pt]
+        ([xshift=0.2cm,yshift=-#2*0.3]path picture bounding box.north west) -- 
+        ([xshift=0.6cm,yshift=-#2*0.3]path picture bounding box.north west);
+    }
+  }
+}
+
+\newtcolorbox{orangeblock}[2][]{
+  colback=lightorange,
+  colframe=softorange,
+  fonttitle=\large\bfseries,
+  coltitle=black,
+  enhanced,
+  attach boxed title to top left={yshift=-2mm, xshift=3mm},
+  boxed title style={size=small,colback=softorange,sharp corners},
+  boxrule=0.8pt,
+  width=\linewidth,
+  rounded corners,
+  top=4mm,
+  bottom=4mm,
+  left=3mm,
+  right=3mm,
+  #1,            % <- local overrides
+  title=#2
+}
+
+% Node styles
+\tikzstyle{startstop} = [
+    rectangle, rounded corners,
+    minimum width=3.5cm,
+    minimum height=1.2cm,
+    text centered,
+    font=\Large,
+    draw=black,
+    fill=red!30
+]
+
+\tikzstyle{io} = [
+    trapezium,
+    trapezium stretches=true,
+    trapezium left angle=70,
+    trapezium right angle=110,
+    minimum width=3.5cm,
+    minimum height=1.2cm,
+    text centered,
+    font=\Large,
+    draw=black,
+    fill=blue!30
+]
+
+\tikzstyle{process} = [
+    rectangle,
+    minimum width=3.5cm,
+    minimum height=1.2cm,
+    text centered,
+    text width=4cm, % a bit wider to avoid line breaks
+    font=\Large,
+    draw=black,
+    fill=orange!30
+]
+
+\tikzstyle{decision} = [
+    diamond,
+    minimum width=3.5cm,
+    minimum height=1.2cm,
+    text centered,
+    font=\Large,
+    draw=black,
+    fill=green!30
+]
+
+\tikzstyle{arrow} = [thick,->,>=stealth]
+%\usepackage{tikz-uml}
+% Graphics and TikZ
+%\usepackage{pst-uml}
+
+\usepackage{uml}

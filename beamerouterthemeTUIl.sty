@@ -1,0 +1,21 @@
+% Remove beamer navigation bar
+\beamertemplatenavigationsymbolsempty
+
+% footer/footline definition
+\setbeamertemplate{footline}{
+  \color{TUIl-green}{\rule{\textwidth}{0.3pt}} % Draw line
+  \begin{beamercolorbox}[wd=\textwidth, dp=\footerdp, ht=\footerht]{footer}
+    \begin{minipage}[t]{0.125\paperwidth} % Page number
+      \hspace{7mm}
+      \insertsectionnumber.\insertframenumber
+    \end{minipage}
+    \begin{minipage}[t]{0.5\paperwidth} % Footer content
+      \footercontent
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{42mm} % Logo
+      \vspace{-5mm}
+      \includegraphics[scale=.6]{template images/tuil-logo.pdf}
+    \end{minipage}
+  \end{beamercolorbox}
+}

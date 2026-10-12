@@ -1,0 +1,790 @@
+\subsection{Course Introduction}
+
+\begin{frame}{Organization}
+    \textbf{Lecture}\\
+    Takes place on Mondays, 03:00 pm - 04:30 pm, in OEC3008 (except winter break)\\\vspace{1.5ex}
+    \textbf{Tutorial}
+    \begin{itemize}
+        \item Takes place on Tuesdays, 11:00 am - 12:30 pm, in OEC3008 (except winter break)
+        \item No tutorial in the classical sense, instead three group presentations about selected standards
+        \item Learn to understand standards and improve presentation skills
+        \item Topic and group selection via moodle (deadline next lecture)
+        \item DVB, 0G-5G, WiFi, and Bluetooth not selectable, will be covered in this lecture
+        \item Feel free to suggest interesting standards by yourself
+    \end{itemize}
+    \textbf{Prerequisites}
+    \begin{itemize}
+        \item Signal and system theory
+        \item Basic engineering math
+    \end{itemize}
+    \textbf{Lecture Material}
+    \begin{itemize}
+        \item Please enroll in the Moodle course
+        \item Lecture script will grow throughout the semester
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Exam Regulations}
+
+\begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+        \begin{block}{Exam}
+            \begin{itemize}
+                \item \textbf{30 min} oral exam
+                \item Standards presented by your groups\\ will be part of the exam
+            \end{itemize}
+        \end{block}
+    \end{column}
+
+    \begin{column}{0.48\textwidth}
+        \begin{alertblock}{Bonus Points}
+            \centering
+            Presentations give bonus points for the exam\\[0.2em]
+            \textbf{Maximum: One-third grade step}\\
+            \small e.g.\quad 2.7 $\rightarrow$ 2.3, \, 1.3 $\rightarrow$ 1.0
+        \end{alertblock}
+    \end{column}
+\end{columns}
+
+\vspace{0.5cm}
+
+\begin{block}{Overall Goal}
+    \begin{center}
+        \large
+        \textbf{How to work with standards}
+    \end{center}
+    \vspace{-0.1cm}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.24\textwidth}
+            \centering
+            Understand\\
+            why standards exist
+        \end{column}
+        \begin{column}{0.24\textwidth}
+            \centering
+            How to\\
+            read them
+        \end{column}
+        \begin{column}{0.24\textwidth}
+            \centering
+            How to\\
+            understand them\\
+            (on technical level)
+        \end{column}
+        \begin{column}{0.24\textwidth}
+            \centering
+            How to\\
+            make use of them
+        \end{column}
+    \end{columns}
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}{Electronic Measurements and Signal Processing Group EMS}
+\textbf{We investigate the behavior of radio propagation channels\\ and develop methods to make them usable.}
+\vspace{0.5cm}
+\begin{columns}
+ \begin{column}{0.35\textwidth}
+\hfill\includegraphics[width=0.9\textwidth]{images/Channel_sounder.png}
+ \end{column} 
+ \begin{column}{0.65\textwidth}
+ \begin{itemize}
+  \item Development of measurement equipment for characterizing\\ radio channels from 0 Hz to 300 GHz
+  \item Measurement, simulation, and modeling of radio channels 
+  \item Analysis of radio channel characteristics using signal\\ processing - high-resolution estimation methods and AI
+ \end{itemize}
+ \end{column}
+\end{columns}
+\vspace{0.5cm}
+ \begin{itemize}
+  \item Exploitation of radio channel characteristics for environmental sensing - radar technology\\ and Integrated Communications and Sensing (ICAS)
+  \item Emulation of electromagnetic wave propagation for testing mobile and satellite communications
+  \item Standardization and development of solutions relevant to mobile communications standards
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{Radio Standards several decades ago...}
+    \centering
+    ... by Dr.-Ing. Alexander Ihlow
+\end{frame}
+
+% at some point it makes sense to convert Alexs slides to the beamer template too!
+
+\begin{frame}[allowframebreaks]{Topics to be Covered}
+    \begin{enumerate}
+        \item Technical Preliminaries
+        \begin{itemize}
+            \item LTI Channel
+            \item Fourier Transformation
+            \item Spatial Processing
+        \end{itemize}
+        \item Propagation in a Nutshell (by Alexander Ihlow)
+        \begin{itemize}
+            \item How do cable, satellite, and air interfaces differ from each other?
+        \end{itemize}
+        \item Standardization 101
+        \begin{itemize}
+            \item How is the electromagnetic spectrum occupied?
+            \item What is a standard?
+            \item What is a standardization body?
+            \item What is a patent?
+        \end{itemize}
+        \item Evolution of Cellular Standards
+        \begin{itemize}
+            \item 0G-2G
+            \item 3G
+            \item Deep Dive OFDM
+            \item 4G
+            \item 5G
+        \end{itemize}
+        \framebreak
+        \item WiFi vs. Bluetooth vs. Cellular
+        \begin{itemize}
+            \item Why do we have different standards for different applications and use cases?
+        \end{itemize}
+        \item Hands-on DVB
+        \begin{itemize}
+            \item How to read a standard?
+        \end{itemize}
+        \item Business Models
+        \begin{itemize}
+            \item How to commercialize a standard?
+        \end{itemize}
+        \item The Future of Mobile Communications
+        \begin{itemize}
+            \item 6G and beyond
+            \item Trends and goals
+            \item Recent research in EMS
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\subsection{Technical Preliminaries}
+
+\begin{frame}{LTI System Model}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.58\textwidth}
+            Channel as Block Model\\
+            \vspace{1em}
+            \begin{tikzpicture}[
+                auto,
+                >=latex,
+                block/.style={draw, fill=blue!10, rounded corners, minimum height=2.2em, minimum width=4.5em, font=\small\bfseries},
+                sum/.style={draw, fill=blue!10, circle, inner sep=0pt, minimum size=1.5em, font=\bfseries}
+            ]
+                \node (tx) at (0,0) {$x(t)$};
+                \node[block] (lti) at (2.5,0) {$\mathcal{H}$};
+                \node (rx) at (5.0,0) {$y(t)$};
+                \draw[->, thick] (tx) -- (lti);
+                \draw[->, thick] (lti) -- (rx);
+            \end{tikzpicture}
+            \begin{itemize}
+                \item System operator $\mathcal{H}$ 
+                \item Transforms input signal $x(t)$ to output signal $y(t)$
+            \end{itemize}
+            \vfill
+            System Operator under LTI Properties\\
+            \begin{itemize}
+                \item \textbf{L}inear 
+                \begin{itemize}
+                    \item $\mathcal{H}\{\alpha x_1(t) + \beta x_2(t)\} = \alpha \mathcal{H}\{x_1(t)\} + \beta \mathcal{H}\{x_2(t)\}$
+                    \item Superposition principle
+                \end{itemize}
+                \item \textbf{T}ime \textbf{I}nvariant 
+                \begin{itemize}
+                    \item $\mathcal{H}\{x(t - \tau)\}=y(t-\tau)$
+                    \item Time delay $\tau$ of input equates to time delay $\tau$ of output
+                \end{itemize}
+            \end{itemize}
+            \alert{Remark:} Real channels are inherently dynamic---covered in lecture 2 (coherence time)
+        \end{column}
+        %
+        \begin{column}{0.38\textwidth}
+            \begin{block}{Channel Impulse Response (CIR)}
+                Response to an ideal Dirac pulse $\delta(t)$\\
+                \vspace{0.5em}
+                \centering
+                $h(t) = \mathcal{H}\{\delta(t)\}$
+            \end{block}
+            \begin{block}{LTI Input-Output Relation}
+                Convolution of input $x(t)$ with CIR $h(t)$\\
+                \vspace{0.5em}
+                \centering
+                $y(t) = x(t) * h(t)$ \\[0.2cm]
+                $y(t) = \int_{-\infty}^{\infty} x(\tau) h(t - \tau) \,\mathrm{d}\tau$
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Fourier Transformation I}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.58\textwidth}
+            From Impulse Response to Transfer Function\\
+            \begin{itemize}
+                \item Time-domain CIR $h(t)$ describes channel delay behavior
+                \item Fourier Transform (FT) maps CIR to frequency domain Channel Transfer Function (CTF)
+                \item $h(t) \tf H(f)$
+            \end{itemize}
+            Basis Functions \& Eigenfunction Property\\
+            \begin{itemize}
+                \item Complex exponentials $\phi_f(t) = \ee^{\jj 2\pi f t}$ serve as orthonormal basis (kernel)
+                \item Exponentials pass through unchanged except for complex scaling
+                \item $\mathcal{H}\{\mathrm{e}^{\mathrm{j} 2\pi f t}\} = H(f) \cdot \mathrm{e}^{\mathrm{j} 2\pi f t}$
+                \item Complex scalar $H(f)$ gives channel attenuation and phase rotation at frequency $f$
+            \end{itemize}
+        \end{column}
+    
+        \begin{column}{0.38\textwidth}
+            \begin{block}{FT (Analysis)}
+                Decomposition into spectrum\\
+                \vspace{0.5em}
+                \centering
+                $H(f) = \int_{-\infty}^{\infty} h(t) \,\mathrm{e}^{-\mathrm{j} 2\pi f t} \,\mathrm{d}t$
+            \end{block}
+    
+            \begin{block}{Inverse FT (IFT) (Synthesis)}
+                Reconstruction of time signal\\
+                \vspace{0.5em}
+                \centering
+                $h(t) = \int_{-\infty}^{\infty} H(f) \,\mathrm{e}^{\mathrm{j} 2\pi f t} \,\mathrm{d}f$
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Fourier Transformation II}
+\begin{columns}[T,onlytextwidth]
+    \begin{column}{0.58\textwidth}
+        Time-Frequency Uncertainty\\
+        \begin{itemize}
+            \item Direct consequence of the FT scaling property 
+            \item $x(at) \;\circ\!\!-\!\!\bullet\; \frac{1}{|a|} X\left(\frac{f}{a}\right)$
+            \item Narrow time duration $\implies$ wide spectral occupancy
+            \item Time-limited signals can never be strictly band-limited
+        \end{itemize}
+        \vspace{0.4em}
+        
+        Impact on Radio Standards\\
+        \begin{itemize}
+            \item Sharp transitions (e.g., rect pulse) cause slow $1/f$ spectral decay
+            \item High sidelobes leak energy thereby causing interference
+            \item Regulatory spectral masks strictly limit out-of-band emissions
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \alert{Remark:} An optimal pulse must balance finite duration and low spectral sidelobes---covered in lecture 2 (root-raised-cosine)
+    \end{column}
+
+    \begin{column}{0.38\textwidth}
+        \begin{block}{FT Example}
+            \centering
+            $\mathrm{rect}\!\left(\frac{t}{T}\right) \;\circ\!\!-\!\!\bullet\; T\,\mathrm{si}(\pi f T)$ \\[0.2cm]
+            \footnotesize $\mathrm{si}(x) = \frac{\sin(x)}{x}$, zeros at $f = \pm \frac{k}{T}$
+
+            \begin{figure}
+                \centering
+                \includegraphics[width=1\linewidth]{images/rect_sinc.pdf}
+                \caption{Rectangular Pulse and Si Function}
+                \label{fig:placeholder}
+            \end{figure}
+            
+        \end{block}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Fourier Transformation III}
+    \centering
+    Live demo: Frequency spectrum from the computer microphone
+\end{frame}
+
+\begin{frame}{Fourier Transformation IV}
+    \label{1:FT4}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.58\textwidth}
+            Essential Fourier Properties\\
+            \begin{itemize}
+                \item Time Shifting (e.g. Propagation Delay)
+                \begin{itemize}
+                    \item $x(t - \tau_0) \;\circ\!\!-\!\!\bullet\; X(f) \,\mathrm{e}^{-\mathrm{j} 2\pi f \tau_0}$
+                    \item Delay $\tau_0$ introduces a linear phase rotation across frequency
+                \end{itemize}
+                \item Frequency Shifting (e.g. Doppler Shift)
+                \begin{itemize}
+                    \item $x(t) \,\mathrm{e}^{\mathrm{j} 2\pi f_\mathrm{D} t} \;\circ\!\!-\!\!\bullet\; X(f - f_\mathrm{D})$
+                    \item Doppler shift $f_D$ introduces linear phase rotation across time
+                \end{itemize}
+                \item Convolution Theorem
+                    \begin{itemize}
+                        \item $x(t) * h(t) \tf X(f) \cdot H(f)$
+                        \item Simplifies channel equalization from deconvolution to division
+                    \end{itemize}
+                \item Sampling / Periodicity Duality
+                \begin{itemize}
+                    \item Periodicity t/f $\Longleftrightarrow$ Sampling f/t
+                    \item \rlap{$\underbrace{x_\mathrm{s}(t) = x(t) \cdot \sum_{n=-\infty}^{\infty} \delta(t - n T_\mathrm{s})}_{\text{Sampling in Time}} \quad\circ\!\!-\!\!\bullet\quad \underbrace{X_\mathrm{s}(f) = \frac{1}{T_\mathrm{s}} \sum_{k=-\infty}^{\infty} X\!\left(f - \frac{k}{T_\mathrm{s}}\right)}_{\text{Periodification in Frequency}}$}
+                \end{itemize}
+            \end{itemize}
+        \end{column}
+    
+        %\begin{column}{0.38\textwidth}
+        %    \begin{block}{Hermitian Symmetry}
+        %        For real physical signals $x(t) \in \mathbb{R}$:\\
+        %        \vspace{0.4em}
+        %        \centering
+        %        $X(-f) = X^*(f)$ \\[0.2cm]
+        %        \raggedright
+        %        \footnotesize
+        %        $\implies |X(-f)| = |X(f)|$ (even magnitude)\\
+        %        $\implies \angle X(-f) = -\angle X(f)$ (odd phase)
+        %    \end{block}
+        %\end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Complex Baseband I}
+\begin{columns}[T,onlytextwidth]
+    \begin{column}{0.58\textwidth}
+        Why Complex Signals for Real Waves?\\
+        \begin{itemize}
+            \item Antennas emit and capture real-valued signals $s_\mathrm{BP}(t) \in \mathbb{R}$
+            \item Communications signals usually narrowband ($B \ll f_\mathrm{c}$):
+            \begin{itemize}
+                \item Carrier $f_\mathrm{c}$ fixed in the GHz regime (e.g., $3.5\,\mathrm{GHz}$)
+                \item Information encoded in amplitude $A(t)$ and phase $\phi(t)$
+            \end{itemize}
+            \item Simulating carrier oscillations at GHz rates is computationally expensive
+        \end{itemize}
+        \vspace{0.8em}
+        Equivalent Complex Baseband Envelope\\
+        \begin{itemize}
+            \item Utilize complex numbers to combine amplitude and phase
+            \item $s_\mathrm{BB}(t) = A(t) \,\mathrm{e}^{\mathrm{j} \phi(t)} \in \mathbb{C}$
+            \item Describes signal independent of the carrier frequency
+        \end{itemize}
+    \end{column}
+
+    \begin{column}{0.38\textwidth}
+        \begin{block}{Passband Baseband Transformation}
+            Passband as real projection of baseband signal\\
+            \vspace{0.5em}
+            \centering
+            $s_\mathrm{BP}(t) = \mathrm{Re}\Big\{ s_\mathrm{BB}(t) \,\mathrm{e}^{\mathrm{j} 2\pi f_\mathrm{c} t} \Big\}$
+        \end{block}
+
+        \begin{block}{Advantages}
+            \begin{itemize}
+                \item Spectrum centered around $0\,\mathrm{Hz}$
+                \item Sample rate reduces from $2(f_\mathrm{c} + B/2)$ to $B$
+                \item Clean mathematical framework for modulation and filtering
+            \end{itemize}
+        \end{block}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Complex Baseband II}
+\begin{columns}[T,onlytextwidth]
+    \begin{column}{0.58\textwidth}
+        Cartesian Decomposition of Baseband\\
+        \begin{itemize}
+            \item Split complex envelope into real and imaginary parts:
+            \item $s_\mathrm{BB}(t) = I(t) + \mathrm{j} Q(t)$
+            \item $I(t) = \mathrm{Re}\{s_\mathrm{BB}(t)\} = A(t)\cos\phi(t)$ (\textbf{In-Phase})
+            \item $Q(t) = \mathrm{Im}\{s_\mathrm{BB}(t)\} = A(t)\sin\phi(t)$ (\textbf{Quadrature})
+        \end{itemize}
+        \vspace{0.8em}
+        Orthogonal Carrier Modulation\\
+        \begin{itemize}
+            \item Expanding $s_{BP}(t)$ with Euler's identity 
+            \item $\mathrm{e}^{\mathrm{j} 2\pi f_\mathrm{c} t} = \cos \omega_\mathrm{c} t + \mathrm{j} \sin \omega_\mathrm{c} t$
+            \item $s_\mathrm{BP}(t) = I(t)\cos(2\pi f_\mathrm{c} t) - Q(t)\sin(2\pi f_\mathrm{c} t)$
+            \item Transmits two independent data streams over the same RF spectrum
+        \end{itemize}
+    \end{column}
+
+    \begin{column}{0.38\textwidth}
+        \begin{block}{I/Q Modulator Architecture}
+            \centering
+            \begin{tikzpicture}[auto, >=latex, scale=0.82, every node/.style={scale=0.82}]
+                \node (I) at (0,1.2) {$I(t)$};
+                \node (Q) at (0,-1.2) {$Q(t)$};
+                \node[draw,circle,fill=blue!10] (m1) at (1.5,1.2) {$\times$};
+                \node[draw,circle,fill=blue!10] (m2) at (1.5,-1.2) {$\times$};
+                \node (cos) at (1.5,2.1) {$\cos(\omega_\mathrm{c} t)$};
+                \node (sin) at (1.5,-2.1) {$-\sin(\omega_\mathrm{c} t)$};
+                \node[draw,circle,fill=blue!10] (sum) at (3.0,0) {$+$};
+                \node (bp) at (4.3,0) {$s_\mathrm{BP}(t)$};
+                \draw[->,thick] (I) -- (m1);
+                \draw[->,thick] (Q) -- (m2);
+                \draw[->,thick] (cos) -- (m1);
+                \draw[->,thick] (sin) -- (m2);
+                \draw[->,thick] (m1) -| (sum);
+                \draw[->,thick] (m2) -| (sum);
+                \draw[->,thick] (sum) -- (bp);
+            \end{tikzpicture}
+        \end{block}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Why do we have Digital Communication Systems?}
+    Disadvantages of Analog Systems
+    \begin{itemize}
+        \item Requires two physical signal traces for $I$ and $Q$
+        \item Analog hardware impairments
+    \end{itemize}
+    Advantages of Digital Systems
+    \begin{itemize}
+        \item Complex numbers handled in memory/ software
+        \item Flexibility of the hardware platforms (Software-defined radio)
+        \item Conditional access and encryption
+        \item Error correction and information compression
+        \item Storage of digital data
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Discrete Fourier Transformation I}
+\begin{columns}[T,onlytextwidth]
+    \begin{column}{0.58\textwidth}
+        Discrete Counterpart of the FT\\
+        \begin{itemize}
+            \item Discrete Fourier Transformation (DFT) maps $N$ discrete time samples to $N$ discrete frequency bins
+            \item DFT kernel from FT kernel
+            \item $\mathrm{e}^{-\mathrm{j} 2\pi f t} \quad\longrightarrow\quad \mathrm{e}^{-\mathrm{j} \frac{2\pi}{N} k n} = W_N^{k n}$
+        \end{itemize}
+        Intrinsic Periodicity of the DFT
+        \begin{itemize}
+            \item Discrete harmonic basis is periodic with period $N$
+            \item $W_N^{(k + N)n} = W_N^{kn} \implies X[k + N] = X[k]$
+            \item Time sequence implicitly treated as periodic
+            \item $\tilde{x}[n] = x[n \bmod N]$
+        \end{itemize}
+    \end{column}
+
+    \begin{column}{0.38\textwidth}
+        \begin{block}{$N$-Point DFT (Analysis)}
+            Time sequence to discrete frequency\\
+            \vspace{0.4em}
+            \centering
+            $X[k] = \sum_{n=0}^{N-1} x[n] \,\mathrm{e}^{-\mathrm{j} \frac{2\pi}{N} k n}$ \\[0.2cm]
+            \footnotesize $k \in \{0, 1, \dots, N-1\}$
+        \end{block}
+
+        \begin{block}{$N$-Point IDFT (Synthesis)}
+            Reconstruction of time samples\\
+            \vspace{0.4em}
+            \centering
+            $x[n] = \frac{1}{N}\sum_{k=0}^{N-1} X[k] \,\mathrm{e}^{\mathrm{j} \frac{2\pi}{N} k n}$ \\[0.2cm]
+            \footnotesize $n \in \{0, 1, \dots, N-1\}$
+        \end{block}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Discrete Fourier Transformation II}
+\begin{columns}[T,onlytextwidth]
+    \begin{column}{0.58\textwidth}
+        \vspace{0.8em}
+        \begin{itemize}
+            \item Time Shifting
+                \begin{itemize}
+                    \item Compare to FT (Slide \ref{1:FT4})
+                    \item $x\big[(n - n_0) \bmod N\big]= X[k] \, e^{-j \frac{2\pi}{N} k n_0}$
+                \end{itemize}
+            \item Frequency Shifting
+                \begin{itemize}
+                    \item Compare to FT (Slide \ref{1:FT4})
+                    \item $X\big[(k - k_0) \bmod N\big] = x[n] \, e^{j \frac{2\pi}{N} k_0 n}$
+                \end{itemize}
+            \item Convolution Discrepancy Compared to FT
+                \begin{itemize}
+                    \item Discrete LTI channels perform linear convolution
+                    \item $y[n] = x[n] * h[n] = \sum_m h[m] x[n - m]$
+                    \item Multiplying two DFTs yields circular convolution ($\circledast_N$)
+                    \item$x[n] \circledast_N h[n] \tf X[k] \cdot H[k]$ \\[0.2cm]
+                \end{itemize}
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+        \begin{block}{Circular Convolution $\circledast_N$}
+            \centering
+            $x[n] \circledast_N h[n] = \sum_{m=0}^{N-1} h[m] \, x[(n - m) \bmod N]$
+        \end{block}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Discrete Fourier Transformation III}
+\begin{columns}[T,onlytextwidth]
+    \begin{column}{0.56\textwidth}
+        DFT is a linear transformation
+        \begin{itemize}
+            \item $N$-point DFT acts as matrix-vector product:
+                  \begin{equation*}
+                      \mathbf{X} = \mathbf{F}_N \mathbf{x}
+                  \end{equation*}
+            \item $\mathbf{x} = [x[0], \dots, x[N-1]]^T \in \mathbb{C}^N$
+            \item $\mathbf{X} = [X[0], \dots, X[N-1]]^T \in \mathbb{C}^N$
+            \item $\mathbf{F}_N$ is a symmetric matrix with entries $[\mathbf{F}_N]_{k,n} = W_N^{k \cdot n}$
+        \end{itemize}
+        \vspace{0.4em}
+        Orthogonality \& IDFT
+        \begin{itemize}
+            \item Columns of $\mathbf{F}_N$ form an orthogonal basis:
+                  \begin{equation*}
+                      \mathbf{F}_N^H \mathbf{F}_N = N \mathbf{I}_N \implies \mathbf{F}_N^{-1} = \frac{1}{N}\mathbf{F}_N^H
+                  \end{equation*}
+            \item IDFT matrix is conjugate transpose $\mathbf{F}_N^H$ scaled by~$1/N$
+        \end{itemize}
+        \vspace{0.4em}
+    \end{column}
+
+    \begin{column}{0.40\textwidth}
+        \begin{block}{The DFT Matrix $\mathbf{F}_N$}
+            \centering
+            \footnotesize
+            $\mathbf{F}_N = \begin{bmatrix}
+                1 & 1 & 1 & \dots & 1 \\
+                1 & W_N^1 & W_N^2 & \dots & W_N^{N-1} \\
+                1 & W_N^2 & W_N^4 & \dots & W_N^{2(N-1)} \\
+                \vdots & \vdots & \vdots & \ddots & \vdots \\
+                1 & W_N^{N-1} & W_N^{2(N-1)} & \dots & W_N^{(N-1)^2}
+            \end{bmatrix}$
+            \begin{itemize}
+                \item With $W_N = \mathrm{e}^{-\mathrm{j}\frac{2\pi}{N}}$
+            \end{itemize}
+        \end{block}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Spatial Processing I}
+    \begin{columns}[onlytextwidth]
+        \begin{column}{0.48\textwidth}
+            \begin{itemize}
+                \item Plane wave = oscillation across distance and time
+                \item Wave number $k_0$ = spatial phase velocity per meter ($\mathrm{rad/m}$)
+                \item Wave vector $k$ = directional vector pointing along direction of propagation $\theta$
+                \item Spatial sampling = antenna elements sample positions as ADCs sample time
+                \item Time--frequency duality maps to space--angle
+            \end{itemize}
+        \end{column}
+
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Wave Basics}
+                \begin{itemize}
+                    \item Wave propagation along time and frequency
+                    \item $s(\mathbf{r}, t) = \mathrm{e}^{\mathrm{j}(\omega t - \mathbf{k} \cdot \mathbf{r})}$
+                    \item Spatial frequency vector
+                    \item $k_0 = \frac{2 \pi}{\lambda}$
+                \end{itemize}
+            \end{block}
+
+            \begin{block}{Time--Space Duality}
+            \begin{tabular}{ll}
+                \hline
+                \textbf{Time Domain} & \textbf{Spatial Domain} \\ 
+                \hline
+                Time $t$ & Position $x$ \\
+                Period $T_\mathrm{s}$ & Element Spacing $d$ \\
+                Freq.\ $\omega$ & Wavenumber $k_0$ \\
+                $f_\mathrm{s} \ge 2B$ & $d \le \lambda / 2$ \\ 
+                \hline
+            \end{tabular}
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Spatial Processing II}
+    \begin{columns}[onlytextwidth]
+        \begin{column}{0.48\textwidth}
+            Uniform Linear Array (ULA)
+            \begin{itemize}
+                \item Plane wave arriving from angle $\theta$
+                \item Wave travels extra $\Delta l$ per element
+                \item Elements experience angle-dependent phase shift $\psi$ compared to reference element 0
+                \item Array steering vector $\mathbf{a}(\theta)$
+                \item $\mathbf{a}(\theta) = \begin{bmatrix} 1 & \mathrm{e}^{-\mathrm{j}\psi} & \dots & \mathrm{e}^{-\mathrm{j}(M-1)\psi} \end{bmatrix}^T$
+                \item Spatial sampling without ambiguities if $d \le \frac{\lambda}{2} \iff |\psi| \le \pi$
+            \end{itemize}
+        \end{column}
+
+        \begin{column}{0.50\textwidth}
+            \centering
+            \resizebox{\linewidth}{!}{%
+            \begin{tikzpicture}[
+                >=Stealth,
+                ray/.style={blue!75!black, thick, -{Stealth[length=2.2mm]}},
+                wavefront/.style={cyan!80!black, thick}
+            ]
+                % Parameters
+                \def\d{2.2}         % inter-element spacing
+                \def\thetaAngle{30} % incidence angle from normal (deg)
+                \def\rayLen{3.4}    % ray length
+
+                % Array Elements (Sensors)
+                \coordinate (S0) at (0, 0);
+                \coordinate (S1) at (\d, 0);
+                \coordinate (S2) at (2*\d, 0);
+
+                % Baseline
+                \draw[thick, gray!40] (-0.8, 0) -- (2*\d + 0.8, 0);
+
+                % Broadside Normal at Element 0
+                \draw[dashed, gray!70, thick] (0, 0) -- (0, 3.2);
+
+                % Ray Origins (incoming from upper-left at angle theta from normal)
+                \coordinate (R0) at ({-\rayLen*sin(\thetaAngle)}, {\rayLen*cos(\thetaAngle)});
+                \coordinate (R1) at ({\d - \rayLen*sin(\thetaAngle)}, {\rayLen*cos(\thetaAngle)});
+                \coordinate (R2) at ({2*\d - \rayLen*sin(\thetaAngle)}, {\rayLen*cos(\thetaAngle)});
+
+                % Parallel Incoming Rays
+                \draw[ray] (R0) -- (S0);
+                \draw[ray] (R1) -- (S1);
+                \draw[ray, blue!40, densely dashed] (R2) -- (S2);
+
+                % Parallel Planar Wavefronts (orthogonal to ray)
+                \foreach \offset in {1.4, 2.5} {
+                    \coordinate (W) at ({-\offset*sin(\thetaAngle)}, {\offset*cos(\thetaAngle)});
+                    \draw[wavefront] 
+                        ($(W) - 0.4*({cos(\thetaAngle)}, {sin(\thetaAngle)})$) -- 
+                        ($(W) + 2.8*({cos(\thetaAngle)}, {sin(\thetaAngle)})$);
+                }
+                \node[cyan!80!black, font=\scriptsize, rotate=\thetaAngle, above] 
+                    at ($({-2.5*sin(\thetaAngle)}, {2.5*cos(\thetaAngle)}) + 1.2*({cos(\thetaAngle)}, {sin(\thetaAngle)})$) 
+                    {Wavefront};
+
+                % Exact projection P of S0 onto the ray entering S1:
+                % P = S1 - (d*sin(theta)) * (sin(theta), -cos(theta))
+                \coordinate (P) at ({\d - \d*sin(\thetaAngle)*sin(\thetaAngle)}, {\d*sin(\thetaAngle)*cos(\thetaAngle)});
+
+                % Wavefront passing through S0 at the instant it hits Element 0
+                \draw[teal!85!black, thick, dashed] 
+                    ($(S0) - 0.3*({cos(\thetaAngle)}, {sin(\thetaAngle)})$) -- 
+                    ($(P) + 0.5*({cos(\thetaAngle)}, {sin(\thetaAngle)})$);
+
+                % Extra propagation path (Delta l) along ray to Element 1
+                \draw[red!85!black, line width=1.6pt] (P) -- (S1) 
+                    node[midway, right=2pt, font=\footnotesize\bfseries, text=red!85!black] {$\Delta\ell$};
+
+                % Exact Right-Angle square mark at P
+                \coordinate (P_S0) at ($(P)!0.22cm!(S0)$);
+                \coordinate (P_S1) at ($(P)!0.22cm!(S1)$);
+                \coordinate (P_sq) at ($(P_S0) + (P_S1) - (P)$);
+                \draw[gray!70, thick] (P_S0) -- (P_sq) -- (P_S1);
+
+                % Angle theta arcs
+                % 1. At Normal (Element 0)
+                \draw[thick, red!85!black, ->] (0, 1.6) arc[start angle=90, end angle={90+\thetaAngle}, radius=1.6];
+                \node[red!85!black, font=\footnotesize] at ({90 + \thetaAngle/2}:1.9) {$\theta$};
+
+                % 2. Inside the geometric triangle at Element 0
+                \draw[thick, red!85!black, ->] (0.7, 0) arc[start angle=0, end angle=\thetaAngle, radius=0.7];
+                \node[red!85!black, font=\footnotesize] at ({\thetaAngle/2}:0.95) {$\theta$};
+
+                % Sensor Antennas
+                \foreach \i in {0, 1, 2} {
+                    \filldraw[fill=blue!10, draw=blue!85!black, thick] 
+                        (\i*\d - 0.16, -0.22) -- (\i*\d + 0.16, -0.22) -- (\i*\d, 0) -- cycle;
+                    \filldraw[blue!85!black] (\i*\d, 0) circle (1.8pt);
+                }
+
+                % Sensor Spacing dimension (d)
+                \draw[{Stealth[length=1.4mm]}-{Stealth[length=1.4mm]}, thick] (0, -0.42) -- (\d, -0.42) 
+                    node[midway, fill=white, inner sep=1pt, font=\scriptsize] {$d$};
+
+                % Sensor Labels (placed below spacing arrow to prevent overlap)
+                \node[below, font=\scriptsize] at (0, -0.55) {Element $0$};
+                \node[below, font=\scriptsize] at (\d, -0.55) {Element $1$};
+                \node[below, font=\scriptsize] at (2*\d, -0.55) {Element $2$};
+            \end{tikzpicture}
+            }
+
+            \vspace{0.3em}
+            \begin{beamercolorbox}[rounded=true,center,sep=3pt]{block body}
+                \footnotesize
+                \textbf{Path difference:} $\Delta \ell = d\sin\theta$ \\[2pt]
+                \textbf{Phase shift:} $\psi = \frac{2\pi}{\lambda}\Delta \ell = \frac{2\pi d}{\lambda}\sin\theta$
+            \end{beamercolorbox}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Spatial Processing III}
+    \begin{columns}[onlytextwidth]
+        \begin{column}{0.48\textwidth}
+            Bartlett Beamformer
+            \begin{itemize}
+                \item Weight vector $\mathbf{w}(\theta)$ ``steers'' antenna array
+                \item Maximizes output power for direction $\theta$ by selecting weights as
+                \item $\mathbf{w}_\text{Bartlett}(\theta) = \frac{1}{M}\mathbf{a}(\theta)$
+                \item Undo the phase shifts introduced by the channel
+                \item Scan output power of the beamformer across $\theta$
+                \item $P_{\mathrm{BF}}(\theta) = \mathbf{w}^H(\theta)\,\mathbf{R}_{xx}\,\mathbf{w}(\theta)$
+            \end{itemize}
+        \end{column}
+
+        \begin{column}{0.48\textwidth}
+            \begin{tikzpicture}[
+                >=Stealth,
+                thick,
+                node distance=1.2cm,
+                block/.style={draw=blue!85!black, fill=blue!10, rounded corners=2pt, minimum width=1.1cm, minimum height=0.6cm, font=\scriptsize, align=center},
+                sum/.style={circle, draw=black, fill=gray!15, inner sep=0pt, minimum size=0.65cm, font=\normalsize}
+            ]
+                % Antenna Elements
+                \foreach \m in {0, 1, 2} {
+                    \coordinate (ant\m) at (0, -\m*1.5);
+                    % Antenna triangle
+                    \filldraw[fill=blue!10, draw=blue!85!black] 
+                        ($(ant\m) + (-0.15, 0.15)$) -- ($(ant\m) + (0.15, 0.15)$) -- (ant\m) -- cycle;
+                    \filldraw[blue!85!black] (ant\m) circle (1.2pt);
+                    \draw (ant\m) -- ++(0.5, 0);
+
+                    % Weight multiplication block
+                    \node[block] (w\m) at ($(ant\m) + (1.4, 0)$) {$\times\, w_{\m}^*$};
+                    \draw[->] ($(ant\m) + (0.5, 0)$) -- (w\m) 
+                        node[midway, above, xshift=-4pt, font=\tiny] {$x_{\m}[n]$};
+                }
+
+                % Element labels
+                \node[left, font=\tiny] at ($(ant0) + (-0.15, 0.05)$) {Element $0$};
+                \node[left, font=\tiny] at ($(ant1) + (-0.15, 0.05)$) {Element $1$};
+                \node[left, font=\tiny] at ($(ant2) + (-0.15, 0.05)$) {Element $M{-}1$};
+
+                % Dots between Ant 1 and M-1
+                \path (ant1) -- (ant2) node[midway, font=\scriptsize] {$\vdots$};
+                \path (w1) -- (w2) node[midway, font=\scriptsize] {$\vdots$};
+
+                % Summation Node
+                \node[sum] (adder) at (3.1, -1.5) {$\Sigma$};
+
+                % Connect weights to sum
+                \draw[->] (w0.east) -| (adder.north);
+                \draw[->] (w1.east) -- (adder.west);
+                \draw[->] (w2.east) -| (adder.south);
+
+                % Output y[n]
+                \draw[->, very thick, blue!85!black] (adder.east) -- ++(1.1, 0) 
+                    node[right, font=\footnotesize, black] {$y[n]$};
+            \end{tikzpicture}
+            \begin{block}{Output Signal Model}
+                \begin{itemize}
+                    \item Snapshot vector: $\mathbf{x}[n] = \mathbf{a}(\theta_0)s[n] + \mathbf{n}[n]$
+                    \item Beamformer output: $y[n] = \mathbf{w}^H(\theta)\mathbf{x}[n]$
+                    \item Spatial covariance: $\mathbf{R}_{xx} = \mathbb{E}\{\mathbf{x}[n]\mathbf{x}^H[n]\}$
+                \end{itemize}
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Spatial Processing IV}
+    \centering
+    Live demo: Bartlett beamformer visualization
+\end{frame}

@@ -1,0 +1,29 @@
+% frame title
+\setbeamertemplate{frametitle}{
+  \vspace{\frametitlev}
+  \usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle
+
+  \vspace{\framesubtitlev}
+  \usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle
+}
+
+% title page
+\setbeamertemplate{title page}
+{
+  %\ifdefined\titleimage
+  %  \frametitle{\inserttitle}
+  %  \framesubtitle{\insertsubtitle}
+  %\else
+    \begin{center}
+      \usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\inserttitle
+
+      \vspace{\framesubtitlev}
+      \usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertsubtitle
+
+      \vspace{1.5cm}
+      \insertauthor\\
+      {\scriptsize\insertinstitute}\\~\\
+      {\small\insertdate}
+    \end{center}
+ % \fi
+}

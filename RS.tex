@@ -1,0 +1,111 @@
+%\documentclass[10pt]{beamer}   % 12.8 x 9.6 cm
+\documentclass[10pt,aspectratio=1610,handout]{beamer} % 16.01 x 10.01 cm
+%\documentclass[10pt,aspectratio=169]{beamer} % 16.01 x 9.0 cm
+
+\usepackage[ngerman]{babel}
+\setlocalecaption{ngerman}{figure}{Abb.}
+
+\usepackage{xspace}
+%\usepackage{appendixnumberbeamer} % conflicts with page counter reset at sections -> DON'T USE!
+\usepackage{xcolor} % for color definitions
+\usepackage{graphicx}
+%https://www.namsu.de/Extra/pakete/Caption.html
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{comment}
+\usepackage{siunitx}
+\usepackage{cancel}
+\usepackage{fontawesome}
+\usepackage[absolute, overlay]{textpos}
+\usepackage{tabularx}
+%\usepackage{media9}
+%\usepackage[draft]{animate}
+%\usepackage{animate}
+%\usepackage{algorithm2e}
+%\usepackage{empheq}
+%\usepackage{booktabs} % https://ctan.org/pkg/booktabs
+%\usepackage[scale=2]{ccicons}
+%\usepackage{subcaption}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={},
+    pdfpagemode=FullScreen,
+    }
+\urlstyle{same}
+\usepackage{lmodern}
+\usepackage{booktabs}
+
+\usepackage{circuitikz}
+%\usepackage[backend=biber,style=alphabetic,sorting=none]{biblatex}
+%\addbibresource{references.bib}
+
+\usepackage[skins,theorems]{tcolorbox}
+\tcbset{highlight math style={enhanced,
+  colframe=blue,colback=white,arc=0pt,boxrule=1pt}}
+
+
+\title[Radio Standards \quad WS\,2026]{Radio Standards}
+\subtitle{WS 2026}
+% \date{\today}
+\author{Lorenz Mohr, Dr.-Ing. Alexander Ihlow, Prof.\ Thomas Dallmann}
+\date{Technische Universität Ilmenau}
+\institute[FG EMS]{Fachgebiet Elektronische Messtechnik und Signalverarbeitung (EMS)}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\def\footercontent{\begin{tabular}{c|c|c}
+	\insertsection & \inserttitle
+\end{tabular}}
+
+% switch theme
+\input{_beamersetupALEX.tex}
+%\input{_beamersetupTUIL.tex}
+
+% exponential e, imaginary j, Re{}, Im{}, erf() ...
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\jj}{\mathrm{j}}
+\newcommand{\re}{\mathfrak{Re}}
+\newcommand{\im}{\mathfrak{Im}}
+\newcommand{\tf}{\mathrel{\circ}\mathrel{\!}\mathrel{-}\mathrel{\!}\mathrel{\bullet}}
+\newcommand{\ft}{\mathrel{\bullet}\mathrel{\!}\mathrel{-}\mathrel{\!}\mathrel{\circ}}
+
+\DeclareMathOperator\erf{erf}
+\DeclareMathOperator\expect{\mathrm{E}}
+
+%\newcommand{\myframe}{\frame}
+\newcommand{\myframe}{}
+
+%%%%%%%%%% page counter reset at sections %%%%%%%%%%%%%%%%%%%%%
+% https://tex.stackexchange.com/questions/610874/reset-frame-number-and-total-frame-count-per-beamer-section
+% !!!!! conflicts with %\usepackage{appendixnumberbeamer}
+\usepackage{chngcntr}
+\counterwithin{framenumber}{section}% Number frames within \section
+
+\begin{document}
+
+\maketitle
+%\titleframe
+
+
+\begin{comment}
+    
+\begin{frame}[allowframebreaks]{Inhalt}
+ \nocite{muehl,schruefer,lerch,hoffmann}
+ \nocite{oth,ptb_si_25,schwarz_avn_1}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents%[hideallsubsections]
+\end{frame}
+
+\end{comment}
+
+\sectionFrame{Introduction} \input{sections/00_intro}
+
+%\setcounter{section}{-1} \sectionFrame{Organisatorisches}
+\
+
+\end{document}
