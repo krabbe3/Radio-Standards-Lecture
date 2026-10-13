@@ -2,12 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
 
-# --- Array & Geometry Configuration ---
 M = 8  # Number of elements
 init_d = 0.5  # Initial element spacing (units of lambda)
 N_samples = 200  # Time snapshots
 
-# Pre-generate noise and source signal
 np.random.seed(42)
 s = (np.random.randn(N_samples) + 1j * np.random.randn(N_samples)) / np.sqrt(2)
 noise_pwr = 10 ** (-15 / 10)  # 15 dB SNR
@@ -15,23 +13,22 @@ noise = np.sqrt(noise_pwr / 2) * (
     np.random.randn(M, N_samples) + 1j * np.random.randn(M, N_samples)
 )
 
-# Scanning angles for the spectrum
+# Scanning angles
 theta_scan = np.linspace(-90, 90, 721)
 
 
+# Array response
 def steering_vector(theta_deg, d_spacing):
     psi = 2 * np.pi * d_spacing * np.sin(np.deg2rad(theta_deg))
     return np.exp(-1j * np.arange(M) * psi)
 
 
-# --- Plot Layout ---
 fig, (ax_geo, ax_spec) = plt.subplots(1, 2, figsize=(12, 5))
 plt.subplots_adjust(bottom=0.32, wspace=0.28)
 
 init_theta_sig = 25.0
 init_theta_steer = 0.0
 
-# 1. Left Plot: ULA and Physical Wavefronts
 ax_geo.set_xlim(-4.0, 4.0)
 ax_geo.set_ylim(-1.0, 3.5)
 ax_geo.set_aspect("equal")
@@ -40,7 +37,6 @@ ax_geo.set_ylabel(r"Propagation Axis $y / \lambda$")
 ax_geo.set_title("ULA Geometry & Incident Wavefronts")
 ax_geo.grid(True, linestyle="--", alpha=0.5)
 
-# Array baseline & antennas
 ax_geo.plot([-3.8, 3.8], [0, 0], color="gray", lw=2, alpha=0.6)
 scatter_ant = ax_geo.scatter(
     [], [], color="blue", s=55, zorder=5, label="Antennas"
@@ -50,7 +46,6 @@ ant_text_labels = [
     for _ in range(M)
 ]
 
-# Dynamic geometry lines (incoming ray, steered beam, wavefronts)
 (line_sig_ray,) = ax_geo.plot([], [], "r-", lw=2, label="Signal Ray (AoA)")
 (line_steer_ray,) = ax_geo.plot(
     [], [], "g--", lw=1.8, label="Steered Direction"
@@ -61,7 +56,6 @@ wavefront_lines = [
 
 ax_geo.legend(loc="upper left", fontsize=8)
 
-# 2. Right Plot: Bartlett Spatial Spectrum
 (line_spec,) = ax_spec.plot([], [], "b-", lw=1.8, label="Bartlett Spectrum")
 line_sig_spec = ax_spec.axvline(
     init_theta_sig, color="r", linestyle="--", lw=1.5, label="True AoA"
@@ -114,7 +108,6 @@ slider_d = Slider(
 )
 
 
-# --- Update Function ---
 def update(val=None):
     th_s = slider_sig.val
     th_w = slider_steer.val
@@ -132,7 +125,6 @@ def update(val=None):
         text_obj.set_position((x_pos, -0.25))
         text_obj.set_text(f"{i}")
 
-    # --- Update Geometry Lines ---
     k_sig = np.array([-np.sin(th_s_rad), np.cos(th_s_rad)])
     ray_len = 3.0
     line_sig_ray.set_data([0, k_sig[0] * ray_len], [0, k_sig[1] * ray_len])
@@ -142,7 +134,6 @@ def update(val=None):
         [0, k_steer[0] * ray_len], [0, k_steer[1] * ray_len]
     )
 
-    # Wavefront lines (planes orthogonal to k_sig)
     u_tangent = np.array([np.cos(th_s_rad), np.sin(th_s_rad)])
     w_width = 3.5
     for idx, d_offset in enumerate(
@@ -153,14 +144,13 @@ def update(val=None):
         p2 = c + 0.5 * w_width * u_tangent
         wavefront_lines[idx].set_data([p1[0], p2[0]], [p1[1], p2[1]])
 
-    # --- Update Spectrum Plot ---
     A_scan = np.array([steering_vector(th, d_val) for th in theta_scan]).T
     a_sig = steering_vector(th_s, d_val).reshape(M, 1)
 
     X = a_sig @ s.reshape(1, N_samples) + noise
     Rxx = (X @ X.conj().T) / N_samples
 
-    # Bartlett scanning power
+    # bartlett spectrum
     P_bf = np.real(np.sum(A_scan.conj() * (Rxx @ A_scan), axis=0)) / (M**2)
     P_bf_dB = 10 * np.log10(P_bf / np.max(P_bf))
 
@@ -168,7 +158,6 @@ def update(val=None):
     line_sig_spec.set_xdata([th_s, th_s])
     line_steer_spec.set_xdata([th_w, th_w])
 
-    # Output power at currently steered weight angle
     w = steering_vector(th_w, d_val) / M
     P_curr = np.real(w.conj().T @ Rxx @ w)
     P_curr_dB = 10 * np.log10(P_curr / np.max(P_bf))

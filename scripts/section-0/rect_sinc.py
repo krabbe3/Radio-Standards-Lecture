@@ -7,21 +7,16 @@ A = 1.0  # Amplitude of the rectangular pulse
 
 # Time domain grid
 t = np.linspace(-3.0, 3.0, 1000)
-# rect(t/T): 1 for |t| < T/2, 0.5 at |t| == T/2, 0 elsewhere
 rect = np.where(np.abs(t) < T / 2, A, 0.0)
 rect[np.isclose(np.abs(t), T / 2)] = A / 2.0
 
 # Frequency domain grid (f in Hz)
 f = np.linspace(-4.0, 4.0, 1000)
-# Continuous Fourier Transform: X(f) = A * T * sinc(f * T)
-# Note: np.sinc(x) computes sin(pi * x) / (pi * x)
 X_f = A * T * np.sinc(f * T)
 
-# Create 2x1 figure layout
 fig, (ax_time, ax_freq) = plt.subplots(2, 1, figsize=(9, 7))
 fig.tight_layout(pad=4.0)
 
-# ----------------- Time Domain Plot -----------------
 ax_time.plot(
     t,
     rect,
@@ -42,7 +37,6 @@ ax_time.set_xticklabels([r"$-T/2$", "$0$", r"$T/2$"])
 ax_time.grid(True, linestyle=":", alpha=0.6)
 ax_time.legend(loc="upper right", fontsize=11)
 
-# ----------------- Frequency Domain Plot -----------------
 ax_freq.plot(
     f,
     X_f,
@@ -52,7 +46,6 @@ ax_freq.plot(
 )
 ax_freq.axhline(0, color="black", linewidth=0.8, linestyle="--", alpha=0.6)
 
-# Highlight first zero-crossings at +/- 1/T
 ax_freq.axvline(-1 / T, color="gray", linewidth=1.0, linestyle=":", alpha=0.7)
 ax_freq.axvline(1 / T, color="gray", linewidth=1.0, linestyle=":", alpha=0.7)
 

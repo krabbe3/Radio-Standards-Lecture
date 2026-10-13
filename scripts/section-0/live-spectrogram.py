@@ -22,7 +22,6 @@ def audio_callback(indata, frames, time_info, status):
     audio_queue.put(indata[:, 0].copy())
 
 
-# Set up matplotlib figure
 fig, ax = plt.subplots(figsize=(10, 5))
 max_freq_khz = (SAMPLE_RATE / 2) / 1000
 
@@ -46,16 +45,13 @@ def update_plot(frame):
     global spectrogram_data
     updated = False
 
-    # Process all available audio blocks in the queue
     while not audio_queue.empty():
         audio_chunk = audio_queue.get_nowait()
         windowed = audio_chunk * np.hanning(len(audio_chunk))
         spectrum = np.abs(np.fft.rfft(windowed))
 
-        # Convert to dB
         db_spectrum = 20 * np.log10(np.maximum(spectrum, 1e-5))
 
-        # Roll buffer left and insert newest spectrum on the right
         spectrogram_data = np.roll(spectrogram_data, -1, axis=1)
         spectrogram_data[:, -1] = db_spectrum
         updated = True
