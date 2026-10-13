@@ -1,6 +1,6 @@
 # Radio Standards
 
-Lecture materials for the course **Radio Standards** (Winter Semester 2026) at the Technical University of Ilmenau.
+Lecture materials for the course **Radio Standards** at the Technical University of Ilmenau.
 
 ## Course Information
 
@@ -89,7 +89,3 @@ The `scripts/section-0/` directory contains interactive Python demonstrations:
 - `bartlett-multi-doa.py` - Multiple direction-of-arrival estimation
 - `rect_sinc.py` - Rectangular pulse and sinc function demonstration
 
-## Exam
-
-- 30-minute oral exam
-- Bonus points available for group presentations (up to one-third grade step improvement)
