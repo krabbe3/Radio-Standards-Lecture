@@ -6,8 +6,6 @@ Lecture materials for the course **Radio Standards** (Winter Semester 2026) at t
 
 - **Instructors:** Lorenz Mohr, Dr.-Ing. Alexander Ihlow, Prof. Thomas Dallmann
 - **Institute:** Fachgebiet Elektronische Messtechnik und Signalverarbeitung (EMS)
-- **Lecture:** Mondays, 3:00–4:30 PM, OEC3008
-- **Tutorial:** Tuesdays, 11:00 AM–12:30 PM, OEC3008
 
 ## Course Overview
 
@@ -72,15 +70,6 @@ source ~/.bashrc
 For macOS and Windows, see the official installer: https://docs.conda.io/en/latest/miniconda.html
 
 ### Create the Environment
-
-```bash
-conda create -n radio-standards python=3.11 -y
-conda activate radio-standards
-conda install numpy matplotlib -y
-pip install sounddevice
-```
-
-On Linux, `sounddevice` requires the PortAudio library. Install it via your package manager (e.g., `sudo apt install libportaudio2`).
 
 ```bash
 conda create -n radio-standards python=3.11 -y
