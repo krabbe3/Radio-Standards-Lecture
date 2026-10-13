@@ -1,0 +1,43 @@
+\begin{tikzpicture}[
+    >=Stealth,
+    thick,
+    node distance=1.2cm,
+    block/.style={draw=blue!85!black, fill=blue!10, rounded corners=2pt, minimum width=1.1cm, minimum height=0.6cm, font=\scriptsize, align=center},
+    sum/.style={circle, draw=black, fill=gray!15, inner sep=0pt, minimum size=0.65cm, font=\normalsize}
+]
+    % Antenna Elements
+    \foreach \m in {0, 1, 2} {
+        \coordinate (ant\m) at (0, -\m*1.5);
+        % Antenna triangle
+        \filldraw[fill=blue!10, draw=blue!85!black] 
+            ($(ant\m) + (-0.15, 0.15)$) -- ($(ant\m) + (0.15, 0.15)$) -- (ant\m) -- cycle;
+        \filldraw[blue!85!black] (ant\m) circle (1.2pt);
+        \draw (ant\m) -- ++(0.5, 0);
+
+        % Weight multiplication block
+        \node[block] (w\m) at ($(ant\m) + (1.4, 0)$) {$\times\, w_{\m}^*$};
+        \draw[->] ($(ant\m) + (0.5, 0)$) -- (w\m) 
+            node[midway, above, xshift=-4pt, font=\tiny] {$x_{\m}[n]$};
+    }
+
+    % Element labels
+    \node[left, font=\tiny] at ($(ant0) + (-0.15, 0.05)$) {Element $0$};
+    \node[left, font=\tiny] at ($(ant1) + (-0.15, 0.05)$) {Element $1$};
+    \node[left, font=\tiny] at ($(ant2) + (-0.15, 0.05)$) {Element $M{-}1$};
+
+    % Dots between Ant 1 and M-1
+    \path (ant1) -- (ant2) node[midway, font=\scriptsize] {$\vdots$};
+    \path (w1) -- (w2) node[midway, font=\scriptsize] {$\vdots$};
+
+    % Summation Node
+    \node[sum] (adder) at (3.1, -1.5) {$\Sigma$};
+
+    % Connect weights to sum
+    \draw[->] (w0.east) -| (adder.north);
+    \draw[->] (w1.east) -- (adder.west);
+    \draw[->] (w2.east) -| (adder.south);
+
+    % Output y[n]
+    \draw[->, very thick, blue!85!black] (adder.east) -- ++(1.1, 0) 
+        node[right, font=\footnotesize, black] {$y[n]$};
+\end{tikzpicture}

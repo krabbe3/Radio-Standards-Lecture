@@ -1,0 +1,86 @@
+\begin{tikzpicture}[
+    >=Stealth,
+    ray/.style={blue!75!black, thick, -{Stealth[length=2.2mm]}},
+    wavefront/.style={cyan!80!black, thick}
+]
+    % Parameters
+    \def\d{2.2}         % inter-element spacing
+    \def\thetaAngle{30} % incidence angle from normal (deg)
+    \def\rayLen{3.4}    % ray length
+
+    % Array Elements (Sensors)
+    \coordinate (S0) at (0, 0);
+    \coordinate (S1) at (\d, 0);
+    \coordinate (S2) at (2*\d, 0);
+
+    % Baseline
+    \draw[thick, gray!40] (-0.8, 0) -- (2*\d + 0.8, 0);
+
+    % Broadside Normal at Element 0
+    \draw[dashed, gray!70, thick] (0, 0) -- (0, 3.2);
+
+    % Ray Origins (incoming from upper-left at angle theta from normal)
+    \coordinate (R0) at ({-\rayLen*sin(\thetaAngle)}, {\rayLen*cos(\thetaAngle)});
+    \coordinate (R1) at ({\d - \rayLen*sin(\thetaAngle)}, {\rayLen*cos(\thetaAngle)});
+    \coordinate (R2) at ({2*\d - \rayLen*sin(\thetaAngle)}, {\rayLen*cos(\thetaAngle)});
+
+    % Parallel Incoming Rays
+    \draw[ray] (R0) -- (S0);
+    \draw[ray] (R1) -- (S1);
+    \draw[ray, blue!40, densely dashed] (R2) -- (S2);
+
+    % Parallel Planar Wavefronts (orthogonal to ray)
+    \foreach \offset in {1.4, 2.5} {
+        \coordinate (W) at ({-\offset*sin(\thetaAngle)}, {\offset*cos(\thetaAngle)});
+        \draw[wavefront] 
+            ($(W) - 0.4*({cos(\thetaAngle)}, {sin(\thetaAngle)})$) -- 
+            ($(W) + 2.8*({cos(\thetaAngle)}, {sin(\thetaAngle)})$);
+    }
+    \node[cyan!80!black, font=\scriptsize, rotate=\thetaAngle, above] 
+        at ($({-2.5*sin(\thetaAngle)}, {2.5*cos(\thetaAngle)}) + 1.2*({cos(\thetaAngle)}, {sin(\thetaAngle)})$) 
+        {Wavefront};
+
+    % Exact projection P of S0 onto the ray entering S1:
+    % P = S1 - (d*sin(theta)) * (sin(theta), -cos(theta))
+    \coordinate (P) at ({\d - \d*sin(\thetaAngle)*sin(\thetaAngle)}, {\d*sin(\thetaAngle)*cos(\thetaAngle)});
+
+    % Wavefront passing through S0 at the instant it hits Element 0
+    \draw[teal!85!black, thick, dashed] 
+        ($(S0) - 0.3*({cos(\thetaAngle)}, {sin(\thetaAngle)})$) -- 
+        ($(P) + 0.5*({cos(\thetaAngle)}, {sin(\thetaAngle)})$);
+
+    % Extra propagation path (Delta l) along ray to Element 1
+    \draw[red!85!black, line width=1.6pt] (P) -- (S1) 
+        node[midway, right=2pt, font=\footnotesize\bfseries, text=red!85!black] {$\Delta\ell$};
+
+    % Exact Right-Angle square mark at P
+    \coordinate (P_S0) at ($(P)!0.22cm!(S0)$);
+    \coordinate (P_S1) at ($(P)!0.22cm!(S1)$);
+    \coordinate (P_sq) at ($(P_S0) + (P_S1) - (P)$);
+    \draw[gray!70, thick] (P_S0) -- (P_sq) -- (P_S1);
+
+    % Angle theta arcs
+    % 1. At Normal (Element 0)
+    \draw[thick, red!85!black, ->] (0, 1.6) arc[start angle=90, end angle={90+\thetaAngle}, radius=1.6];
+    \node[red!85!black, font=\footnotesize] at ({90 + \thetaAngle/2}:1.9) {$\theta$};
+
+    % 2. Inside the geometric triangle at Element 0
+    \draw[thick, red!85!black, ->] (0.7, 0) arc[start angle=0, end angle=\thetaAngle, radius=0.7];
+    \node[red!85!black, font=\footnotesize] at ({\thetaAngle/2}:0.95) {$\theta$};
+
+    % Sensor Antennas
+    \foreach \i in {0, 1, 2} {
+        \filldraw[fill=blue!10, draw=blue!85!black, thick] 
+            (\i*\d - 0.16, -0.22) -- (\i*\d + 0.16, -0.22) -- (\i*\d, 0) -- cycle;
+        \filldraw[blue!85!black] (\i*\d, 0) circle (1.8pt);
+    }
+
+    % Sensor Spacing dimension (d)
+    \draw[{Stealth[length=1.4mm]}-{Stealth[length=1.4mm]}, thick] (0, -0.42) -- (\d, -0.42) 
+        node[midway, fill=white, inner sep=1pt, font=\scriptsize] {$d$};
+
+    % Sensor Labels (placed below spacing arrow to prevent overlap)
+    \node[below, font=\scriptsize] at (0, -0.55) {Element $0$};
+    \node[below, font=\scriptsize] at (\d, -0.55) {Element $1$};
+    \node[below, font=\scriptsize] at (2*\d, -0.55) {Element $2$};
+\end{tikzpicture}

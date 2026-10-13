@@ -87,7 +87,7 @@
 \vspace{0.5cm}
 \begin{columns}
  \begin{column}{0.35\textwidth}
-\hfill\includegraphics[width=0.9\textwidth]{images/Channel_sounder.png}
+\hfill\includegraphics[width=0.9\textwidth]{images/section-0/Channel_sounder.png}
  \end{column} 
  \begin{column}{0.65\textwidth}
  \begin{itemize}
@@ -168,18 +168,7 @@
         \begin{column}{0.58\textwidth}
             Channel as Block Model\\
             \vspace{1em}
-            \begin{tikzpicture}[
-                auto,
-                >=latex,
-                block/.style={draw, fill=blue!10, rounded corners, minimum height=2.2em, minimum width=4.5em, font=\small\bfseries},
-                sum/.style={draw, fill=blue!10, circle, inner sep=0pt, minimum size=1.5em, font=\bfseries}
-            ]
-                \node (tx) at (0,0) {$x(t)$};
-                \node[block] (lti) at (2.5,0) {$\mathcal{H}$};
-                \node (rx) at (5.0,0) {$y(t)$};
-                \draw[->, thick] (tx) -- (lti);
-                \draw[->, thick] (lti) -- (rx);
-            \end{tikzpicture}
+            \input{presentation/images/section-0/lti}
             \begin{itemize}
                 \item System operator $\mathcal{H}$ 
                 \item Transforms input signal $x(t)$ to output signal $y(t)$
@@ -230,7 +219,7 @@
             \end{itemize}
             Basis Functions \& Eigenfunction Property\\
             \begin{itemize}
-                \item Complex exponentials $\phi_f(t) = \ee^{\jj 2\pi f t}$ serve as orthonormal basis (kernel)
+                \item Complex exponentials $\phi_f(t) = \ee^{\jj 2\pi f t}$ serve as orthogonal basis (kernel)
                 \item Exponentials pass through unchanged except for complex scaling
                 \item $\mathcal{H}\{\mathrm{e}^{\mathrm{j} 2\pi f t}\} = H(f) \cdot \mathrm{e}^{\mathrm{j} 2\pi f t}$
                 \item Complex scalar $H(f)$ gives channel attenuation and phase rotation at frequency $f$
@@ -250,6 +239,9 @@
                 \vspace{0.5em}
                 \centering
                 $h(t) = \int_{-\infty}^{\infty} H(f) \,\mathrm{e}^{\mathrm{j} 2\pi f t} \,\mathrm{d}f$
+            \end{block}
+            \begin{block}{Orthonormality of Complex Exponentials}
+                $$\left\langle \ee^{\jj 2 \pi f_1 t}, \ee^{\jj 2\pi f_2 t} \right\rangle = \delta(f_1 - f_2)$$
             \end{block}
         \end{column}
     \end{columns}
@@ -286,7 +278,7 @@
 
             \begin{figure}
                 \centering
-                \includegraphics[width=1\linewidth]{images/rect_sinc.pdf}
+                \includegraphics[width=1\linewidth]{images/section-0/rect_sinc.pdf}
                 \caption{Rectangular Pulse and Si Function}
                 \label{fig:placeholder}
             \end{figure}
@@ -298,7 +290,10 @@
 
 \begin{frame}{Fourier Transformation III}
     \centering
-    Live demo: Frequency spectrum from the computer microphone
+    Live demo: Frequency spectrum from the computer microphone 
+    \begin{itemize}
+        \item scripts/section-0/live-spectrogram.py
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Fourier Transformation IV}
@@ -409,23 +404,7 @@
     \begin{column}{0.38\textwidth}
         \begin{block}{I/Q Modulator Architecture}
             \centering
-            \begin{tikzpicture}[auto, >=latex, scale=0.82, every node/.style={scale=0.82}]
-                \node (I) at (0,1.2) {$I(t)$};
-                \node (Q) at (0,-1.2) {$Q(t)$};
-                \node[draw,circle,fill=blue!10] (m1) at (1.5,1.2) {$\times$};
-                \node[draw,circle,fill=blue!10] (m2) at (1.5,-1.2) {$\times$};
-                \node (cos) at (1.5,2.1) {$\cos(\omega_\mathrm{c} t)$};
-                \node (sin) at (1.5,-2.1) {$-\sin(\omega_\mathrm{c} t)$};
-                \node[draw,circle,fill=blue!10] (sum) at (3.0,0) {$+$};
-                \node (bp) at (4.3,0) {$s_\mathrm{BP}(t)$};
-                \draw[->,thick] (I) -- (m1);
-                \draw[->,thick] (Q) -- (m2);
-                \draw[->,thick] (cos) -- (m1);
-                \draw[->,thick] (sin) -- (m2);
-                \draw[->,thick] (m1) -| (sum);
-                \draw[->,thick] (m2) -| (sum);
-                \draw[->,thick] (sum) -- (bp);
-            \end{tikzpicture}
+            \input{presentation/images/section-0/iq}
         \end{block}
     \end{column}
 \end{columns}
@@ -439,7 +418,7 @@
     \end{itemize}
     Advantages of Digital Systems
     \begin{itemize}
-        \item Complex numbers handled in memory/ software
+        \item Complex numbers handled in memory/software
         \item Flexibility of the hardware platforms (Software-defined radio)
         \item Conditional access and encryption
         \item Error correction and information compression
@@ -449,23 +428,24 @@
 
 \begin{frame}{Discrete Fourier Transformation I}
 \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.58\textwidth}
+    \begin{column}{0.5\textwidth}
         Discrete Counterpart of the FT\\
         \begin{itemize}
             \item Discrete Fourier Transformation (DFT) maps $N$ discrete time samples to $N$ discrete frequency bins
             \item DFT kernel from FT kernel
             \item $\mathrm{e}^{-\mathrm{j} 2\pi f t} \quad\longrightarrow\quad \mathrm{e}^{-\mathrm{j} \frac{2\pi}{N} k n} = W_N^{k n}$
+            \item Discrete complex exponentials $\phi_k[n] = \ee^{\jj \frac{2 \pi k n}{N}}$ serve as orthogonal basis
         \end{itemize}
         Intrinsic Periodicity of the DFT
         \begin{itemize}
-            \item Discrete harmonic basis is periodic with period $N$
+            \item Discrete harmonic basis is $N$-periodic
             \item $W_N^{(k + N)n} = W_N^{kn} \implies X[k + N] = X[k]$
             \item Time sequence implicitly treated as periodic
             \item $\tilde{x}[n] = x[n \bmod N]$
         \end{itemize}
     \end{column}
 
-    \begin{column}{0.38\textwidth}
+    \begin{column}{0.5\textwidth}
         \begin{block}{$N$-Point DFT (Analysis)}
             Time sequence to discrete frequency\\
             \vspace{0.4em}
@@ -480,6 +460,9 @@
             \centering
             $x[n] = \frac{1}{N}\sum_{k=0}^{N-1} X[k] \,\mathrm{e}^{\mathrm{j} \frac{2\pi}{N} k n}$ \\[0.2cm]
             \footnotesize $n \in \{0, 1, \dots, N-1\}$
+        \end{block}
+        \begin{block}{Orthogonality of Discrete Complex Exponentials}
+            $$\left\langle \ee^{\jj \frac{2 \pi k n}{N}}, \ee^{\jj \frac{2 \pi m n}{N}} \right\rangle= \begin{cases} N, & k = m \\ 0, & k \neq m \end{cases}$$
         \end{block}
     \end{column}
 \end{columns}
@@ -616,94 +599,7 @@
 
         \begin{column}{0.50\textwidth}
             \centering
-            \resizebox{\linewidth}{!}{%
-            \begin{tikzpicture}[
-                >=Stealth,
-                ray/.style={blue!75!black, thick, -{Stealth[length=2.2mm]}},
-                wavefront/.style={cyan!80!black, thick}
-            ]
-                % Parameters
-                \def\d{2.2}         % inter-element spacing
-                \def\thetaAngle{30} % incidence angle from normal (deg)
-                \def\rayLen{3.4}    % ray length
-
-                % Array Elements (Sensors)
-                \coordinate (S0) at (0, 0);
-                \coordinate (S1) at (\d, 0);
-                \coordinate (S2) at (2*\d, 0);
-
-                % Baseline
-                \draw[thick, gray!40] (-0.8, 0) -- (2*\d + 0.8, 0);
-
-                % Broadside Normal at Element 0
-                \draw[dashed, gray!70, thick] (0, 0) -- (0, 3.2);
-
-                % Ray Origins (incoming from upper-left at angle theta from normal)
-                \coordinate (R0) at ({-\rayLen*sin(\thetaAngle)}, {\rayLen*cos(\thetaAngle)});
-                \coordinate (R1) at ({\d - \rayLen*sin(\thetaAngle)}, {\rayLen*cos(\thetaAngle)});
-                \coordinate (R2) at ({2*\d - \rayLen*sin(\thetaAngle)}, {\rayLen*cos(\thetaAngle)});
-
-                % Parallel Incoming Rays
-                \draw[ray] (R0) -- (S0);
-                \draw[ray] (R1) -- (S1);
-                \draw[ray, blue!40, densely dashed] (R2) -- (S2);
-
-                % Parallel Planar Wavefronts (orthogonal to ray)
-                \foreach \offset in {1.4, 2.5} {
-                    \coordinate (W) at ({-\offset*sin(\thetaAngle)}, {\offset*cos(\thetaAngle)});
-                    \draw[wavefront] 
-                        ($(W) - 0.4*({cos(\thetaAngle)}, {sin(\thetaAngle)})$) -- 
-                        ($(W) + 2.8*({cos(\thetaAngle)}, {sin(\thetaAngle)})$);
-                }
-                \node[cyan!80!black, font=\scriptsize, rotate=\thetaAngle, above] 
-                    at ($({-2.5*sin(\thetaAngle)}, {2.5*cos(\thetaAngle)}) + 1.2*({cos(\thetaAngle)}, {sin(\thetaAngle)})$) 
-                    {Wavefront};
-
-                % Exact projection P of S0 onto the ray entering S1:
-                % P = S1 - (d*sin(theta)) * (sin(theta), -cos(theta))
-                \coordinate (P) at ({\d - \d*sin(\thetaAngle)*sin(\thetaAngle)}, {\d*sin(\thetaAngle)*cos(\thetaAngle)});
-
-                % Wavefront passing through S0 at the instant it hits Element 0
-                \draw[teal!85!black, thick, dashed] 
-                    ($(S0) - 0.3*({cos(\thetaAngle)}, {sin(\thetaAngle)})$) -- 
-                    ($(P) + 0.5*({cos(\thetaAngle)}, {sin(\thetaAngle)})$);
-
-                % Extra propagation path (Delta l) along ray to Element 1
-                \draw[red!85!black, line width=1.6pt] (P) -- (S1) 
-                    node[midway, right=2pt, font=\footnotesize\bfseries, text=red!85!black] {$\Delta\ell$};
-
-                % Exact Right-Angle square mark at P
-                \coordinate (P_S0) at ($(P)!0.22cm!(S0)$);
-                \coordinate (P_S1) at ($(P)!0.22cm!(S1)$);
-                \coordinate (P_sq) at ($(P_S0) + (P_S1) - (P)$);
-                \draw[gray!70, thick] (P_S0) -- (P_sq) -- (P_S1);
-
-                % Angle theta arcs
-                % 1. At Normal (Element 0)
-                \draw[thick, red!85!black, ->] (0, 1.6) arc[start angle=90, end angle={90+\thetaAngle}, radius=1.6];
-                \node[red!85!black, font=\footnotesize] at ({90 + \thetaAngle/2}:1.9) {$\theta$};
-
-                % 2. Inside the geometric triangle at Element 0
-                \draw[thick, red!85!black, ->] (0.7, 0) arc[start angle=0, end angle=\thetaAngle, radius=0.7];
-                \node[red!85!black, font=\footnotesize] at ({\thetaAngle/2}:0.95) {$\theta$};
-
-                % Sensor Antennas
-                \foreach \i in {0, 1, 2} {
-                    \filldraw[fill=blue!10, draw=blue!85!black, thick] 
-                        (\i*\d - 0.16, -0.22) -- (\i*\d + 0.16, -0.22) -- (\i*\d, 0) -- cycle;
-                    \filldraw[blue!85!black] (\i*\d, 0) circle (1.8pt);
-                }
-
-                % Sensor Spacing dimension (d)
-                \draw[{Stealth[length=1.4mm]}-{Stealth[length=1.4mm]}, thick] (0, -0.42) -- (\d, -0.42) 
-                    node[midway, fill=white, inner sep=1pt, font=\scriptsize] {$d$};
-
-                % Sensor Labels (placed below spacing arrow to prevent overlap)
-                \node[below, font=\scriptsize] at (0, -0.55) {Element $0$};
-                \node[below, font=\scriptsize] at (\d, -0.55) {Element $1$};
-                \node[below, font=\scriptsize] at (2*\d, -0.55) {Element $2$};
-            \end{tikzpicture}
-            }
+            \resizebox{\linewidth}{!}{\input{presentation/images/section-0/ula}}
 
             \vspace{0.3em}
             \begin{beamercolorbox}[rounded=true,center,sep=3pt]{block body}
@@ -730,49 +626,7 @@
         \end{column}
 
         \begin{column}{0.48\textwidth}
-            \begin{tikzpicture}[
-                >=Stealth,
-                thick,
-                node distance=1.2cm,
-                block/.style={draw=blue!85!black, fill=blue!10, rounded corners=2pt, minimum width=1.1cm, minimum height=0.6cm, font=\scriptsize, align=center},
-                sum/.style={circle, draw=black, fill=gray!15, inner sep=0pt, minimum size=0.65cm, font=\normalsize}
-            ]
-                % Antenna Elements
-                \foreach \m in {0, 1, 2} {
-                    \coordinate (ant\m) at (0, -\m*1.5);
-                    % Antenna triangle
-                    \filldraw[fill=blue!10, draw=blue!85!black] 
-                        ($(ant\m) + (-0.15, 0.15)$) -- ($(ant\m) + (0.15, 0.15)$) -- (ant\m) -- cycle;
-                    \filldraw[blue!85!black] (ant\m) circle (1.2pt);
-                    \draw (ant\m) -- ++(0.5, 0);
-
-                    % Weight multiplication block
-                    \node[block] (w\m) at ($(ant\m) + (1.4, 0)$) {$\times\, w_{\m}^*$};
-                    \draw[->] ($(ant\m) + (0.5, 0)$) -- (w\m) 
-                        node[midway, above, xshift=-4pt, font=\tiny] {$x_{\m}[n]$};
-                }
-
-                % Element labels
-                \node[left, font=\tiny] at ($(ant0) + (-0.15, 0.05)$) {Element $0$};
-                \node[left, font=\tiny] at ($(ant1) + (-0.15, 0.05)$) {Element $1$};
-                \node[left, font=\tiny] at ($(ant2) + (-0.15, 0.05)$) {Element $M{-}1$};
-
-                % Dots between Ant 1 and M-1
-                \path (ant1) -- (ant2) node[midway, font=\scriptsize] {$\vdots$};
-                \path (w1) -- (w2) node[midway, font=\scriptsize] {$\vdots$};
-
-                % Summation Node
-                \node[sum] (adder) at (3.1, -1.5) {$\Sigma$};
-
-                % Connect weights to sum
-                \draw[->] (w0.east) -| (adder.north);
-                \draw[->] (w1.east) -- (adder.west);
-                \draw[->] (w2.east) -| (adder.south);
-
-                % Output y[n]
-                \draw[->, very thick, blue!85!black] (adder.east) -- ++(1.1, 0) 
-                    node[right, font=\footnotesize, black] {$y[n]$};
-            \end{tikzpicture}
+            \input{presentation/images/section-0/beamforming}
             \begin{block}{Output Signal Model}
                 \begin{itemize}
                     \item Snapshot vector: $\mathbf{x}[n] = \mathbf{a}(\theta_0)s[n] + \mathbf{n}[n]$
@@ -787,4 +641,8 @@
 \begin{frame}{Spatial Processing IV}
     \centering
     Live demo: Bartlett beamformer visualization
+    \begin{itemize}
+        \item scripts/section-0/bartlett.py
+        \item scripts/section-0/bartlett-multi-doa.py
+    \end{itemize}
 \end{frame}
