@@ -1,4 +1,0 @@
-\babel@toc {ngerman}{}\relax 
-\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
-\beamer@subsectionintoc {1}{1}{Course Introduction}{3}{0}{1}
-\beamer@subsectionintoc {1}{2}{Technical Preliminaries}{9}{0}{1}
