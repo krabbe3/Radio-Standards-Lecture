@@ -1,0 +1,25 @@
+# TeX auxiliary and log files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+
+# Bibliography build artifacts
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+
+# Editor and engine tracking/sync files
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+
+# Output artifact (optional: uncomment if you don't want the PDF tracked)
+# *.pdf
