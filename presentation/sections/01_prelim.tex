@@ -1,488 +1,499 @@
-\subsection{Technical Preliminaries}
+\subsectionFrame{Technical Preliminaries}
 
 \begin{frame}{LTI System Model}
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.58\textwidth}
-            Channel as Block Model\\
-            \vspace{1em}
-            \input{images/section-1/lti}
-            \begin{itemize}
-                \item System operator $\mathcal{H}$ 
-                \item Transforms input signal $x(t)$ to output signal $y(t)$
-            \end{itemize}
-            \vfill
-            System Operator under LTI Properties\\
-            \begin{itemize}
-                \item \textbf{L}inear 
-                \begin{itemize}
-                    \item $\mathcal{H}\{\alpha x_1(t) + \beta x_2(t)\} = \alpha \mathcal{H}\{x_1(t)\} + \beta \mathcal{H}\{x_2(t)\}$
-                    \item Superposition principle
-                \end{itemize}
-                \item \textbf{T}ime \textbf{I}nvariant 
-                \begin{itemize}
-                    \item $\mathcal{H}\{x(t - \tau)\}=y(t-\tau)$
-                    \item Time delay $\tau$ of input equates to time delay $\tau$ of output
-                \end{itemize}
-            \end{itemize}
-            \alert{Remark:} Real channels are inherently dynamic---covered in lecture 2 (coherence time)
-        \end{column}
-        %
-        \begin{column}{0.38\textwidth}
-            \begin{block}{Channel Impulse Response (CIR)}
-                Response to an ideal Dirac pulse $\delta(t)$\\
-                \vspace{0.5em}
-                \centering
-                $h(t) = \mathcal{H}\{\delta(t)\}$
-            \end{block}
-            \begin{block}{LTI Input-Output Relation}
-                Convolution of input $x(t)$ with CIR $h(t)$\\
-                \vspace{0.5em}
-                \centering
-                $y(t) = x(t) * h(t)$ \\[0.2cm]
-                $y(t) = \int_{-\infty}^{\infty} x(\tau) h(t - \tau) \,\mathrm{d}\tau$
-            \end{block}
-        \end{column}
-    \end{columns}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.58\textwidth}
+      Channel as Block Model\\
+      \vspace{1em}
+      \input{images/section-1/lti}
+      \begin{itemize}
+        \item System operator $\mathcal{H}$
+        \item Transforms input signal $x(t)$ to output signal $y(t)$
+      \end{itemize}
+      \vfill
+      System Operator under LTI Properties\\
+      \begin{itemize}
+        \item \textbf{L}inear
+          \begin{itemize}
+            \item $\mathcal{H}\{\alpha x_1(t) + \beta x_2(t)\} = \alpha \mathcal{H}\{x_1(t)\} + \beta \mathcal{H}\{x_2(t)\}$
+            \item Superposition principle
+          \end{itemize}
+        \item \textbf{T}ime \textbf{I}nvariant
+          \begin{itemize}
+            \item $\mathcal{H}\{x(t - \tau)\}=y(t-\tau)$
+            \item Time delay $\tau$ of input equates to time delay $\tau$ of output
+          \end{itemize}
+      \end{itemize}
+      \alert{Remark:} Real channels are inherently dynamic---covered in lecture 2 (coherence time)
+    \end{column}
+    %
+    \begin{column}{0.38\textwidth}
+      \begin{block}{Channel Impulse Response (CIR)}
+        Response to an ideal Dirac pulse $\delta(t)$\\
+        \vspace{0.5em}
+        \centering
+        $h(t) = \mathcal{H}\{\delta(t)\}$
+      \end{block}
+      \begin{block}{LTI Input-Output Relation}
+        Convolution of input $x(t)$ with CIR $h(t)$\\
+        \vspace{0.5em}
+        \centering
+        $y(t) = x(t) * h(t)$ \\[0.2cm]
+        $y(t) = \int_{-\infty}^{\infty} x(\tau) h(t - \tau) \,\mathrm{d}\tau$
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Fourier Transformation I}
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.58\textwidth}
-            From Impulse Response to Transfer Function\\
-            \begin{itemize}
-                \item Time-domain CIR $h(t)$ describes channel delay behavior
-                \item Fourier Transform (FT) maps CIR to frequency domain Channel Transfer Function (CTF)
-                \item $h(t) \tf H(f)$
-            \end{itemize}
-            Basis Functions \& Eigenfunction Property\\
-            \begin{itemize}
-                \item Complex exponentials $\phi_f(t) = \ee^{\jj 2\pi f t}$ serve as orthogonal basis (kernel)
-                \item Exponentials pass through unchanged except for complex scaling
-                \item $\mathcal{H}\{\mathrm{e}^{\mathrm{j} 2\pi f t}\} = H(f) \cdot \mathrm{e}^{\mathrm{j} 2\pi f t}$
-                \item Complex scalar $H(f)$ gives channel attenuation and phase rotation at frequency $f$
-            \end{itemize}
-        \end{column}
-    
-        \begin{column}{0.38\textwidth}
-            \begin{block}{FT (Analysis)}
-                Decomposition into spectrum\\
-                \vspace{0.5em}
-                \centering
-                $H(f) = \int_{-\infty}^{\infty} h(t) \,\mathrm{e}^{-\mathrm{j} 2\pi f t} \,\mathrm{d}t$
-            \end{block}
-    
-            \begin{block}{Inverse FT (IFT) (Synthesis)}
-                Reconstruction of time signal\\
-                \vspace{0.5em}
-                \centering
-                $h(t) = \int_{-\infty}^{\infty} H(f) \,\mathrm{e}^{\mathrm{j} 2\pi f t} \,\mathrm{d}f$
-            \end{block}
-            \begin{block}{Orthonormality of Complex Exponentials}
-                $$\left\langle \ee^{\jj 2 \pi f_1 t}, \ee^{\jj 2\pi f_2 t} \right\rangle = \delta(f_1 - f_2)$$
-            \end{block}
-        \end{column}
-    \end{columns}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.58\textwidth}
+      From Impulse Response to Transfer Function\\
+      \begin{itemize}
+        \item Time-domain CIR $h(t)$ describes channel delay behavior
+        \item Fourier Transform (FT) maps CIR to frequency domain Channel Transfer Function (CTF)
+        \item $h(t) \tf H(f)$
+      \end{itemize}
+      Basis Functions \& Eigenfunction Property\\
+      \begin{itemize}
+        \item Complex exponentials $\phi_f(t) = \ee^{\jj 2\pi f t}$ serve as orthogonal basis (kernel)
+        \item Exponentials pass through unchanged except for complex scaling
+        \item $\mathcal{H}\{\mathrm{e}^{\mathrm{j} 2\pi f t}\} = H(f) \cdot \mathrm{e}^{\mathrm{j} 2\pi f t}$
+        \item Complex scalar $H(f)$ gives channel attenuation and phase rotation at frequency $f$
+      \end{itemize}
+    \end{column}
+
+    \begin{column}{0.38\textwidth}
+      \begin{block}{FT (Analysis)}
+        Decomposition into spectrum\\
+        \vspace{0.5em}
+        \centering
+        $H(f) = \int_{-\infty}^{\infty} h(t) \,\mathrm{e}^{-\mathrm{j} 2\pi f t} \,\mathrm{d}t$
+      \end{block}
+
+      \begin{block}{Inverse FT (IFT) (Synthesis)}
+        Reconstruction of time signal\\
+        \vspace{0.5em}
+        \centering
+        $h(t) = \int_{-\infty}^{\infty} H(f) \,\mathrm{e}^{\mathrm{j} 2\pi f t} \,\mathrm{d}f$
+      \end{block}
+      \begin{block}{Orthonormality of Complex Exponentials}
+        $$\left\langle \ee^{\jj 2 \pi f_1 t}, \ee^{\jj 2\pi f_2 t} \right\rangle = \delta(f_1 - f_2)$$
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Fourier Transformation II}
-\begin{columns}[T,onlytextwidth]
+  \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
-        Time-Frequency Uncertainty\\
-        \begin{itemize}
-            \item Direct consequence of the FT scaling property 
-            \item $x(at) \;\circ\!\!-\!\!\bullet\; \frac{1}{|a|} X\left(\frac{f}{a}\right)$
-            \item Narrow time duration $\implies$ wide spectral occupancy
-            \item Time-limited signals can never be strictly band-limited
-        \end{itemize}
-        \vspace{0.4em}
-        
-        Impact on Radio Standards\\
-        \begin{itemize}
-            \item Sharp transitions (e.g., rect pulse) cause slow $1/f$ spectral decay
-            \item High sidelobes leak energy thereby causing interference
-            \item Regulatory spectral masks strictly limit out-of-band emissions
-        \end{itemize}
-        
-        \vspace{0.3em}
-        \alert{Remark:} An optimal pulse must balance finite duration and low spectral sidelobes---covered in lecture 2 (root-raised-cosine)
+      Time-Frequency Uncertainty\\
+      \begin{itemize}
+        \item Direct consequence of the FT scaling property
+        \item $x(at) \;\circ\!\!-\!\!\bullet\; \frac{1}{|a|} X\left(\frac{f}{a}\right)$
+        \item Narrow time duration $\implies$ wide spectral occupancy
+        \item Time-limited signals can never be strictly band-limited
+      \end{itemize}
+      \vspace{0.4em}
+
+      Impact on Radio Standards\\
+      \begin{itemize}
+        \item Sharp transitions (e.g., rect pulse) cause slow $1/f$ spectral decay
+        \item High sidelobes leak energy thereby causing interference
+        \item Regulatory spectral masks strictly limit out-of-band emissions
+      \end{itemize}
+
+      \vspace{0.3em}
+      \alert{Remark:} An optimal pulse must balance finite duration and low spectral sidelobes---covered in lecture 2 (root-raised-cosine)
     \end{column}
 
     \begin{column}{0.38\textwidth}
-        \begin{block}{FT Example}
-            \centering
-            $\mathrm{rect}\!\left(\frac{t}{T}\right) \;\circ\!\!-\!\!\bullet\; T\,\mathrm{si}(\pi f T)$ \\[0.2cm]
-            \footnotesize $\mathrm{si}(x) = \frac{\sin(x)}{x}$, zeros at $f = \pm \frac{k}{T}$
+      \begin{block}{FT Example}
+        \centering
+        $\mathrm{rect}\!\left(\frac{t}{T}\right) \;\circ\!\!-\!\!\bullet\; T\,\mathrm{si}(\pi f T)$ \\[0.2cm]
+        \footnotesize $\mathrm{si}(x) = \frac{\sin(x)}{x}$, zeros at $f = \pm \frac{k}{T}$
 
-            \begin{figure}
-                \centering
-                \includegraphics[width=1\linewidth]{images/section-1/rect_sinc.pdf}
-                \caption{Rectangular Pulse and Si Function}
-                \label{fig:placeholder}
-            \end{figure}
-            
-        \end{block}
+        \begin{figure}
+          \centering
+          \includegraphics[width=1\linewidth]{images/section-1/rect_sinc.pdf}
+          \caption{Rectangular Pulse and Si Function}
+          \label{fig:placeholder}
+        \end{figure}
+
+      \end{block}
     \end{column}
-\end{columns}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Fourier Transformation III}
-    \centering
-    Live demo: Frequency spectrum from the computer microphone 
-    \begin{itemize}
-        \item scripts/section-1/live-spectrogram.py
-    \end{itemize}
+  \centering
+  Live demo: Frequency spectrum from the computer microphone
+  \begin{itemize}
+    \item scripts/section-1/live-spectrogram.py
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Fourier Transformation IV}
-    \label{1:FT4}
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.58\textwidth}
-            Essential Fourier Properties\\
-            \begin{itemize}
-                \item Time Shifting (e.g. Propagation Delay)
-                \begin{itemize}
-                    \item $x(t - \tau_0) \;\circ\!\!-\!\!\bullet\; X(f) \,\mathrm{e}^{-\mathrm{j} 2\pi f \tau_0}$
-                    \item Delay $\tau_0$ introduces a linear phase rotation across frequency
-                \end{itemize}
-                \item Frequency Shifting (e.g. Doppler Shift)
-                \begin{itemize}
-                    \item $x(t) \,\mathrm{e}^{\mathrm{j} 2\pi f_\mathrm{D} t} \;\circ\!\!-\!\!\bullet\; X(f - f_\mathrm{D})$
-                    \item Doppler shift $f_D$ introduces linear phase rotation across time
-                \end{itemize}
-                \item Convolution Theorem
-                    \begin{itemize}
-                        \item $x(t) * h(t) \tf X(f) \cdot H(f)$
-                        \item Simplifies channel equalization from deconvolution to division
-                    \end{itemize}
-                \item Sampling / Periodicity Duality
-                \begin{itemize}
-                    \item Periodicity t/f $\Longleftrightarrow$ Sampling f/t
-                    \item \rlap{$\underbrace{x_\mathrm{s}(t) = x(t) \cdot \sum_{n=-\infty}^{\infty} \delta(t - n T_\mathrm{s})}_{\text{Sampling in Time}} \quad\circ\!\!-\!\!\bullet\quad \underbrace{X_\mathrm{s}(f) = \frac{1}{T_\mathrm{s}} \sum_{k=-\infty}^{\infty} X\!\left(f - \frac{k}{T_\mathrm{s}}\right)}_{\text{Periodification in Frequency}}$}
-                \end{itemize}
-            \end{itemize}
-        \end{column}
-    
-        %\begin{column}{0.38\textwidth}
-        %    \begin{block}{Hermitian Symmetry}
-        %        For real physical signals $x(t) \in \mathbb{R}$:\\
-        %        \vspace{0.4em}
-        %        \centering
-        %        $X(-f) = X^*(f)$ \\[0.2cm]
-        %        \raggedright
-        %        \footnotesize
-        %        $\implies |X(-f)| = |X(f)|$ (even magnitude)\\
-        %        $\implies \angle X(-f) = -\angle X(f)$ (odd phase)
-        %    \end{block}
-        %\end{column}
-    \end{columns}
+  \label{1:FT4}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.58\textwidth}
+      Essential Fourier Properties\\
+      \begin{itemize}
+        \item Time Shifting (e.g. Propagation Delay)
+          \begin{itemize}
+            \item $x(t - \tau_0) \;\circ\!\!-\!\!\bullet\; X(f) \,\mathrm{e}^{-\mathrm{j} 2\pi f \tau_0}$
+            \item Delay $\tau_0$ introduces a linear phase rotation across frequency
+          \end{itemize}
+        \item Frequency Shifting (e.g. Doppler Shift)
+          \begin{itemize}
+            \item $x(t) \,\mathrm{e}^{\mathrm{j} 2\pi f_\mathrm{D} t} \;\circ\!\!-\!\!\bullet\; X(f - f_\mathrm{D})$
+            \item Doppler shift $f_D$ introduces linear phase rotation across time
+          \end{itemize}
+        \item Convolution Theorem
+          \begin{itemize}
+            \item $x(t) * h(t) \tf X(f) \cdot H(f)$
+            \item Simplifies channel equalization from deconvolution to division
+          \end{itemize}
+        \item Sampling / Periodicity Duality
+          \begin{itemize}
+            \item Periodicity t/f $\Longleftrightarrow$ Sampling f/t
+            \item \rlap{$\underbrace{x_\mathrm{s}(t) = x(t) \cdot \sum_{n=-\infty}^{\infty} \delta(t - n T_\mathrm{s})}_{\text{Sampling in Time}} \quad\circ\!\!-\!\!\bullet\quad \underbrace{X_\mathrm{s}(f) = \frac{1}{T_\mathrm{s}} \sum_{k=-\infty}^{\infty} X\!\left(f - \frac{k}{T_\mathrm{s}}\right)}_{\text{Periodification in Frequency}}$}
+          \end{itemize}
+      \end{itemize}
+    \end{column}
+
+    %\begin{column}{0.38\textwidth}
+    %    \begin{block}{Hermitian Symmetry}
+    %        For real physical signals $x(t) \in \mathbb{R}$:\\
+    %        \vspace{0.4em}
+    %        \centering
+    %        $X(-f) = X^*(f)$ \\[0.2cm]
+    %        \raggedright
+    %        \footnotesize
+    %        $\implies |X(-f)| = |X(f)|$ (even magnitude)\\
+    %        $\implies \angle X(-f) = -\angle X(f)$ (odd phase)
+    %    \end{block}
+    %\end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Complex Baseband I}
-\begin{columns}[T,onlytextwidth]
+  \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
-        Why Complex Signals for Real Waves?\\
-        \begin{itemize}
-            \item Antennas emit and capture real-valued signals $s_\mathrm{BP}(t) \in \mathbb{R}$
-            \item Communications signals usually narrowband ($B \ll f_\mathrm{c}$):
-            \begin{itemize}
-                \item Carrier $f_\mathrm{c}$ fixed in the GHz regime (e.g., $3.5\,\mathrm{GHz}$)
-                \item Information encoded in amplitude $A(t)$ and phase $\phi(t)$
-            \end{itemize}
-            \item Simulating carrier oscillations at GHz rates is computationally expensive
-        \end{itemize}
-        \vspace{0.8em}
-        Equivalent Complex Baseband Envelope\\
-        \begin{itemize}
-            \item Utilize complex numbers to combine amplitude and phase
-            \item $s_\mathrm{BB}(t) = A(t) \,\mathrm{e}^{\mathrm{j} \phi(t)} \in \mathbb{C}$
-            \item Describes signal independent of the carrier frequency
-        \end{itemize}
+      Why Complex Signals for Real Waves?\\
+      \begin{itemize}
+        \item Antennas emit and capture real-valued signals $s_\mathrm{BP}(t) \in \mathbb{R}$
+        \item Communications signals usually narrowband ($B \ll f_\mathrm{c}$):
+          \begin{itemize}
+            \item Carrier $f_\mathrm{c}$ fixed in the GHz regime (e.g., $3.5\,\mathrm{GHz}$)
+            \item Information encoded in amplitude $A(t)$ and phase $\phi(t)$
+          \end{itemize}
+        \item Simulating carrier oscillations at GHz rates is computationally expensive
+      \end{itemize}
+      \vspace{0.8em}
+      Equivalent Complex Baseband Envelope\\
+      \begin{itemize}
+        \item Utilize complex numbers to combine amplitude and phase
+        \item $s_\mathrm{BB}(t) = A(t) \,\mathrm{e}^{\mathrm{j} \phi(t)} \in \mathbb{C}$
+        \item Describes signal independent of the carrier frequency
+      \end{itemize}
     \end{column}
 
     \begin{column}{0.38\textwidth}
-        \begin{block}{Passband Baseband Transformation}
-            Passband as real projection of baseband signal\\
-            \vspace{0.5em}
-            \centering
-            $s_\mathrm{BP}(t) = \mathrm{Re}\Big\{ s_\mathrm{BB}(t) \,\mathrm{e}^{\mathrm{j} 2\pi f_\mathrm{c} t} \Big\}$
-        \end{block}
+      \begin{block}{Passband Baseband Transformation}
+        Passband as real projection of baseband signal\\
+        \vspace{0.5em}
+        \centering
+        $s_\mathrm{BP}(t) = \mathrm{Re}\Big\{ s_\mathrm{BB}(t) \,\mathrm{e}^{\mathrm{j} 2\pi f_\mathrm{c} t} \Big\}$
+      \end{block}
 
-        \begin{block}{Advantages}
-            \begin{itemize}
-                \item Spectrum centered around $0\,\mathrm{Hz}$
-                \item Sample rate reduces from $2(f_\mathrm{c} + B/2)$ to $B$
-                \item Clean mathematical framework for modulation and filtering
-            \end{itemize}
-        \end{block}
+      \begin{block}{Advantages}
+        \begin{itemize}
+          \item Spectrum centered around $0\,\mathrm{Hz}$
+          \item Sample rate reduces from $2(f_\mathrm{c} + B/2)$ to $B$
+          \item Clean mathematical framework for modulation and filtering
+        \end{itemize}
+      \end{block}
     \end{column}
-\end{columns}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Complex Baseband II}
-\begin{columns}[T,onlytextwidth]
+  \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
-        Cartesian Decomposition of Baseband\\
-        \begin{itemize}
-            \item Split complex envelope into real and imaginary parts:
-            \item $s_\mathrm{BB}(t) = I(t) + \mathrm{j} Q(t)$
-            \item $I(t) = \mathrm{Re}\{s_\mathrm{BB}(t)\} = A(t)\cos\phi(t)$ (\textbf{In-Phase})
-            \item $Q(t) = \mathrm{Im}\{s_\mathrm{BB}(t)\} = A(t)\sin\phi(t)$ (\textbf{Quadrature})
-        \end{itemize}
-        \vspace{0.8em}
-        Orthogonal Carrier Modulation\\
-        \begin{itemize}
-            \item Expanding $s_{BP}(t)$ with Euler's identity 
-            \item $\mathrm{e}^{\mathrm{j} 2\pi f_\mathrm{c} t} = \cos \omega_\mathrm{c} t + \mathrm{j} \sin \omega_\mathrm{c} t$
-            \item $s_\mathrm{BP}(t) = I(t)\cos(2\pi f_\mathrm{c} t) - Q(t)\sin(2\pi f_\mathrm{c} t)$
-            \item Transmits two independent data streams over the same RF spectrum
-        \end{itemize}
+      Cartesian Decomposition of Baseband\\
+      \begin{itemize}
+        \item Split complex envelope into real and imaginary parts:
+        \item $s_\mathrm{BB}(t) = I(t) + \mathrm{j} Q(t)$
+        \item $I(t) = \mathrm{Re}\{s_\mathrm{BB}(t)\} = A(t)\cos\phi(t)$ (\textbf{In-Phase})
+        \item $Q(t) = \mathrm{Im}\{s_\mathrm{BB}(t)\} = A(t)\sin\phi(t)$ (\textbf{Quadrature})
+      \end{itemize}
+      \vspace{0.8em}
+      Orthogonal Carrier Modulation\\
+      \begin{itemize}
+        \item Expanding $s_{BP}(t)$ with Euler's identity
+        \item $\mathrm{e}^{\mathrm{j} 2\pi f_\mathrm{c} t} = \cos \omega_\mathrm{c} t + \mathrm{j} \sin \omega_\mathrm{c} t$
+        \item $s_\mathrm{BP}(t) = I(t)\cos(2\pi f_\mathrm{c} t) - Q(t)\sin(2\pi f_\mathrm{c} t)$
+        \item Transmits two independent data streams over the same RF spectrum
+      \end{itemize}
     \end{column}
 
     \begin{column}{0.38\textwidth}
-        \begin{block}{I/Q Modulator Architecture}
-            \centering
-            \input{images/section-1/iq}
-        \end{block}
+      \begin{block}{I/Q Modulator Architecture}
+        \centering
+        \input{images/section-1/iq}
+      \end{block}
     \end{column}
-\end{columns}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Why do we have Digital Communication Systems?}
-    Disadvantages of Analog Systems
-    \begin{itemize}
-        \item Requires two physical signal traces for $I$ and $Q$
-        \item Analog hardware impairments
-    \end{itemize}
-    Advantages of Digital Systems
-    \begin{itemize}
-        \item Complex numbers handled in memory/software
-        \item Flexibility of the hardware platforms (Software-defined radio)
-        \item Conditional access and encryption
-        \item Error correction and information compression
-        \item Storage of digital data
-    \end{itemize}
+  Disadvantages of Analog Systems
+  \begin{itemize}
+    \item Requires two physical signal traces for $I$ and $Q$
+    \item Analog hardware impairments
+  \end{itemize}
+  Advantages of Digital Systems
+  \begin{itemize}
+    \item Complex numbers handled in memory/software
+    \item Flexibility of the hardware platforms (Software-defined radio)
+    \item Conditional access and encryption
+    \item Error correction and information compression
+    \item Storage of digital data
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Discrete Fourier Transformation I}
-\begin{columns}[T,onlytextwidth]
+  \begin{columns}[T,onlytextwidth]
     \begin{column}{0.5\textwidth}
-        Discrete Counterpart of the FT\\
-        \begin{itemize}
-            \item Discrete Fourier Transformation (DFT) maps $N$ discrete time samples to $N$ discrete frequency bins
-            \item DFT kernel from FT kernel
-            \item $\mathrm{e}^{-\mathrm{j} 2\pi f t} \quad\longrightarrow\quad \mathrm{e}^{-\mathrm{j} \frac{2\pi}{N} k n} = W_N^{k n}$
-            \item Discrete complex exponentials $\phi_k[n] = \ee^{\jj \frac{2 \pi k n}{N}}$ serve as orthogonal basis
-        \end{itemize}
-        Intrinsic Periodicity of the DFT
-        \begin{itemize}
-            \item Discrete harmonic basis is $N$-periodic
-            \item $W_N^{(k + N)n} = W_N^{kn} \implies X[k + N] = X[k]$
-            \item Time sequence implicitly treated as periodic
-            \item $\tilde{x}[n] = x[n \bmod N]$
-        \end{itemize}
+      Discrete Counterpart of the FT\\
+      \begin{itemize}
+        \item Discrete Fourier Transformation (DFT) maps $N$ discrete time samples to $N$ discrete frequency bins
+        \item DFT kernel from FT kernel
+        \item $\mathrm{e}^{-\mathrm{j} 2\pi f t} \quad\longrightarrow\quad \mathrm{e}^{-\mathrm{j} \frac{2\pi}{N} k n} = W_N^{k n}$
+        \item Discrete complex exponentials $\phi_k[n] = \ee^{\jj \frac{2 \pi k n}{N}}$ serve as orthogonal basis
+      \end{itemize}
+      Intrinsic Periodicity of the DFT
+      \begin{itemize}
+        \item Discrete harmonic basis is $N$-periodic
+        \item $W_N^{(k + N)n} = W_N^{kn} \implies X[k + N] = X[k]$
+        \item Time sequence implicitly treated as periodic
+        \item $\tilde{x}[n] = x[n \bmod N]$
+      \end{itemize}
     \end{column}
 
     \begin{column}{0.5\textwidth}
-        \begin{block}{$N$-Point DFT (Analysis)}
-            Time sequence to discrete frequency\\
-            \vspace{0.4em}
-            \centering
-            $X[k] = \sum_{n=0}^{N-1} x[n] \,\mathrm{e}^{-\mathrm{j} \frac{2\pi}{N} k n}$ \\[0.2cm]
-            \footnotesize $k \in \{0, 1, \dots, N-1\}$
-        \end{block}
+      \begin{block}{$N$-Point DFT (Analysis)}
+        Time sequence to discrete frequency\\
+        \vspace{0.4em}
+        \centering
+        $X[k] = \sum_{n=0}^{N-1} x[n] \,\mathrm{e}^{-\mathrm{j} \frac{2\pi}{N} k n}$ \\[0.2cm]
+        \footnotesize $k \in \{0, 1, \dots, N-1\}$
+      \end{block}
 
-        \begin{block}{$N$-Point IDFT (Synthesis)}
-            Reconstruction of time samples\\
-            \vspace{0.4em}
-            \centering
-            $x[n] = \frac{1}{N}\sum_{k=0}^{N-1} X[k] \,\mathrm{e}^{\mathrm{j} \frac{2\pi}{N} k n}$ \\[0.2cm]
-            \footnotesize $n \in \{0, 1, \dots, N-1\}$
-        \end{block}
-        \begin{block}{Orthogonality of Discrete Complex Exponentials}
-            $$\left\langle \ee^{\jj \frac{2 \pi k n}{N}}, \ee^{\jj \frac{2 \pi m n}{N}} \right\rangle= \begin{cases} N, & k = m \\ 0, & k \neq m \end{cases}$$
-        \end{block}
+      \begin{block}{$N$-Point IDFT (Synthesis)}
+        Reconstruction of time samples\\
+        \vspace{0.4em}
+        \centering
+        $x[n] = \frac{1}{N}\sum_{k=0}^{N-1} X[k] \,\mathrm{e}^{\mathrm{j} \frac{2\pi}{N} k n}$ \\[0.2cm]
+        \footnotesize $n \in \{0, 1, \dots, N-1\}$
+      \end{block}
+      \begin{block}{Orthogonality of Discrete Complex Exponentials}
+        $$\left\langle \ee^{\jj \frac{2 \pi k n}{N}}, \ee^{\jj \frac{2 \pi m n}{N}} \right\rangle= \begin{cases} N, & k = m \\ 0, & k \neq m \end{cases}$$
+      \end{block}
     \end{column}
-\end{columns}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Discrete Fourier Transformation II}
-\begin{columns}[T,onlytextwidth]
+  \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
-        \vspace{0.8em}
-        \begin{itemize}
-            \item Time Shifting
-                \begin{itemize}
-                    \item Compare to FT (Slide \ref{1:FT4})
-                    \item $x\big[(n - n_0) \bmod N\big]= X[k] \, e^{-j \frac{2\pi}{N} k n_0}$
-                \end{itemize}
-            \item Frequency Shifting
-                \begin{itemize}
-                    \item Compare to FT (Slide \ref{1:FT4})
-                    \item $X\big[(k - k_0) \bmod N\big] = x[n] \, e^{j \frac{2\pi}{N} k_0 n}$
-                \end{itemize}
-            \item Convolution Discrepancy Compared to FT
-                \begin{itemize}
-                    \item Discrete LTI channels perform linear convolution
-                    \item $y[n] = x[n] * h[n] = \sum_m h[m] x[n - m]$
-                    \item Multiplying two DFTs yields circular convolution ($\circledast_N$)
-                    \item$x[n] \circledast_N h[n] \tf X[k] \cdot H[k]$ \\[0.2cm]
-                \end{itemize}
-        \end{itemize}
+      \vspace{0.8em}
+      \begin{itemize}
+        \item Time Shifting
+          \begin{itemize}
+            \item Compare to FT (Slide \ref{1:FT4})
+            \item $x\big[(n - n_0) \bmod N\big]= X[k] \, e^{-j \frac{2\pi}{N} k n_0}$
+          \end{itemize}
+        \item Frequency Shifting
+          \begin{itemize}
+            \item Compare to FT (Slide \ref{1:FT4})
+            \item $X\big[(k - k_0) \bmod N\big] = x[n] \, e^{j \frac{2\pi}{N} k_0 n}$
+          \end{itemize}
+        \item Convolution Discrepancy Compared to FT
+          \begin{itemize}
+            \item Discrete LTI channels perform linear convolution
+            \item $y[n] = x[n] * h[n] = \sum_m h[m] x[n - m]$
+            \item Multiplying two DFTs yields circular convolution ($\circledast_N$)
+            \item$x[n] \circledast_N h[n] \tf X[k] \cdot H[k]$ \\[0.2cm]
+          \end{itemize}
+      \end{itemize}
     \end{column}
     \begin{column}{0.38\textwidth}
-        \begin{block}{Circular Convolution $\circledast_N$}
-            \centering
-            $x[n] \circledast_N h[n] = \sum_{m=0}^{N-1} h[m] \, x[(n - m) \bmod N]$
-        \end{block}
+      \begin{block}{Circular Convolution $\circledast_N$}
+        \centering
+        $x[n] \circledast_N h[n] = \sum_{m=0}^{N-1} h[m] \, x[(n - m) \bmod N]$
+      \end{block}
     \end{column}
-\end{columns}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Discrete Fourier Transformation III}
-\begin{columns}[T,onlytextwidth]
+  \begin{columns}[T,onlytextwidth]
     \begin{column}{0.56\textwidth}
-        DFT is a linear transformation
-        \begin{itemize}
-            \item $N$-point DFT acts as matrix-vector product:
-                  \begin{equation*}
-                      \mathbf{X} = \mathbf{F}_N \mathbf{x}
-                  \end{equation*}
-            \item $\mathbf{x} = [x[0], \dots, x[N-1]]^T \in \mathbb{C}^N$
-            \item $\mathbf{X} = [X[0], \dots, X[N-1]]^T \in \mathbb{C}^N$
-            \item $\mathbf{F}_N$ is a symmetric matrix with entries $[\mathbf{F}_N]_{k,n} = W_N^{k \cdot n}$
-        \end{itemize}
-        \vspace{0.4em}
-        Orthogonality \& IDFT
-        \begin{itemize}
-            \item Columns of $\mathbf{F}_N$ form an orthogonal basis:
-                  \begin{equation*}
-                      \mathbf{F}_N^H \mathbf{F}_N = N \mathbf{I}_N \implies \mathbf{F}_N^{-1} = \frac{1}{N}\mathbf{F}_N^H
-                  \end{equation*}
-            \item IDFT matrix is conjugate transpose $\mathbf{F}_N^H$ scaled by~$1/N$
-        \end{itemize}
-        \vspace{0.4em}
+      DFT is a linear transformation
+      \begin{itemize}
+        \item $N$-point DFT acts as matrix-vector product:
+          \begin{equation*}
+            \mathbf{X} = \mathbf{F}_N \mathbf{x}
+          \end{equation*}
+        \item $\mathbf{x} = [x[0], \dots, x[N-1]]^T \in \mathbb{C}^N$
+        \item $\mathbf{X} = [X[0], \dots, X[N-1]]^T \in \mathbb{C}^N$
+        \item $\mathbf{F}_N$ is a symmetric matrix with entries $[\mathbf{F}_N]_{k,n} = W_N^{k \cdot n}$
+      \end{itemize}
+      \vspace{0.4em}
+      Orthogonality \& IDFT
+      \begin{itemize}
+        \item Columns of $\mathbf{F}_N$ form an orthogonal basis:
+          \begin{equation*}
+            \mathbf{F}_N^H \mathbf{F}_N = N \mathbf{I}_N \implies \mathbf{F}_N^{-1} = \frac{1}{N}\mathbf{F}_N^H
+          \end{equation*}
+        \item IDFT matrix is conjugate transpose $\mathbf{F}_N^H$ scaled by~$1/N$
+      \end{itemize}
+      \vspace{0.4em}
     \end{column}
 
     \begin{column}{0.40\textwidth}
-        \begin{block}{The DFT Matrix $\mathbf{F}_N$}
-            \centering
-            \footnotesize
-            $\mathbf{F}_N = \begin{bmatrix}
-                1 & 1 & 1 & \dots & 1 \\
-                1 & W_N^1 & W_N^2 & \dots & W_N^{N-1} \\
-                1 & W_N^2 & W_N^4 & \dots & W_N^{2(N-1)} \\
-                \vdots & \vdots & \vdots & \ddots & \vdots \\
-                1 & W_N^{N-1} & W_N^{2(N-1)} & \dots & W_N^{(N-1)^2}
-            \end{bmatrix}$
-            \begin{itemize}
-                \item With $W_N = \mathrm{e}^{-\mathrm{j}\frac{2\pi}{N}}$
-            \end{itemize}
-        \end{block}
+      \begin{block}{The DFT Matrix $\mathbf{F}_N$}
+        \centering
+        \footnotesize
+        $\mathbf{F}_N = \begin{bmatrix}
+          1 & 1 & 1 & \dots & 1 \\
+          1 & W_N^1 & W_N^2 & \dots & W_N^{N-1} \\
+          1 & W_N^2 & W_N^4 & \dots & W_N^{2(N-1)} \\
+          \vdots & \vdots & \vdots & \ddots & \vdots \\
+          1 & W_N^{N-1} & W_N^{2(N-1)} & \dots & W_N^{(N-1)^2}
+        \end{bmatrix}$
+        \begin{itemize}
+          \item With $W_N = \mathrm{e}^{-\mathrm{j}\frac{2\pi}{N}}$
+        \end{itemize}
+      \end{block}
     \end{column}
-\end{columns}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Spatial Processing I}
-    \begin{columns}[onlytextwidth]
-        \begin{column}{0.48\textwidth}
-            \begin{itemize}
-                \item Plane wave = oscillation across distance and time
-                \item Wave number $k_0$ = spatial phase velocity per meter ($\mathrm{rad/m}$)
-                \item Wave vector $k$ = directional vector pointing along direction of propagation $\theta$
-                \item Spatial sampling = antenna elements sample positions as ADCs sample time
-                \item Time--frequency duality maps to space--angle
-            \end{itemize}
-        \end{column}
+  \begin{columns}[onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}
+        \item Plane wave = oscillation across distance and time
+        \item Wave number $k_0$ = spatial phase velocity per meter ($\mathrm{rad/m}$)
+        \item Wave vector $k$ = directional vector pointing along direction of propagation $\theta$
+        \item Spatial sampling = antenna elements sample positions as ADCs sample time
+        \item Time--frequency duality maps to space--angle
+      \end{itemize}
+    \end{column}
 
-        \begin{column}{0.48\textwidth}
-            \begin{block}{Wave Basics}
-                \begin{itemize}
-                    \item Wave propagation along time and frequency
-                    \item $s(\mathbf{r}, t) = \mathrm{e}^{\mathrm{j}(\omega t - \mathbf{k} \cdot \mathbf{r})}$
-                    \item Spatial frequency vector
-                    \item $k_0 = \frac{2 \pi}{\lambda}$
-                \end{itemize}
-            \end{block}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Wave Basics}
+        \begin{itemize}
+          \item Wave propagation along time and frequency
+          \item $s(\mathbf{r}, t) = \mathrm{e}^{\mathrm{j}(\omega t - \mathbf{k} \cdot \mathbf{r})}$
+          \item Spatial frequency vector
+          \item $k_0 = \frac{2 \pi}{\lambda}$
+        \end{itemize}
+      \end{block}
 
-            \begin{block}{Time--Space Duality}
-            \begin{tabular}{ll}
-                \hline
-                \textbf{Time Domain} & \textbf{Spatial Domain} \\ 
-                \hline
-                Time $t$ & Position $x$ \\
-                Period $T_\mathrm{s}$ & Element Spacing $d$ \\
-                Freq.\ $\omega$ & Wavenumber $k_0$ \\
-                $f_\mathrm{s} \ge 2B$ & $d \le \lambda / 2$ \\ 
-                \hline
-            \end{tabular}
-            \end{block}
-        \end{column}
-    \end{columns}
+      \begin{block}{Time--Space Duality}
+        \begin{tabular}{ll}
+          \hline
+          \textbf{Time Domain} & \textbf{Spatial Domain} \\
+          \hline
+          Time $t$ & Position $x$ \\
+          Period $T_\mathrm{s}$ & Element Spacing $d$ \\
+          Freq.\ $\omega$ & Wavenumber $k_0$ \\
+          $f_\mathrm{s} \ge 2B$ & $d \le \lambda / 2$ \\
+          \hline
+        \end{tabular}
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Spatial Processing II}
-    \begin{columns}[onlytextwidth]
-        \begin{column}{0.48\textwidth}
-            Uniform Linear Array (ULA)
-            \begin{itemize}
-                \item Plane wave arriving from angle $\theta$
-                \item Wave travels extra $\Delta l$ per element
-                \item Elements experience angle-dependent phase shift $\psi$ compared to reference element 0
-                \item Array steering vector $\mathbf{a}(\theta)$
-                \item $\mathbf{a}(\theta) = \begin{bmatrix} 1 & \mathrm{e}^{-\mathrm{j}\psi} & \dots & \mathrm{e}^{-\mathrm{j}(M-1)\psi} \end{bmatrix}^T$
-                \item Spatial sampling without ambiguities if $d \le \frac{\lambda}{2} \iff |\psi| \le \pi$
-            \end{itemize}
-        \end{column}
+  \begin{columns}[onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      Uniform Linear Array (ULA)
+      \begin{itemize}
+        \item Plane wave arriving from angle $\theta$
+        \item Wave travels extra $\Delta l$ per element
+        \item Elements experience angle-dependent phase shift $\psi$ compared to reference element 0
+        \item Array steering vector $\mathbf{a}(\theta)$
+        \item $\mathbf{a}(\theta) = \begin{bmatrix} 1 & \mathrm{e}^{-\mathrm{j}\psi} & \dots & \mathrm{e}^{-\mathrm{j}(M-1)\psi} \end{bmatrix}^T$
+          \item Spatial sampling without ambiguities if $d \le \frac{\lambda}{2} \iff |\psi| \le \pi$
+      \end{itemize}
+    \end{column}
 
-        \begin{column}{0.50\textwidth}
-            \centering
-            \resizebox{\linewidth}{!}{\input{images/section-1/ula}}
+    \begin{column}{0.50\textwidth}
+      \centering
+      \resizebox{\linewidth}{!}{\input{images/section-1/ula}}
 
-            \vspace{0.3em}
-            \begin{beamercolorbox}[rounded=true,center,sep=3pt]{block body}
-                \footnotesize
-                \textbf{Path difference:} $\Delta \ell = d\sin\theta$ \\[2pt]
-                \textbf{Phase shift:} $\psi = \frac{2\pi}{\lambda}\Delta \ell = \frac{2\pi d}{\lambda}\sin\theta$
-            \end{beamercolorbox}
-        \end{column}
-    \end{columns}
+      \vspace{0.3em}
+      \begin{beamercolorbox}[rounded=true,center,sep=3pt]{block body}
+        \footnotesize
+        \textbf{Path difference:} $\Delta \ell = d\sin\theta$ \\[2pt]
+        \textbf{Phase shift:} $\psi = \frac{2\pi}{\lambda}\Delta \ell = \frac{2\pi d}{\lambda}\sin\theta$
+      \end{beamercolorbox}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Spatial Processing III}
-    \begin{columns}[onlytextwidth]
-        \begin{column}{0.48\textwidth}
-            Bartlett Beamformer
-            \begin{itemize}
-                \item Weight vector $\mathbf{w}(\theta)$ ``steers'' antenna array
-                \item Maximizes output power for direction $\theta$ by selecting weights as
-                \item $\mathbf{w}_\text{Bartlett}(\theta) = \frac{1}{M}\mathbf{a}(\theta)$
-                \item Undo the phase shifts introduced by the channel
-                \item Scan output power of the beamformer across $\theta$
-                \item $P_{\mathrm{BF}}(\theta) = \mathbf{w}^H(\theta)\,\mathbf{R}_{xx}\,\mathbf{w}(\theta)$
-            \end{itemize}
-        \end{column}
+  \begin{columns}[onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      Bartlett Beamformer
+      \begin{itemize}
+        \item Weight vector $\mathbf{w}(\theta)$ ``steers'' antenna array
+        \item Maximizes output power for direction $\theta$ by selecting weights as
+        \item $\mathbf{w}_\text{Bartlett}(\theta) = \frac{1}{M}\mathbf{a}(\theta)$
+        \item Undo the phase shifts introduced by the channel
+        \item Scan output power of the beamformer across $\theta$
+        \item $P_{\mathrm{BF}}(\theta) = \mathbf{w}^H(\theta)\,\mathbf{R}_{xx}\,\mathbf{w}(\theta)$
+      \end{itemize}
+    \end{column}
 
-        \begin{column}{0.48\textwidth}
-            \input{images/section-1/beamforming}
-            \begin{block}{Output Signal Model}
-                \begin{itemize}
-                    \item Snapshot vector: $\mathbf{x}[n] = \mathbf{a}(\theta_0)s[n] + \mathbf{n}[n]$
-                    \item Beamformer output: $y[n] = \mathbf{w}^H(\theta)\mathbf{x}[n]$
-                    \item Spatial covariance: $\mathbf{R}_{xx} = \mathbb{E}\{\mathbf{x}[n]\mathbf{x}^H[n]\}$
-                \end{itemize}
-            \end{block}
-        \end{column}
-    \end{columns}
+    \begin{column}{0.48\textwidth}
+      \input{images/section-1/beamforming}
+      \begin{block}{Output Signal Model}
+        \begin{itemize}
+          \item Snapshot vector: $\mathbf{x}[n] = \mathbf{a}(\theta_0)s[n] + \mathbf{n}[n]$
+          \item Beamformer output: $y[n] = \mathbf{w}^H(\theta)\mathbf{x}[n]$
+          \item Spatial covariance: $\mathbf{R}_{xx} = \mathbb{E}\{\mathbf{x}[n]\mathbf{x}^H[n]\}$
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Spatial Processing IV}
-    \centering
-    Live demo: Bartlett beamformer visualization
-    \begin{itemize}
-        \item scripts/section-1/bartlett.py
-        \item scripts/section-1/bartlett-multi-doa.py
-    \end{itemize}
+  \centering
+  Live demo: Bartlett beamformer visualization
+  \begin{itemize}
+    \item scripts/section-1/bartlett.py
+    \item scripts/section-1/bartlett-multi-doa.py
+  \end{itemize}
 \end{frame}
 
 
-\subsection{Standardization Preliminaries}
+\subsectionFrame{Standardization Preliminaries}
+
+\begin{frame}{Radio Spectrum}
+  \begin{columns}[onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}
+        \item Part of the electromagnetic spectrum
+        \item Covers frequencies from \qty{3}{\hertz} to \qty{3}{\tera\hertz}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
