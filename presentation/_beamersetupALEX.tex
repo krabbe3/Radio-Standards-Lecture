@@ -33,6 +33,23 @@
 \section{#1}
 }
 
+% Subsection frame: simpler than section, no big box
+\newcommand{\subsectionFrame}[1]{
+\subsection{#1}
+}
+
+\AtBeginSubsection[]{
+    \begin{frame}
+    \vfill
+    \centering
+    \usebeamerfont{title}
+    \textbf{\insertsubsectionhead}
+    \vskip 1.5em
+    \textcolor{structure.fg}{\rule{0.4\linewidth}{0.5pt}}
+    \vfill
+    \end{frame}
+}
+
 
 %%%%%%%%%% BEGIN  \footlineextra   %%%%%%%%%%%%
 % https://tex.stackexchange.com/questions/5491/how-do-i-insert-text-into-the-footline-of-a-specific-slide-in-beamer
