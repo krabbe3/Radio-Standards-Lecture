@@ -488,33 +488,40 @@
 \subsectionFrame{Standardization Preliminaries}
 
 \begin{frame}{Radio Spectrum}
-  \begin{columns}[onlytextwidth]
-    \begin{column}{0.48\textwidth}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.56\textwidth}
+      \textbf{What is the Radio Spectrum?}
       \begin{itemize}
-        \item Part of the electromagnetic spectrum
-        \item Covers frequencies from \qty{3}{\hertz} to \qty{3}{\tera\hertz}
-        \item Backbone of modern telecommunication
+        \item Part of the electromagnetic spectrum from $3\,\mathrm{Hz}$ to $3\,\mathrm{THz}$
+        \item Finite natural resource used for wireless communication
+        \item Backbone of modern telecommunication and broadcasting
+      \end{itemize}
+      \vspace{0.3em}
+
+      \textbf{Spectrum Allocation}
+      \begin{itemize}
+        \item Globally coordinated by ITU through World Radio Conferences (WRC)
+        \item Divided into frequency bands assigned to specific services (TV, radio, mobile, satellite, radar, amateur, etc.)
+        \item Licensing by national regulatory authorities (e.g., BNetzA in Germany)
+        \item \alert{Limited supply, increasing demand} from new technologies (5G, IoT, satellite internet)
       \end{itemize}
     \end{column}
-    \begin{column}{0.4\textwidth}
+    %
+    \begin{column}{0.38\textwidth}
       \begin{block}{Frequency vs. Wavelength}
        \begin{itemize}
          \item Connection between frequency $f$ and wavelength $\lambda$
          \item $c = \lambda \cdot f$
-         \item Propagation speed of the wave $c$ (in vacuum)
-         \item $c = \qty{299792458}{\meter\per\second}$
+         \item $c = \qty{299792458}{\meter\per\second}$ (in vacuum)
        \end{itemize}
       \end{block}
       \begin{alertblock}{Rules-of-Thumb}
         \begin{itemize}
-          \item $\text{Frequency } \qty{1}{\giga\hertz} \rightarrow \text{Wavelength } \qty{30}{\centi\meter}$
-          \item $\text{Frequency }\qty{3}{\giga\hertz} \rightarrow \text{Wavelength } \qty{10}{\centi\meter}$
-
+          \item $\qty{1}{\giga\hertz} \rightarrow \qty{30}{\centi\meter}$
+          \item $\qty{3}{\giga\hertz} \rightarrow \qty{10}{\centi\meter}$
+          \item $\qty{10}{\giga\hertz} \rightarrow \qty{3}{\centi\meter}$
         \end{itemize}
-
-
       \end{alertblock}
-
     \end{column}
   \end{columns}
 \end{frame}
@@ -522,7 +529,7 @@
 \begin{frame}{ITU}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
-      The United Nations Specialty Agency for ICTs\n
+      The United Nations Specialty Agency for ICTs
       \begin{itemize}
         \item Founded in 1865 as the International Telegraph Union, renamed in 1947
         \item Responsible for coordinating global use of the radio spectrum
@@ -547,8 +554,8 @@
 \begin{frame}{Standards}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
-      \textbf{What is a standard?}\n
-      A documented agreement establishing rules, specifications, and characteristics for activities and their results.\n
+      \textbf{What is a standard?}
+      A documented agreement establishing rules, specifications, and characteristics for activities and their results.
       \begin{itemize}
         \item Ensures products and services are fit for purpose, safe, and reliable
         \item Promotes interoperability between equipment and systems
@@ -574,7 +581,7 @@
 \begin{frame}{Standardization Bodies}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
-      Organizations that develop, approve, and publish standards\n
+      Organizations that develop, approve, and publish standards
       \begin{itemize}
         \item \textbf{International bodies}\textemdash coordinate global standards (ISO, IEC, ITU, IEEE)
         \item \textbf{Regional bodies}\textemdash cover large geographic areas (CEN, ETSI)
@@ -583,7 +590,7 @@
       \end{itemize}
       \vspace{0.3em}
 
-      Standardization process:\n
+      Standardization process:
       \begin{itemize}
         \item Propose new topic or revision
         \item Form working group of experts
@@ -596,12 +603,12 @@
     \begin{column}{0.38\textwidth}
       \begin{block}{Hierarchy of standardization}
         \centering
-        International\n
-        \hspace{0.5em}$\downarrow$\n
-        Regional\n
-        \hspace{0.5em}$\downarrow$\n
-        National\n
-        \hspace{0.5em}$\downarrow$\n
+        International
+        \hspace{0.5em}$\downarrow$
+        Regional
+        \hspace{0.5em}$\downarrow$
+        National
+        \hspace{0.5em}$\downarrow$
         Industry/Company
       \end{block}
     \end{column}
@@ -611,32 +618,32 @@
 \begin{frame}{Standardization Bodies Examples}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
-      \textbf{IEEE} (Institute of Electrical and Electronics Engineers)\n
+      \textbf{IEEE} (Institute of Electrical and Electronics Engineers)
       \begin{itemize}
-        \item Global professional association\n
-        \item Develops technical standards for electronics and computing\n
+        \item Global professional association
+        \item Develops technical standards for electronics and computing
         \item Key standards: IEEE 802.11 (Wi-Fi), 802.3 (Ethernet), 754 (floating-point)
       \end{itemize}
 
-      \textbf{ISO} (International Organization for Standardization)\n
+      \textbf{ISO} (International Organization for Standardization)
       \begin{itemize}
-        \item Network of national standards bodies\n
-        \item Develops international standards across all industries\n
+        \item Network of national standards bodies
+        \item Develops international standards across all industries
         \item Well-known: ISO 9001 (quality), ISO 27001 (security), ISO/IEC 14443 (RFID/NFC)
       \end{itemize}
     \end{column}
     %
     \begin{column}{0.38\textwidth}
-      \textbf{DIN} (Deutsches Institut für Normung)\n
+      \textbf{DIN} (Deutsches Institut für Normung)
       \begin{itemize}
-        \item German national standards body\n
-        \item Representative for ISO/IEC\n
+        \item German national standards body
+        \item Representative for ISO/IEC
         \item Examples: DIN A4 paper, DIN 7258 (screws)
       \end{itemize}
 
-      \textbf{3GPP} (3rd Generation Partnership Project)\n
+      \textbf{3GPP} (3rd Generation Partnership Project)
       \begin{itemize}
-        \item Collaboration of telecommunications standards organizations\n
+        \item Collaboration of telecommunications standards organizations
         \item Develops specifications for mobile networks (3G, 4G, 5G, 6G)
       \end{itemize}
     \end{column}
@@ -646,8 +653,8 @@
 \begin{frame}{Patents}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
-      \textbf{What is a patent?}\n
-      An exclusive right granted for an invention.\n
+      \textbf{What is a patent?}
+      An exclusive right granted for an invention.
       \begin{itemize}
         \item Protects new technical solutions, products, or processes
         \item Grants the patent holder monopoly for up to 20 years
@@ -655,7 +662,7 @@
         \item In exchange, inventor publicly discloses the invention
       \end{itemize}
 
-      \textbf{Three requirements for patentability}\n
+      \textbf{Three requirements for patentability}
       \begin{itemize}
         \item \textbf{Novelty:} New worldwide, not previously disclosed
         \item \textbf{Inventive step:} Not obvious to skilled person
