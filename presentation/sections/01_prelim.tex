@@ -744,9 +744,10 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Patents}
+\begin{frame}{Patents I: Fundamentals}
+  Standards and patents intersect critically in radio systems: technologies codified in a standard often rely on patented inventions. Understanding patent fundamentals is essential for appreciating SEP/FRAND dynamics.
   \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.58\textwidth}
+    \begin{column}{0.6\textwidth}
       \textbf{What is a patent?}
       An exclusive right granted for an invention.
       \begin{itemize}
@@ -764,7 +765,7 @@
       \end{itemize}
     \end{column}
     %
-    \begin{column}{0.38\textwidth}
+    \begin{column}{0.36\textwidth}
       \begin{block}{Patent process (simplified)}
         \begin{enumerate}
           \item File application with patent office
@@ -775,9 +776,38 @@
           \item Maintain with annual renewal fees
         \end{enumerate}
       \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
 
-      \begin{alertblock}{Standard-essential patents (SEPs)}
-        Patents essential to implementing a standard, must be licensed on \textbf{FRAND} terms (fair, reasonable, non-discriminatory)
+\begin{frame}{Patents II: Standard-Essential Patents}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.6\textwidth}
+      \textbf{Standard-Essential Patents (SEPs)}
+      \begin{itemize}
+        \item Patents that claim technology necessary to implement a standard
+        \item e.g., OFDMA, HARQ, channel coding, MIMO schemes in 5G NR
+        \item Any compliant device must use the patented technology
+        \item Patent holder cannot exclude others from the standard market
+      \end{itemize}
+
+      \textbf{FRAND Commitment}
+      \begin{itemize}
+        \item SEP holders commit to license on \textbf{FRAND} terms
+        \item Fair, Reasonable, and Non-Discriminatory
+        \item Balances innovation incentives with standard adoption
+        \item Major source of patent litigation in telecom
+      \end{itemize}
+    \end{column}
+    %
+    \begin{column}{0.36\textwidth}
+      \begin{alertblock}{The FRAND Paradox}
+        \begin{itemize}
+          \item Standardization increases patent value (must-use technology)
+          \item But FRAND limits royalty rates
+          \item Tension between patent protection and open standards
+          \item Courts worldwide still determining FRAND scope
+        \end{itemize}
       \end{alertblock}
     \end{column}
   \end{columns}
