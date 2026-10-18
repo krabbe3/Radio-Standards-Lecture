@@ -41,12 +41,11 @@
 \usepackage{booktabs}
 
 \usepackage{circuitikz}
-%\usepackage[backend=biber,style=alphabetic,sorting=none]{biblatex}
-%\addbibresource{references.bib}
+\usepackage[backend=biber,style=ieee,sorting=none]{biblatex}
+\addbibresource{references.bib}
 
 \usepackage[skins,theorems]{tcolorbox}
-\tcbset{highlight math style={enhanced,
-colframe=blue,colback=white,arc=0pt,boxrule=1pt}}
+\tcbset{highlight math style={enhanced,colframe=blue,colback=white,arc=0pt,boxrule=1pt}}
 
 
 \title[Radio Standards \quad WS\,2026]{Radio Standards}
@@ -106,7 +105,8 @@ colframe=blue,colback=white,arc=0pt,boxrule=1pt}}
 \sectionFrame{Introduction} \input{sections/00_intro}
 \sectionFrame{Preliminaries} \input{sections/01_prelim}
 
-%\setcounter{section}{-1} \sectionFrame{Organisatorisches}
-\
+\begin{frame}{References}
+  \printbibliography
+\end{frame}
 
 \end{document}
