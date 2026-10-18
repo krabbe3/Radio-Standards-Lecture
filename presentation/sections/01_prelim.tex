@@ -530,37 +530,72 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Radio Spectrum Usage USA}
+\begin{frame}{Radio Spectrum Allocation USA}
   \begin{figure}
     \includegraphics[width=0.7\linewidth]{images/section-1/radio-spectrum-usa.jpg}
-    \caption{Radio Spectrum Usage in USA}
+    \caption{Radio Spectrum Allocation USA}
   \end{figure}
 \end{frame}
 
-\begin{frame}{Radio Spectrum Usage USA}
-  show some example occupations in the US spectrum
-  ADD Refs to external figures!!!
+\begin{frame}{Allocation Example I}
+  \begin{figure}
+    \includegraphics[width=0.9\linewidth]{images/section-1/radio-spectrum-usa-300.png}
+    \caption{Radio Spectrum Allocation USA @\qty{300}{\mega\hertz}}
+  \end{figure}
+  \begin{itemize}
+    \item Broadcasting starting @\qty{174}{\mega\hertz}: TV Channels
+    \item Fixed/mobile starting @\qty{225}{\mega\hertz}: Military Band
+      \begin{itemize}
+        \item Primary military (e.g., air-to-air/air-to-ground voice)
+        \item Aeronnautical radionavigation (instrument landing system (ILS) vertical guidance)
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Allocation Example II}
+  \begin{columns}
+    \begin{column}{0.56\textwidth}
+      Frequency band \SIrange{2.4}{2.5}{\giga\hertz}
+      \begin{itemize}
+        \item Primary industrial, scientific and medical (ISM) band
+          \begin{itemize}
+            \item High-power non-communication emitters (e.g., Microwave ovens, industrial heating and drying)
+            \item Source of interference
+          \end{itemize}
+        \item Unlicensed wireless systems
+          \begin{itemize}
+            \item e.g., Wi-Fi, Bluetooth
+            \item Must tolerate ISM interference
+          \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \begin{figure}
+        \includegraphics[width=0.6\linewidth]{images/section-1/radio-spectrum-usa-2400.png}
+        \caption{Radio Spectrum Allocation USA @\qty{2.4}{\giga\hertz}}
+      \end{figure}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{ITU}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
-      The United Nations Specialty Agency for Information and Communications Technology
       \begin{itemize}
+        \item United Nations Specialty Agency for Information and Communications Technology
         \item Founded in 1865 as the International Telegraph Union
         \item Renamed in 1947 to International Telecommunication Union
         \item Coordinates global use of the radio spectrum
         \item In total 194 member states
-        \item Each member state has equal represenation and voting rights on e.g. standards
+        \item Each member state has equal represenation and voting rights e.g., on standards
       \end{itemize}
     \end{column}
-    %
     \begin{column}{0.38\textwidth}
       \begin{block}{ITU's three sectors}
         \begin{itemize}
-          \item \textbf{ITU-R} (Radio): Radio spectrum management, satellite coordination
-          \item \textbf{ITU-T} (Telecommunication): Technical standards (Recommendations)
-          \item \textbf{ITU-D} (Development): Digital development in member states
+          \item ITU-R (Radio): Radio spectrum management, satellite coordination
+          \item ITU-T (Telecommunication): Technical standards (Recommendations)
+          \item ITU-D (Development): Digital development in member states
         \end{itemize}
       \end{block}
     \end{column}
@@ -568,100 +603,143 @@
 \end{frame}
 
 \begin{frame}{Standards}
-  \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.58\textwidth}
-      \textbf{What is a standard?}
-      A documented agreement establishing rules, specifications, and characteristics for activities and their results.
+  \begin{columns}[onlytextwidth]
+    \begin{column}{0.48\textwidth}
       \begin{itemize}
-        \item Ensures products and services are fit for purpose, safe, and reliable
-        \item Promotes interoperability between equipment and systems
-        \item Facilitates international trade by harmonizing requirements
-        \item Reduces costs by eliminating technical barriers
-        \item \alert{Not legally binding}\textemdash adopted by mutual consensus
+        \item Ensures fit for purpose, safe, and reliable products/services
+        \item Promotes interoperability between equipment
+        \item Harmonizes trade requirements across the globe
+        \item Eliminates technical barriers
+        \item \alert{Remark:} A standard is not legally binding, it is adopted by mutual consensus
       \end{itemize}
     \end{column}
     %
-    \begin{column}{0.38\textwidth}
-      \begin{block}{Key characteristics of standards}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{What is a standard?}
+        A standard is an agreed-upon, repeatable technical specification or guideline designed to ensure that materials, products, processes, and services are safe, reliable, and mutually interoperable.
+      \end{block}
+      \begin{block}{Key characteristics of radio standards}
         \begin{itemize}
-          \item \textbf{Consensus-based}\textemdash agreed by all parties
-          \item \textbf{Documented}\textemdash published and accessible
-          \item \textbf{Voluntary}\textemdash adoption is typically optional
-          \item \textbf{Continuously updated}\textemdash revised as technology evolves
+          \item Consensus-based: agreed by all parties
+          \item Documented: published and accessible
+          \item Voluntary: adoption is typically optional
+          \item Continuously updated: revised as technology evolves
         \end{itemize}
       \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Standardization Bodies}
-  \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.58\textwidth}
-      Organizations that develop, approve, and publish standards
-      \begin{itemize}
-        \item \textbf{International bodies}\textemdash coordinate global standards (ISO, IEC, ITU, IEEE)
-        \item \textbf{Regional bodies}\textemdash cover large geographic areas (CEN, ETSI)
-        \item \textbf{National bodies}\textemdash represent each country (DIN, ANSI, BSI)
-        \item \textbf{Industry consortia}\textemdash specific sectors (3GPP, Wi-Fi Alliance)
-      \end{itemize}
-      \vspace{0.3em}
 
-      Standardization process:
+\begin{frame}{Standardization Bodies I}
+  Standardization bodies develop, approve, and publish standards.
+  \begin{columns}[onlytextwidth]
+    \begin{column}{0.6\textwidth}
       \begin{itemize}
-        \item Propose new topic or revision
-        \item Form working group of experts
-        \item Draft, review, and refine the specification
-        \item Achieve consensus and publish
-        \item Maintain and periodically review/update
+        \item International bodies
+          \begin{itemize}
+            \item Coordinate global standards
+            \item e.g., International Organization for Standardization (ISO)
+            \item e.g., ITU
+          \end{itemize}
+        \item Regional bodies
+          \begin{itemize}
+            \item Cover large geographic areas
+            \item e.g., European Telecommunications Standards Institute (ETSI)
+          \end{itemize}
+        \item National bodies
+          \begin{itemize}
+            \item Represent each country
+            \item e.g., Deutsches Institut für Normung (DIN)
+            \item e.g., American National Standards Institute (ANSI)
+          \end{itemize}
+        \item Industry consortia
+          \begin{itemize}
+            \item Cover specific sectors
+            \item e.g., 3rd Generation Partnership Project (3GPP)
+            \item e.g., Institute of Electrical and Electronics Engineers (IEEE)
+          \end{itemize}
       \end{itemize}
     \end{column}
-    %
     \begin{column}{0.38\textwidth}
-      \begin{block}{Hierarchy of standardization}
+      \begin{block}{Role of industry consortia}
+        \begin{itemize}
+          \item Standards of big alliances are directly adopted into official frameworks\\
+          \item Consortium defines specs $\rightarrow$ adopted as regional standard $\rightarrow$ recognized globally
+          \item e.g., Cellular standard (5G NR)
+        \end{itemize}
         \centering
-        International
-        \hspace{0.5em}$\downarrow$
-        Regional
-        \hspace{0.5em}$\downarrow$
-        National
-        \hspace{0.5em}$\downarrow$
-        Industry/Company
+        3GPP (TS 38.211)\\
+        $\downarrow$\\
+        ETSI (TS 138 211)\\
+        $\downarrow$\\
+        ITU-R (IMT-2020)\\
       \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Standardization Bodies Examples}
+\begin{frame}{Standardization Bodies II}
   \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.58\textwidth}
-      \textbf{IEEE} (Institute of Electrical and Electronics Engineers)
+    \begin{column}{0.5\textwidth}
+      IEEE
       \begin{itemize}
         \item Global professional association
         \item Develops technical standards for electronics and computing
-        \item Key standards: IEEE 802.11 (Wi-Fi), 802.3 (Ethernet), 754 (floating-point)
+        \item e.g., IEEE 802.11 (Wi-Fi), 802.3 (Ethernet), 754 (floating-point)
       \end{itemize}
-
-      \textbf{ISO} (International Organization for Standardization)
+      ISO
       \begin{itemize}
         \item Network of national standards bodies
         \item Develops international standards across all industries
-        \item Well-known: ISO 9001 (quality), ISO 27001 (security), ISO/IEC 14443 (RFID/NFC)
+        \item e.g., ISO 9001 (quality), ISO 27001 (security), ISO/IEC 14443 (RFID/NFC)
       \end{itemize}
     \end{column}
-    %
-    \begin{column}{0.38\textwidth}
-      \textbf{DIN} (Deutsches Institut für Normung)
+    \begin{column}{0.5\textwidth}
+      DIN
       \begin{itemize}
         \item German national standards body
         \item Representative for ISO/IEC
-        \item Examples: DIN A4 paper, DIN 7258 (screws)
+        \item DIN A4 paper, DIN 7258 (screws)
       \end{itemize}
-
-      \textbf{3GPP} (3rd Generation Partnership Project)
+      \vspace{2.5em}
+      3GPP
       \begin{itemize}
         \item Collaboration of telecommunications standards organizations
-        \item Develops specifications for mobile networks (3G, 4G, 5G, 6G)
+        \item Develops specifications for mobile networks
+        \item e.g., 3G, 4G, 5G, 6G
       \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Standardization Process}
+  \begin{columns}
+    \begin{column}{0.48\textwidth}
+      Types of standardization process
+      \begin{itemize}
+        \item Emergence as de facto standard
+        \item Written by standards organization
+        \item Written by governemnt or regulatory body
+        \item Written by a corporation
+      \end{itemize}
+      Standardization process
+      \begin{enumerate}
+        \item Propose new topic or revision
+        \item Form working group of experts
+        \item Draft, review, and refine the specification
+        \item Achieve consensus and publish
+        \item Maintain and periodically review
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{alertblock}{Standardize standards}
+        The process of standardization can itself be standardized (e.g., ISO/IEC Directives Part 1/2).
+        \begin{figure}
+          \includegraphics[width=0.8\linewidth]{images/section-1/iso-iec-overview.png}
+          \caption{Excerpt from ISO/IEC Directives Part 1}
+        \end{figure}
+      \end{alertblock}
     \end{column}
   \end{columns}
 \end{frame}
