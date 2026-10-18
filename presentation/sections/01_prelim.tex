@@ -739,55 +739,72 @@
 \begin{frame}{Standardization Process II}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
-      \begin{enumerate}
-        \item Propose new topic or revision
-        \item Form working group of experts
-        \item Draft, review, and refine the specification
-        \item Achieve consensus and publish
-        \item Maintain and periodically review
-      \end{enumerate}
+      Standards are versioned through releases, e.g., 3GPP
+      \begin{center}
+        Release 8 (LTE)\\
+        $\downarrow$\\
+        Release 15 (5G)\\
+        $\downarrow$\\
+        Release 21 (6G)
+      \end{center}
       \begin{itemize}
-        \item Can take years (especially for international bodies)
+        \item Each release adds new features, fixes, and deprecations
+        \item Industry coordinates on specific release versions
+        \item Development can take years (especially for international bodies)
         \item Requires broad stakeholder participation
-        \item Iterative with multiple review rounds
+        \item Iterative process with multiple review rounds
       \end{itemize}
     \end{column}
     \begin{column}{0.38\textwidth}
-      \begin{block}{What is a release?}
-        Standards are versioned through releases
-        \begin{itemize}
-          \item e.g., 3GPP
-          \item Release 8 (LTE) → Release 15 (5G) → Release 21 (6G)
-          \item Each release adds new features, fixes, and deprecations
-          \item Industry coordinates on specific release versions
-        \end{itemize}
+      \begin{block}{Standardization Process (simplified)}
+        \begin{enumerate}
+          \item Propose new topic or revision
+          \item Form working group of experts
+          \item Draft, review, and refine the specification
+          \item Achieve consensus and publish
+          \item Maintain and periodically review
+        \end{enumerate}
       \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Patents I}
-  Standards and patents intersect critically in radio systems: technologies codified in a standard often rely on patented inventions. Understanding patent fundamentals is essential for appreciating SEP/FRAND dynamics.
-  \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.6\textwidth}
-      \textbf{What is a patent?}
-      An exclusive right granted for an invention.
-      \begin{itemize}
-        \item Protects new technical solutions, products, or processes
-        \item Grants the patent holder monopoly for up to 20 years
-        \item Prevents others from making, using, or selling the invention
-        \item In exchange, inventor publicly discloses the invention
-      \end{itemize}
+\begin{frame}{Standardization Process III}
+  \begin{figure}
+    \includegraphics[width=1.0\linewidth]{images/section-1/3gpp-process.png}
+    \caption{Standardization Process in 3GPP}
+  \end{figure}
+\end{frame}
 
-      \textbf{Three requirements for patentability}
+\begin{frame}{Standardization Process IV}
+  \begin{figure}
+    \includegraphics[width=0.8\linewidth]{images/section-1/3gpp-releases.jpeg}
+    \caption{Releases in 3GPP over Time}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Patents I}
+  Standards and patents intersect in radio systems, because standards often rely on patented innovations.
+  \begin{columns}[onlytextwidth]
+    \begin{column}{0.55\textwidth}
       \begin{itemize}
-        \item \textbf{Novelty:} New worldwide, not previously disclosed
-        \item \textbf{Inventive step:} Not obvious to skilled person
-        \item \textbf{Industrial application:} Can be made or used
+        \item Patent protects new technical solutions or  products
+        \item Grants patent holder monopoly for up to 20 years
+        \item Prohibits making, using, or selling the invention
+        \item However, inventor publicly discloses the invention
+      \end{itemize}
+      Requirements for patentability
+      \begin{itemize}
+        \item Novelty: Invention must be new
+        \item Inventive step: Invention not obvious to skilled person
+        \item Industrial application: Invention can be made or used
       \end{itemize}
     \end{column}
     %
-    \begin{column}{0.36\textwidth}
+    \begin{column}{0.4\textwidth}
+      \begin{block}{What is a patent?}
+        A patent is an exclusive right granted for an invention.
+      \end{block}
       \begin{block}{Patent process (simplified)}
         \begin{enumerate}
           \item File application with patent office
@@ -803,34 +820,30 @@
 \end{frame}
 
 \begin{frame}{Patents II}
-  \begin{columns}[T,onlytextwidth]
+  \begin{columns}[onlytextwidth]
     \begin{column}{0.6\textwidth}
-      \textbf{Standard-Essential Patents (SEPs)}
+      Standard-Essential Patent (SEP)
       \begin{itemize}
         \item Patents that claim technology necessary to implement a standard
-        \item e.g., OFDMA, HARQ, channel coding, MIMO schemes in 5G NR
+        \item e.g., OFDMA, channel coding, MIMO schemes in 5G
         \item Any compliant device must use the patented technology
         \item Patent holder cannot exclude others from the standard market
       \end{itemize}
-
-      \textbf{FRAND Commitment}
+      FRAND Commitment
       \begin{itemize}
-        \item SEP holders commit to license on \textbf{FRAND} terms
-        \item Fair, Reasonable, and Non-Discriminatory
+        \item \textbf{F}air, \textbf{R}easonable, \textbf{a}nd \textbf{N}on-\textbf{D}iscriminatory
+        \item SEP holders commit to license on FRAND terms
         \item Balances innovation incentives with standard adoption
-        \item Major source of patent litigation in telecom
       \end{itemize}
     \end{column}
-    %
     \begin{column}{0.36\textwidth}
-      \begin{alertblock}{The FRAND Paradox}
+      \begin{block}{FRAND principle}
         \begin{itemize}
           \item Standardization increases patent value (must-use technology)
-          \item But FRAND limits royalty rates
+          \item FRAND limits royalty rates
           \item Tension between patent protection and open standards
-          \item Courts worldwide still determining FRAND scope
         \end{itemize}
-      \end{alertblock}
+      \end{block}
     \end{column}
   \end{columns}
 \end{frame}
