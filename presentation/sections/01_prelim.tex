@@ -356,13 +356,12 @@
       \begin{itemize}
         \item Columns of $\mathbf{F}_N$ form an orthogonal basis:
           \begin{equation*}
-            \mathbf{F}_N^H \mathbf{F}_N = N \mathbf{I}_N \implies \mathbf{F}_N^{-1} = \frac{1}{N}\mathbf{F}_N^H
+            \mathbf{F}_N^\mathrm{H} \mathbf{F}_N = N \mathbf{I}_N \implies \mathbf{F}_N^{-1} = \frac{1}{N}\mathbf{F}_N^\mathrm{H}
           \end{equation*}
-        \item \Gls{acro:idft} matrix is conjugate transpose $\mathbf{F}_N^H$ scaled by~$1/N$
+        \item \Gls{acro:idft} matrix is conjugate transpose $\mathbf{F}_N^\mathrm{H}$ scaled by~$1/N$
       \end{itemize}
       \vspace{0.4em}
     \end{column}
-
     \begin{column}{0.40\textwidth}
       \begin{block}{The \gls{acro:dft} Matrix $\mathbf{F}_N$}
         \centering
@@ -376,6 +375,12 @@
         \end{bmatrix}$
         \begin{itemize}
           \item With $W_N = \mathrm{e}^{-\mathrm{j}\frac{2\pi}{N}}$
+        \end{itemize}
+      \end{block}
+      \begin{block}{Matrix-vector representation}
+        \begin{itemize}
+          \item $\mathbf{X} = \mathbf{F}_N \mathbf{x}$
+          \item $\mathbf{x} = \frac{1}{N} \mathbf{F}_N^\mathrm{H} \mathbf{X}$
         \end{itemize}
       \end{block}
     \end{column}
@@ -397,10 +402,10 @@
     \begin{column}{0.48\textwidth}
       \begin{block}{Wave Basics}
         \begin{itemize}
-          \item Wave propagation along time and frequency
+          \item Wave propagation in space and time
           \item $s(\mathbf{r}, t) = \mathrm{e}^{\mathrm{j}(\omega t - \mathbf{k} \cdot \mathbf{r})}$
           \item Spatial frequency vector
-          \item $k_0 = \frac{2 \pi}{\lambda}$
+          \item $||\mathbf{k}||_2 = k_0 = \frac{2 \pi}{\lambda}$
         \end{itemize}
       \end{block}
 
@@ -719,7 +724,7 @@
       Types of standardization process
       \begin{itemize}
         \item Emergence as de facto standard (e.g., Ethernet)
-        \item Written by standards organization (e.g., \gls{acro:itu}-T recommendations)
+        \item Written by standards organization (e.g., \gls{acro:ieee} 802.11)
         \item Written by government or regulatory body (e.g., \gls{acro:fcc} rules)
         \item Written by a corporation (e.g., Apple Lightning connector)
       \end{itemize}
@@ -772,7 +777,7 @@
 \begin{frame}{Standardization Process III}
   \begin{figure}
     \includegraphics[width=1.0\linewidth]{images/section-1/3gpp-process.jpg}
-    \caption{Standardization Process in \gls{acro:3gpp}~\cite{gemini-imagen}}
+    \caption{Standardization Process in \gls{acro:3gpp} (simplified)~\cite{gemini-imagen}}
   \end{figure}
 \end{frame}
 
