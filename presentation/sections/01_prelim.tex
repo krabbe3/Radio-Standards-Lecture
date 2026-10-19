@@ -11,7 +11,7 @@
         \item Transforms input signal $x(t)$ to output signal $y(t)$
       \end{itemize}
       \vfill
-      System Operator under \ac{acro:lti} Properties\\
+      System Operator under \gls{acro:lti} Properties\\
       \begin{itemize}
         \item \textbf{L}inear
           \begin{itemize}
@@ -28,14 +28,14 @@
     \end{column}
     %
     \begin{column}{0.38\textwidth}
-      \begin{block}{Channel \ac{acro:cir}}
+      \begin{block}{Channel \gls{acro:cir}}
         Response to an ideal Dirac pulse $\delta(t)$\\
         \vspace{0.5em}
         \centering
         $h(t) = \mathcal{H}\{\delta(t)\}$
       \end{block}
-      \begin{block}{\ac{acro:lti} Input-Output Relation}
-        Convolution of input $x(t)$ with \ac{acro:cir} $h(t)$\\
+      \begin{block}{\gls{acro:lti} Input-Output Relation}
+        Convolution of input $x(t)$ with \gls{acro:cir} $h(t)$\\
         \vspace{0.5em}
         \centering
         $y(t) = x(t) * h(t)$ \\[0.2cm]
@@ -50,8 +50,8 @@
     \begin{column}{0.58\textwidth}
       From Impulse Response to Transfer Function\\
       \begin{itemize}
-        \item Time-domain \ac{acro:cir} $h(t)$ describes channel delay behavior
-        \item \ac{acro:ft} maps \ac{acro:cir} to frequency domain \ac{acro:ctf}
+        \item Time-domain \gls{acro:cir} $h(t)$ describes channel delay behavior
+        \item \gls{acro:ft} maps \gls{acro:cir} to frequency domain \gls{acro:ctf}
         \item $h(t) \tf H(f)$
       \end{itemize}
       Basis Functions \& Eigenfunction Property\\
@@ -64,14 +64,14 @@
     \end{column}
 
     \begin{column}{0.38\textwidth}
-      \begin{block}{\ac{acro:ft} (Analysis)}
+      \begin{block}{\gls{acro:ft} (Analysis)}
         Decomposition into spectrum\\
         \vspace{0.5em}
         \centering
         $H(f) = \int_{-\infty}^{\infty} h(t) \,\mathrm{e}^{-\mathrm{j} 2\pi f t} \,\mathrm{d}t$
       \end{block}
 
-      \begin{block}{Inverse \ac{acro:ft} (\ac{acro:ift}) (Synthesis)}
+      \begin{block}{\gls{acro:ift} (Synthesis)}
         Reconstruction of time signal\\
         \vspace{0.5em}
         \centering
@@ -89,7 +89,7 @@
     \begin{column}{0.58\textwidth}
       Time-Frequency Uncertainty\\
       \begin{itemize}
-        \item Direct consequence of the \ac{acro:ft} scaling property
+        \item Direct consequence of the \gls{acro:ft} scaling property
         \item $x(at) \;\circ\!\!-\!\!\bullet\; \frac{1}{|a|} X\left(\frac{f}{a}\right)$
         \item Narrow time duration $\implies$ wide spectral occupancy
         \item Time-limited signals can never be strictly band-limited
@@ -108,7 +108,7 @@
     \end{column}
 
     \begin{column}{0.38\textwidth}
-      \begin{block}{\ac{acro:ft} Example}
+      \begin{block}{\gls{acro:ft} Example}
         \centering
         $\mathrm{rect}\!\left(\frac{t}{T}\right) \;\circ\!\!-\!\!\bullet\; T\,\mathrm{si}(\pi f T)$ \\[0.2cm]
         \footnotesize $\mathrm{si}(x) = \frac{\sin(x)}{x}$, zeros at $f = \pm \frac{k}{T}$
@@ -178,12 +178,12 @@
 \end{frame}
 
 \begin{frame}{Complex Baseband I}
-  \begin{columns}[T,onlytextwidth]
+  \begin{columns}[onlytextwidth]
     \begin{column}{0.58\textwidth}
       Why Complex Signals for Real Waves?\\
       \begin{itemize}
         \item Antennas emit and capture real-valued signals $s_\mathrm{BP}(t) \in \mathbb{R}$
-        \item Communications signals usually narrowband ($B \ll f_\mathrm{c}$):
+        \item Communications signals usually narrowband ($B \ll f_\mathrm{c}$)
           \begin{itemize}
             \item Carrier $f_\mathrm{c}$ fixed in the GHz regime (e.g., $3.5\,\mathrm{GHz}$)
             \item Information encoded in amplitude $A(t)$ and phase $\phi(t)$
@@ -191,7 +191,7 @@
         \item Simulating carrier oscillations at GHz rates is computationally expensive
       \end{itemize}
       \vspace{0.8em}
-      Equivalent Complex \ac{acro:bb} Envelope\\
+      Equivalent Complex \gls{acro:bb} Envelope\\
       \begin{itemize}
         \item Utilize complex numbers to combine amplitude and phase
         \item $s_\mathrm{BB}(t) = A(t) \,\mathrm{e}^{\mathrm{j} \phi(t)} \in \mathbb{C}$
@@ -200,8 +200,8 @@
     \end{column}
 
     \begin{column}{0.38\textwidth}
-      \begin{block}{\ac{acro:bp} \ac{acro:bb} Transformation}
-        \ac{acro:bp} as real projection of \ac{acro:bb} signal\\
+      \begin{block}{Bandpass-baseband transformation}
+        \gls{acro:bp} as real projection of \gls{acro:bb} signal\\
         \vspace{0.5em}
         \centering
         $s_\mathrm{BP}(t) = \mathrm{Re}\Big\{ s_\mathrm{BB}(t) \,\mathrm{e}^{\mathrm{j} 2\pi f_\mathrm{c} t} \Big\}$
@@ -221,17 +221,17 @@
 \begin{frame}{Complex Baseband II}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
-      Cartesian Decomposition of \ac{acro:bb}\\
+      Cartesian Decomposition of \gls{acro:bb}\\
       \begin{itemize}
         \item Split complex envelope into real and imaginary parts:
-        \item $s_\mathrm{BB}(t) = I(t) + \mathrm{j} Q(t)$
+        \item $s_\text{BB}(t) = I(t) + \mathrm{j} Q(t)$
         \item $I(t) = \mathrm{Re}\{s_\mathrm{BB}(t)\} = A(t)\cos\phi(t)$ (\textbf{In-Phase})
         \item $Q(t) = \mathrm{Im}\{s_\mathrm{BB}(t)\} = A(t)\sin\phi(t)$ (\textbf{Quadrature})
       \end{itemize}
       \vspace{0.8em}
       Orthogonal Carrier Modulation\\
       \begin{itemize}
-        \item Expanding $s_{BP}(t)$ with Euler's identity
+        \item Expanding $s_\text{BP}(t)$ with Euler's identity
         \item $\mathrm{e}^{\mathrm{j} 2\pi f_\mathrm{c} t} = \cos \omega_\mathrm{c} t + \mathrm{j} \sin \omega_\mathrm{c} t$
         \item $s_\mathrm{BP}(t) = I(t)\cos(2\pi f_\mathrm{c} t) - Q(t)\sin(2\pi f_\mathrm{c} t)$
         \item Transmits two independent data streams over the same RF spectrum
@@ -239,7 +239,7 @@
     \end{column}
 
     \begin{column}{0.38\textwidth}
-      \begin{block}{\ac{acro:iq} Modulator Architecture}
+      \begin{block}{\gls{acro:iq} Modulator Architecture}
         \centering
         \input{images/section-1/iq}
       \end{block}
@@ -266,14 +266,14 @@
 \begin{frame}{Discrete Fourier Transformation I}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.5\textwidth}
-      Discrete Counterpart of the \ac{acro:ft}\\
+      Discrete Counterpart of the \gls{acro:ft}\\
       \begin{itemize}
-        \item The \ac{acro:dft} maps $N$ discrete time samples to $N$ discrete frequency bins
-        \item \ac{acro:dft} kernel from \ac{acro:ft} kernel
+        \item The \gls{acro:dft} maps $N$ discrete time samples to $N$ discrete frequency bins
+        \item \gls{acro:dft} kernel from \gls{acro:ft} kernel
         \item $\mathrm{e}^{-\mathrm{j} 2\pi f t} \quad\longrightarrow\quad \mathrm{e}^{-\mathrm{j} \frac{2\pi}{N} k n} = W_N^{k n}$
         \item Discrete complex exponentials $\phi_k[n] = \ee^{\jj \frac{2 \pi k n}{N}}$ serve as orthogonal basis
       \end{itemize}
-      Intrinsic Periodicity of the \ac{acro:dft}
+      Intrinsic Periodicity of the \gls{acro:dft}
       \begin{itemize}
         \item Discrete harmonic basis is $N$-periodic
         \item $W_N^{(k + N)n} = W_N^{kn} \implies X[k + N] = X[k]$
@@ -283,7 +283,7 @@
     \end{column}
 
     \begin{column}{0.5\textwidth}
-      \begin{block}{$N$-Point \ac{acro:dft} (Analysis)}
+      \begin{block}{$N$-Point \gls{acro:dft} (Analysis)}
         Time sequence to discrete frequency\\
         \vspace{0.4em}
         \centering
@@ -291,7 +291,7 @@
         \footnotesize $k \in \{0, 1, \dots, N-1\}$
       \end{block}
 
-      \begin{block}{$N$-Point \ac{acro:idft} (Synthesis)}
+      \begin{block}{$N$-Point \gls{acro:idft} (Synthesis)}
         Reconstruction of time samples\\
         \vspace{0.4em}
         \centering
@@ -312,19 +312,19 @@
       \begin{itemize}
         \item Time Shifting
           \begin{itemize}
-            \item Compare to \ac{acro:ft} (Slide \ref{1:FT4})
+            \item Compare to \gls{acro:ft} (Slide \ref{1:FT4})
             \item $x\big[(n - n_0) \bmod N\big]= X[k] \, e^{-j \frac{2\pi}{N} k n_0}$
           \end{itemize}
         \item Frequency Shifting
           \begin{itemize}
-            \item Compare to \ac{acro:ft} (Slide \ref{1:FT4})
+            \item Compare to \gls{acro:ft} (Slide \ref{1:FT4})
             \item $X\big[(k - k_0) \bmod N\big] = x[n] \, e^{j \frac{2\pi}{N} k_0 n}$
           \end{itemize}
-        \item Convolution Discrepancy Compared to \ac{acro:ft}
+        \item Convolution Discrepancy Compared to \gls{acro:ft}
           \begin{itemize}
-            \item Discrete \ac{acro:lti} channels perform linear convolution
+            \item Discrete \gls{acro:lti} channels perform linear convolution
             \item $y[n] = x[n] * h[n] = \sum_m h[m] x[n - m]$
-            \item Multiplying two \ac{acro:dft}s yields circular convolution ($\circledast_N$)
+            \item Multiplying two \gls{acro:dft}s yields circular convolution ($\circledast_N$)
             \item$x[n] \circledast_N h[n] \tf X[k] \cdot H[k]$ \\[0.2cm]
           \end{itemize}
       \end{itemize}
@@ -341,9 +341,9 @@
 \begin{frame}{Discrete Fourier Transformation III}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.56\textwidth}
-      \ac{acro:dft} is a linear transformation
+      \gls{acro:dft} is a linear transformation
       \begin{itemize}
-        \item $N$-point \ac{acro:dft} acts as matrix-vector product:
+        \item $N$-point \gls{acro:dft} acts as matrix-vector product:
           \begin{equation*}
             \mathbf{X} = \mathbf{F}_N \mathbf{x}
           \end{equation*}
@@ -352,19 +352,19 @@
         \item $\mathbf{F}_N$ is a symmetric matrix with entries $[\mathbf{F}_N]_{k,n} = W_N^{k \cdot n}$
       \end{itemize}
       \vspace{0.4em}
-      Orthogonality \& \ac{acro:idft}
+      Orthogonality \& \gls{acro:idft}
       \begin{itemize}
         \item Columns of $\mathbf{F}_N$ form an orthogonal basis:
           \begin{equation*}
             \mathbf{F}_N^H \mathbf{F}_N = N \mathbf{I}_N \implies \mathbf{F}_N^{-1} = \frac{1}{N}\mathbf{F}_N^H
           \end{equation*}
-        \item \ac{acro:idft} matrix is conjugate transpose $\mathbf{F}_N^H$ scaled by~$1/N$
+        \item \gls{acro:idft} matrix is conjugate transpose $\mathbf{F}_N^H$ scaled by~$1/N$
       \end{itemize}
       \vspace{0.4em}
     \end{column}
 
     \begin{column}{0.40\textwidth}
-      \begin{block}{The \ac{acro:dft} Matrix $\mathbf{F}_N$}
+      \begin{block}{The \gls{acro:dft} Matrix $\mathbf{F}_N$}
         \centering
         \footnotesize
         $\mathbf{F}_N = \begin{bmatrix}
@@ -389,7 +389,7 @@
         \item Plane wave = oscillation across distance and time
         \item Wave number $k_0$ = spatial phase velocity per meter ($\mathrm{rad/m}$)
         \item Wave vector $k$ = directional vector pointing along direction of propagation $\theta$
-        \item Spatial sampling = antenna elements sample positions as \ac{acro:adc}s sample time
+        \item Spatial sampling = antenna elements sample positions as \gls{acro:adc}s sample time
         \item Time--frequency duality maps to space--angle
       \end{itemize}
     \end{column}
@@ -423,7 +423,7 @@
 \begin{frame}{Spatial Processing II}
   \begin{columns}[onlytextwidth]
     \begin{column}{0.48\textwidth}
-      Uniform Linear Array (\ac{acro:ula})
+      \gls{acro:ula}
       \begin{itemize}
         \item Plane wave arriving from angle $\theta$
         \item Wave travels extra $\Delta l$ per element
@@ -456,8 +456,8 @@
         \item Weight vector $\mathbf{w}(\theta)$ ``steers'' antenna array
         \item Maximizes output power for direction $\theta$ by selecting weights as
         \item $\mathbf{w}_\text{Bartlett}(\theta) = \frac{1}{M}\mathbf{a}(\theta)$
-        \item Undo the phase shifts introduced by the channel
-        \item Scan output power of the beamformer across $\theta$
+        \item Undo phase shifts introduced by channel
+        \item Scan output power of beamformer across~$\theta$
         \item $P_{\mathrm{BF}}(\theta) = \mathbf{w}^H(\theta)\,\mathbf{R}_{xx}\,\mathbf{w}(\theta)$
       \end{itemize}
     \end{column}
@@ -499,7 +499,7 @@
       \vspace{0.3em}
       Spectrum Allocation
       \begin{itemize}
-        \item Globally coordinated by c{acro:itu}
+        \item Globally coordinated by \gls{acro:itu}
         \item Divided into frequency bands assigned to specific services (TV, radio, mobile, satellite, radar, amateur)
       \end{itemize}
     \end{column}
@@ -523,10 +523,10 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Radio Spectrum by c{acro:itu}}
+\begin{frame}{Radio Spectrum by \gls{acro:itu}}
   \begin{figure}
     \includegraphics[width=1\linewidth]{images/section-1/radio-spectrum-itu.png}
-    \caption{Radio Spectrum and c{acro:itu} Frequency Bands~\cite{radio-spectrum-itu}}
+    \caption{Radio Spectrum and \gls{acro:itu} Frequency Bands~\cite{radio-spectrum-itu}}
   \end{figure}
 \end{frame}
 
@@ -547,7 +547,7 @@
     \item Fixed/mobile starting @\qty{225}{\mega\hertz}: Military Band
       \begin{itemize}
         \item Primary military (e.g., air-to-air/air-to-ground voice)
-        \item Aeronnautical radionavigation (instrument landing system (ILS) vertical guidance)
+        \item Aeronnautical radionavigation (\gls{acro:ils} vertical guidance)
       \end{itemize}
   \end{itemize}
 \end{frame}
@@ -557,15 +557,15 @@
     \begin{column}{0.56\textwidth}
       Frequency band \SIrange{2.4}{2.5}{\giga\hertz}
       \begin{itemize}
-        \item Primary \ac{acro:ism} band
+        \item \gls{acro:ism} band
           \begin{itemize}
-            \item High-power non-communication emitters (e.g., Microwave ovens, industrial heating and drying)
+            \item High-power non-communication emitters (e.g., microwave ovens, industrial heating and drying)
             \item Source of interference
           \end{itemize}
         \item Unlicensed wireless systems
           \begin{itemize}
             \item e.g., Wi-Fi, Bluetooth
-            \item Must tolerate ISM interference
+            \item Must tolerate \gls{acro:ism} interference
           \end{itemize}
       \end{itemize}
     \end{column}
@@ -584,18 +584,18 @@
       \begin{itemize}
         \item United Nations Specialized Agency for Information and Communications Technology
         \item Founded in 1865 as the International Telegraph Union
-        \item Renamed in 1947 to c{acro:itu}
+        \item Renamed in 1947 to \glsentrylong{acro:itu}
         \item Coordinates global use of the radio spectrum
         \item In total 194 member states
         \item Each member state has equal representation and voting rights e.g., on standards
       \end{itemize}
     \end{column}
     \begin{column}{0.38\textwidth}
-      \begin{block}{c{acro:itu}'s three sectors}
+      \begin{block}{\gls{acro:itu}'s three sectors}
         \begin{itemize}
-          \item c{acro:itu}-R (Radio): Radio spectrum management, satellite coordination
-          \item c{acro:itu}-T (Telecommunication): Technical standards (Recommendations)
-          \item c{acro:itu}-D (Development): Digital development in member states
+          \item \gls{acro:itu}-R (Radio): Radio spectrum management, satellite coordination
+          \item \gls{acro:itu}-T (Telecommunication): Technical standards (Recommendations)
+          \item \gls{acro:itu}-D (Development): Digital development in member states
         \end{itemize}
       \end{block}
     \end{column}
@@ -610,7 +610,7 @@
         \item Promotes interoperability between equipment
         \item Harmonizes trade requirements across the globe
         \item Eliminates technical barriers
-        \item \alert{Remark:} Standards are adopted by mutual consensus; some become legally binding through regulatory reference (e.g., \ac{acro:etsi} standards cited in \ac{acro:eu} law---USB-C in the \ac{acro:eu} common charger directive)
+        \item \alert{Remark:} Standards are adopted by mutual consensus; some become legally binding through regulatory reference (e.g., \gls{acro:etsi} standards cited in \gls{acro:eu} law---USB-C in the \gls{acro:eu} common charger directive)
       \end{itemize}
     \end{column}
     %
@@ -639,25 +639,25 @@
         \item International bodies
           \begin{itemize}
             \item Coordinate global standards
-            \item e.g., \ac{acro:iso} (from Greek \textit{isos}: equal)
-            \item e.g., ITU
+            \item e.g., \gls{acro:iso} (from Greek \textit{isos}: equal)
+            \item e.g., \gls{acro:itu}
           \end{itemize}
         \item Regional bodies
           \begin{itemize}
             \item Cover large geographic areas
-            \item e.g., \ac{acro:etsi}
+            \item e.g., \gls{acro:etsi}
           \end{itemize}
         \item National bodies
           \begin{itemize}
             \item Represent each country
-            \item e.g., \ac{acro:din}
-            \item e.g., \ac{acro:ansi}
+            \item e.g., \gls{acro:din}
+            \item e.g., \gls{acro:ansi}
           \end{itemize}
         \item Industry consortia
           \begin{itemize}
             \item Cover specific sectors
-            \item e.g., \ac{acro:3gpp}
-            \item e.g., \ac{acro:ieee}
+            \item e.g., \gls{acro:3gpp}
+            \item e.g., \gls{acro:ieee}
           \end{itemize}
       \end{itemize}
     \end{column}
@@ -666,14 +666,14 @@
         \begin{itemize}
           \item Standards of big alliances are directly adopted into official frameworks\\
           \item Consortium defines specs $\rightarrow$ adopted as regional standard $\rightarrow$ recognized globally
-          \item e.g., Cellular standard (5G \ac{acro:nr})
+          \item e.g., Cellular standard (5G NR)
         \end{itemize}
         \centering
-        \ac{acro:3gpp} (TS 38.211)\\
+        \gls{acro:3gpp} (TS 38.211)\\
         $\downarrow$\\
-        \ac{acro:etsi} (TS 138 211)\\
+        \gls{acro:etsi} (TS 138 211)\\
         $\downarrow$\\
-        ITU-R (IMT-2020)\\
+        \gls{acro:itu}-R (IMT-2020)\\
       \end{block}
     \end{column}
   \end{columns}
@@ -682,28 +682,28 @@
 \begin{frame}{Standardization Bodies II}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.5\textwidth}
-      IEEE
+      \gls{acro:ieee}
       \begin{itemize}
         \item Global professional association
         \item Develops technical standards for electronics and computing
-        \item e.g., \ac{acro:ieee} 802.11 (Wi-Fi), 802.3 (Ethernet), 754 (floating-point)
+        \item e.g., \gls{acro:ieee} 802.11 (Wi-Fi), 802.3 (Ethernet), 754 (floating-point)
       \end{itemize}
-      ISO
+      \gls{acro:iso}
       \begin{itemize}
         \item Network of national standards bodies
         \item Develops international standards across all industries
-        \item e.g., \ac{acro:iso} 9001 (quality), \ac{acro:iso} 27001 (security), \ac{acro:iso}/\ac{acro:iec} 14443 (RFID/NFC)
+        \item e.g., \gls{acro:iso} 9001 (quality), \gls{acro:iso} 27001 (security), \gls{acro:iso}/\gls{acro:iec} 14443 (RFID/NFC)
       \end{itemize}
     \end{column}
     \begin{column}{0.5\textwidth}
-      DIN
+      \gls{acro:din}
       \begin{itemize}
         \item German national standards body
-        \item Representative for ISO/IEC
-        \item \ac{acro:din} A4 paper, \ac{acro:din} 7258 (screws)
+        \item Representative for \gls{acro:iso}/\gls{acro:iec}
+        \item \gls{acro:din} A4 paper, \gls{acro:din} 7258 (screws)
       \end{itemize}
       \vspace{2.5em}
-      3GPP
+      \gls{acro:3gpp}
       \begin{itemize}
         \item Collaboration of telecommunications standards organizations
         \item Develops specifications for mobile networks
@@ -719,17 +719,17 @@
       Types of standardization process
       \begin{itemize}
         \item Emergence as de facto standard (e.g., Ethernet)
-        \item Written by standards organization (e.g., ITU-T Recommendations)
-        \item Written by government or regulatory body (e.g., \ac{acro:fcc} rules)
+        \item Written by standards organization (e.g., \gls{acro:itu}-T recommendations)
+        \item Written by government or regulatory body (e.g., \gls{acro:fcc} rules)
         \item Written by a corporation (e.g., Apple Lightning connector)
       \end{itemize}
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{alertblock}{Standardize standards}
-        The process of standardization can itself be standardized (e.g., \ac{acro:iso}/\ac{acro:iec} Directives Part 1/2).
+        The process of standardization can itself be standardized (e.g., \gls{acro:iso}/\gls{acro:iec} Directives Part 1/2).
         \begin{figure}
           \includegraphics[width=0.8\linewidth]{images/section-1/iso-iec-overview.png}
-          \caption{Excerpt from \ac{acro:iso}/\ac{acro:iec} Directives Part 1~\cite{iso-iec-overview}}
+          \caption{Excerpt from \gls{acro:iso}/\gls{acro:iec} Directives Part 1~\cite{iso-iec-overview}}
         \end{figure}
       \end{alertblock}
     \end{column}
@@ -739,9 +739,9 @@
 \begin{frame}{Standardization Process II}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
-      Standards are versioned through releases, e.g., 3GPP
+      Standards are versioned through releases, e.g., \gls{acro:3gpp}
       \begin{center}
-        Release 8 (\ac{acro:lte})\\
+        Release 8 (\gls{acro:lte})\\
         $\downarrow$\\
         Release 15 (5G)\\
         $\downarrow$\\
@@ -772,14 +772,14 @@
 \begin{frame}{Standardization Process III}
   \begin{figure}
     \includegraphics[width=1.0\linewidth]{images/section-1/3gpp-process.jpg}
-    \caption{Standardization Process in 3GPP~\cite{gemini-imagen}}
+    \caption{Standardization Process in \gls{acro:3gpp}~\cite{gemini-imagen}}
   \end{figure}
 \end{frame}
 
 \begin{frame}{Standardization Process IV}
   \begin{figure}
     \includegraphics[width=0.8\linewidth]{images/section-1/3gpp-releases.jpg}
-    \caption{Releases in \ac{acro:3gpp} over Time~\cite{gemini-imagen}}
+    \caption{Releases in \gls{acro:3gpp} over Time~\cite{gemini-imagen}}
   \end{figure}
 \end{frame}
 
@@ -822,25 +822,24 @@
 \begin{frame}{Patents II}
   \begin{columns}[onlytextwidth]
     \begin{column}{0.6\textwidth}
-      \ac{acro:sep}
+      \gls{acro:sep}
       \begin{itemize}
         \item Patents that claim technology necessary to implement a standard
-        \item e.g., \ac{acro:ofdm}A, channel coding, \ac{acro:mimo} schemes in 5G
+        \item e.g., channel coding, \gls{acro:mimo} schemes in 5G
         \item Any compliant device must use the patented technology
         \item Patent holder cannot exclude others from the standard market
       \end{itemize}
-      \ac{acro:frand} commitment
+      \gls{acro:frand} commitment
       \begin{itemize}
-        \item \textbf{F}air, \textbf{r}easonable, \textbf{a}nd \textbf{n}on-\textbf{d}iscriminatory
-        \item \ac{acro:sep} holders commit to license on \ac{acro:frand} terms
+        \item \gls{acro:sep} holders commit to license on \gls{acro:frand} terms
         \item Balances innovation incentives with standard adoption
       \end{itemize}
     \end{column}
     \begin{column}{0.36\textwidth}
-      \begin{block}{\ac{acro:frand} principle}
+      \begin{block}{\gls{acro:frand} principle}
         \begin{itemize}
           \item Standardization increases patent value (must-use technology)
-          \item \ac{acro:frand} limits royalty rates
+          \item \gls{acro:frand} limits royalty rates
           \item Tension between patent protection and open standards
         \end{itemize}
       \end{block}
