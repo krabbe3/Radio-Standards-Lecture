@@ -44,6 +44,11 @@
 \usepackage[backend=biber,style=ieee,sorting=none]{biblatex}
 \addbibresource{references.bib}
 
+% Acronyms via glossaries package
+\usepackage[acronym,toc=false,nomain]{glossaries}
+\makenoidxglossaries
+\input{_glossary.tex}
+
 \usepackage[skins,theorems]{tcolorbox}
 \tcbset{highlight math style={enhanced,colframe=blue,colback=white,arc=0pt,boxrule=1pt}}
 
@@ -107,6 +112,10 @@
 
 \begin{frame}{References}
   \printbibliography
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Acronyms}
+  \printnoidxacronyms
 \end{frame}
 
 \end{document}
