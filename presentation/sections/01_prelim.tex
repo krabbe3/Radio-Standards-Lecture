@@ -51,7 +51,7 @@
       From Impulse Response to Transfer Function\\
       \begin{itemize}
         \item Time-domain \gls{acro:cir} $h(t)$ describes channel delay behavior
-        \item \gls{acro:ft} maps \gls{acro:cir} to frequency domain \gls{acro:ctf}
+        \item \Gls{acro:ft} maps \gls{acro:cir} to frequency domain \gls{acro:ctf}
         \item $h(t) \tf H(f)$
       \end{itemize}
       Basis Functions \& Eigenfunction Property\\
@@ -201,7 +201,7 @@
 
     \begin{column}{0.38\textwidth}
       \begin{block}{Bandpass-baseband transformation}
-        \gls{acro:bp} as real projection of \gls{acro:bb} signal\\
+        \Gls{acro:bp} as real projection of \gls{acro:bb} signal\\
         \vspace{0.5em}
         \centering
         $s_\mathrm{BP}(t) = \mathrm{Re}\Big\{ s_\mathrm{BB}(t) \,\mathrm{e}^{\mathrm{j} 2\pi f_\mathrm{c} t} \Big\}$
@@ -269,7 +269,7 @@
       Discrete Counterpart of the \gls{acro:ft}\\
       \begin{itemize}
         \item The \gls{acro:dft} maps $N$ discrete time samples to $N$ discrete frequency bins
-        \item \gls{acro:dft} kernel from \gls{acro:ft} kernel
+        \item \Gls{acro:dft} kernel from \gls{acro:ft} kernel
         \item $\mathrm{e}^{-\mathrm{j} 2\pi f t} \quad\longrightarrow\quad \mathrm{e}^{-\mathrm{j} \frac{2\pi}{N} k n} = W_N^{k n}$
         \item Discrete complex exponentials $\phi_k[n] = \ee^{\jj \frac{2 \pi k n}{N}}$ serve as orthogonal basis
       \end{itemize}
@@ -341,7 +341,7 @@
 \begin{frame}{Discrete Fourier Transformation III}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.56\textwidth}
-      \gls{acro:dft} is a linear transformation
+      \Gls{acro:dft} is a linear transformation
       \begin{itemize}
         \item $N$-point \gls{acro:dft} acts as matrix-vector product:
           \begin{equation*}
@@ -358,7 +358,7 @@
           \begin{equation*}
             \mathbf{F}_N^H \mathbf{F}_N = N \mathbf{I}_N \implies \mathbf{F}_N^{-1} = \frac{1}{N}\mathbf{F}_N^H
           \end{equation*}
-        \item \gls{acro:idft} matrix is conjugate transpose $\mathbf{F}_N^H$ scaled by~$1/N$
+        \item \Gls{acro:idft} matrix is conjugate transpose $\mathbf{F}_N^H$ scaled by~$1/N$
       \end{itemize}
       \vspace{0.4em}
     \end{column}
@@ -423,7 +423,7 @@
 \begin{frame}{Spatial Processing II}
   \begin{columns}[onlytextwidth]
     \begin{column}{0.48\textwidth}
-      \gls{acro:ula}
+      \Gls{acro:ula}
       \begin{itemize}
         \item Plane wave arriving from angle $\theta$
         \item Wave travels extra $\Delta l$ per element
@@ -557,7 +557,7 @@
     \begin{column}{0.56\textwidth}
       Frequency band \SIrange{2.4}{2.5}{\giga\hertz}
       \begin{itemize}
-        \item \gls{acro:ism} band
+        \item \Gls{acro:ism} band
           \begin{itemize}
             \item High-power non-communication emitters (e.g., microwave ovens, industrial heating and drying)
             \item Source of interference
@@ -593,9 +593,9 @@
     \begin{column}{0.38\textwidth}
       \begin{block}{\gls{acro:itu}'s three sectors}
         \begin{itemize}
-          \item \gls{acro:itu}-R (Radio): Radio spectrum management, satellite coordination
-          \item \gls{acro:itu}-T (Telecommunication): Technical standards (Recommendations)
-          \item \gls{acro:itu}-D (Development): Digital development in member states
+          \item \Gls{acro:itu}-R (Radio): Radio spectrum management, satellite coordination
+          \item \Gls{acro:itu}-T (Telecommunication): Technical standards (Recommendations)
+          \item \Gls{acro:itu}-D (Development): Digital development in member states
         \end{itemize}
       \end{block}
     \end{column}
@@ -669,11 +669,11 @@
           \item e.g., Cellular standard (5G NR)
         \end{itemize}
         \centering
-        \gls{acro:3gpp} (TS 38.211)\\
+        \Gls{acro:3gpp} (TS 38.211)\\
         $\downarrow$\\
-        \gls{acro:etsi} (TS 138 211)\\
+        \Gls{acro:etsi} (TS 138 211)\\
         $\downarrow$\\
-        \gls{acro:itu}-R (IMT-2020)\\
+        \Gls{acro:itu}-R (IMT-2020)\\
       \end{block}
     \end{column}
   \end{columns}
@@ -682,13 +682,13 @@
 \begin{frame}{Standardization Bodies II}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.5\textwidth}
-      \gls{acro:ieee}
+      \Gls{acro:ieee}
       \begin{itemize}
         \item Global professional association
         \item Develops technical standards for electronics and computing
         \item e.g., \gls{acro:ieee} 802.11 (Wi-Fi), 802.3 (Ethernet), 754 (floating-point)
       \end{itemize}
-      \gls{acro:iso}
+      \Gls{acro:iso}
       \begin{itemize}
         \item Network of national standards bodies
         \item Develops international standards across all industries
@@ -696,14 +696,14 @@
       \end{itemize}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \gls{acro:din}
+      \Gls{acro:din}
       \begin{itemize}
         \item German national standards body
         \item Representative for \gls{acro:iso}/\gls{acro:iec}
-        \item \gls{acro:din} A4 paper, \gls{acro:din} 7258 (screws)
+        \item \Gls{acro:din} A4 paper, \gls{acro:din} 7258 (screws)
       \end{itemize}
       \vspace{2.5em}
-      \gls{acro:3gpp}
+      \Gls{acro:3gpp}
       \begin{itemize}
         \item Collaboration of telecommunications standards organizations
         \item Develops specifications for mobile networks
@@ -822,16 +822,16 @@
 \begin{frame}{Patents II}
   \begin{columns}[onlytextwidth]
     \begin{column}{0.6\textwidth}
-      \gls{acro:sep}
+      \Gls{acro:sep}
       \begin{itemize}
         \item Patents that claim technology necessary to implement a standard
         \item e.g., channel coding, \gls{acro:mimo} schemes in 5G
         \item Any compliant device must use the patented technology
         \item Patent holder cannot exclude others from the standard market
       \end{itemize}
-      \gls{acro:frand} commitment
+      \Gls{acro:frand} commitment
       \begin{itemize}
-        \item \gls{acro:sep} holders commit to license on \gls{acro:frand} terms
+        \item \Gls{acro:sep} holders commit to license on \gls{acro:frand} terms
         \item Balances innovation incentives with standard adoption
       \end{itemize}
     \end{column}
@@ -839,7 +839,7 @@
       \begin{block}{\gls{acro:frand} principle}
         \begin{itemize}
           \item Standardization increases patent value (must-use technology)
-          \item \gls{acro:frand} limits royalty rates
+          \item \Gls{acro:frand} limits royalty rates
           \item Tension between patent protection and open standards
         \end{itemize}
       \end{block}
