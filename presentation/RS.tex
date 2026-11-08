@@ -53,11 +53,28 @@
 \tcbset{highlight math style={enhanced,colframe=blue,colback=white,arc=0pt,boxrule=1pt}}
 
 % Slide references: \slidelabel{key} inside a frame, \cref{key} gives "Slide 2.7"
-% (beamer does not \refstepcounter the frame number, so \slidelabel does it)
 \usepackage[capitalise]{cleveref}
 \crefname{framenumber}{Slide}{Slides}
 \Crefname{framenumber}{Slide}{Slides}
-\newcommand{\slidelabel}[1]{\addtocounter{framenumber}{-1}\refstepcounter{framenumber}\label{#1}}
+\makeatletter
+% beamer does not \refstepcounter the frame number and typesets the frame
+% title only after the body, so \slidelabel registers the frame number itself:
+% type "framenumber", number "2.7" and a jump target, then the usual \label
+\newcommand{\slidelabel}[1]{%
+  \addtocounter{framenumber}{-1}\refstepcounter{framenumber}%
+  \hypertarget{\@currentHref}{}\label{#1}%
+}
+% beamer loads hyperref with implicit=false, which disables cleveref's links,
+% so \cref, \Cref and \crefrange are wrapped in a link to the label's target
+\AtBeginDocument{%
+  \let\slide@cref\cref
+  \let\slide@Cref\Cref
+  \let\slide@crefrange\crefrange
+  \renewcommand{\cref}[1]{\hyperref[#1]{\slide@cref{#1}}}%
+  \renewcommand{\Cref}[1]{\hyperref[#1]{\slide@Cref{#1}}}%
+  \renewcommand{\crefrange}[2]{\hyperref[#1]{\slide@crefrange{#1}{#2}}}%
+}
+\makeatother
 
 
 \title[Radio Standards \quad WS\,2026]{Radio Standards}

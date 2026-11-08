@@ -158,24 +158,17 @@
     \begin{column}{0.58\textwidth}
       Reuse Geometry
       \begin{itemize}
-        \item Hexagonal cells with radius $R$ (center to corner)
-        \item Neighboring cell centers are $\sqrt{3}R$ apart
-        \item Nearest co-channel cell: move $i$ cells along one axis, turn by \ang{60}, move $j$ cells
-        \item Law of cosines with enclosed angle \ang{120}:
-          \begin{align*}
-            D^2 &= 3R^2\left(i^2 + j^2 - 2ij\cos 120^\circ\right) \\
-                &= 3R^2\left(i^2 + ij + j^2\right)
-          \end{align*}
+        \item Cell radius $R$, neighboring centers $\sqrt{3}R$ apart
+        \item Nearest co-channel cell: $i$ cells along one axis, turn by \ang{60}, $j$ cells
+        \item Law of cosines (enclosed angle \ang{120}):
+          \[ D^2 = 3R^2\left(i^2 + ij + j^2\right) \]
       \end{itemize}
       \vspace{0.4em}
       Cluster Size
       \begin{itemize}
-        \item Co-channel cells form a larger hexagonal grid with center spacing $D$
-        \item Each large hexagon holds exactly one cluster
-        \item Hexagon area scales with the square of the center spacing:
-          \begin{equation*}
-            N = \frac{A_\text{large}}{A_\text{cell}} = \left(\frac{D}{\sqrt{3}R}\right)^2 = i^2 + ij + j^2
-          \end{equation*}
+        \item Co-channel cells form a larger hexagonal grid, one cluster per large hexagon
+        \item Area ratio of the hexagons:
+          \[ N = \left(\frac{D}{\sqrt{3}R}\right)^2 = i^2 + ij + j^2 \]
       \end{itemize}
     \end{column}
     \begin{column}{0.38\textwidth}
@@ -186,9 +179,8 @@
       \end{figure}
       \begin{block}{Co-Channel Reuse Ratio}
         \begin{itemize}
-          \item$N = i^2 + ij + j^2$
-          \item$i,j \in \mathbb{N}_0$, $(i,j) \neq (0,0)$ \\
-          \item$D/R = \sqrt{3N}$
+          \item $N = i^2 + ij + j^2$, $i,j \in \mathbb{N}_0$, $(i,j) \neq (0,0)$
+          \item $D/R = \sqrt{3N}$
         \end{itemize}
       \end{block}
     \end{column}
@@ -585,35 +577,30 @@
     \begin{column}{0.58\textwidth}
       Problem
       \begin{itemize}
-        \item Base station expects bursts aligned to its slot grid
-        \item Round-trip delay to a terminal at distance $d$: $\tau = 2d/c$
-        \item Normal operation: timing advance compensates $\tau$
+        \item Round-trip delay $\tau = 2d/c$, normally compensated by the timing advance
         \item First access: timing advance unknown, burst arrives late by $\tau$
-        \item Normal guard period: \num{8.25} bits $\approx\qty{30}{\micro\second}$, only $d \approx \qty{4.6}{\kilo\meter}$
+        \item Normal guard period \num{8.25} bits $\approx\qty{30}{\micro\second}$: only $d \approx \qty{4.6}{\kilo\meter}$
       \end{itemize}
       \vspace{0.4em}
       Solution
       \begin{itemize}
-        \item Short access burst of 88 bits, followed by a \num{68.25}-bit guard period
-        \item Late burst must still end within its own slot: $\tau \le T_\text{guard}$
+        \item Access burst of 88 bits plus \num{68.25}-bit guard period: $\tau \le T_\text{guard}$
         \item Base station measures $\tau$ and assigns the timing advance
       \end{itemize}
       \alert{Remark:} In \gls{acro:gsm}, timing sets an upper limit on the cell radius.
     \end{column}
     \begin{column}{0.38\textwidth}
       \begin{block}{Maximum Cell Radius}
-        Bit period~\cite{etsi.145.001.v18}
-        \[ T_\mathrm{b} = \tfrac{48}{13}\,\unit{\micro\second} \approx \qty{3.69}{\micro\second} \]
-        Guard period of access burst
-        \[ T_\text{guard} = 68.25\,T_\mathrm{b} \approx \qty{252}{\micro\second} \]
-        Distance covered within guard period
-        \[ d_\text{max} = \frac{c\,T_\text{guard}}{2} \approx \qty{37.8}{\kilo\meter} \]
+        \begin{itemize}
+          \item Bit period $T_\mathrm{b} = \tfrac{48}{13}\,\unit{\micro\second} \approx \qty{3.69}{\micro\second}$~\cite{etsi.145.001.v18}
+          \item Guard $T_\text{guard} = 68.25\,T_\mathrm{b} \approx \qty{252}{\micro\second}$
+          \item $d_\text{max} = c\,T_\text{guard}/2 \approx \qty{37.8}{\kilo\meter}$
+        \end{itemize}
       \end{block}
       \begin{block}{Timing Advance Range}
         \begin{itemize}
-          \item 0 to 63 bit periods
-          \item $d_\text{max} = \dfrac{c \cdot 63\,T_\mathrm{b}}{2} \approx \qty{35}{\kilo\meter}$
-          \item Effective limit $\approx \qty{35}{\kilo\meter}$: the remaining $\approx 5$ guard bits are margin for power ramping, delay spread, and synchronization errors
+          \item 0 to 63 bit periods: $d_\text{max} \approx \qty{35}{\kilo\meter}$
+          \item Remaining $\approx 5$ guard bits: margin for ramping, delay spread, synchronization
         \end{itemize}
       \end{block}
     \end{column}
@@ -633,7 +620,6 @@
         \item Terminal sends every burst $\mathrm{TA}\cdot T_\mathrm{b}$ earlier
         \item Base station tracks arrival times via the training sequence and updates \gls{acro:ta} about every \qty{480}{\milli\second}
       \end{enumerate}
-      \vspace{0.4em}
       Handover
       \begin{itemize}
         \item Distance to the new cell differs, \gls{acro:ta} is measured again with access bursts
@@ -1026,7 +1012,7 @@
           \item x: release (from Rel-4 on), y: technical, z: editorial changes
         \end{itemize}
       \end{block}
-      \alert{Remark:} Our \gls{acro:gsm} reference TS 45.001 V18.0.0 belongs to Release 18: \gls{acro:gsm} is still maintained.
+      \alert{Remark:} Our \gls{acro:gsm} reference TS 45.001 V18.0.0 belongs to Release 18
     \end{column}
   \end{columns}
 \end{frame}
@@ -1149,15 +1135,6 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Code Division Multiple Access III}
-  \slidelabel{2:cdma-3}
-  \centering
-  Live demo: spreading, despreading, and multiple access interference
-  \begin{itemize}
-    \item scripts/section-2/cdma-spreading.py
-  \end{itemize}
-\end{frame}
-
 \begin{frame}{UMTS Air Interface}
   \slidelabel{2:umts-air}
   \begin{columns}[T,onlytextwidth]
@@ -1195,13 +1172,13 @@
         \end{itemize}
         \[ B = (1 + \alpha)\, R_\mathrm{c} \approx \qty{4.68}{\mega\hertz} \]
       \end{block}
-      \alert{Remark:} Why this pulse? See \cref{2:pulse-shaping-1}.
+      \alert{Remark:} Why this pulse? See \cref{2:pulse-shaping}.
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Pulse Shaping I}
-  \slidelabel{2:pulse-shaping-1}
+\begin{frame}{Pulse Shaping}
+  \slidelabel{2:pulse-shaping}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.5\textwidth}
       Goal (\cref{1:fourier-2})
@@ -1228,15 +1205,6 @@
       h_\text{RRC}(t) = \frac{\sin\!\left(\pi \frac{t}{T}(1-\alpha)\right) + 4\alpha\frac{t}{T}\cos\!\left(\pi \frac{t}{T}(1+\alpha)\right)}{\pi \frac{t}{T}\left(1 - \left(4\alpha\frac{t}{T}\right)^2\right)}
     \]
   \end{block}
-\end{frame}
-
-\begin{frame}{Pulse Shaping II}
-  \slidelabel{2:pulse-shaping-2}
-  \centering
-  Live demo: rectangular, triangular, Gaussian, and root-raised-cosine pulses in time and frequency
-  \begin{itemize}
-    \item scripts/section-2/pulse-shapes.py
-  \end{itemize}
 \end{frame}
 
 \begin{frame}{Near-Far Problem}
