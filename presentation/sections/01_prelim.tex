@@ -1,6 +1,7 @@
 \subsectionFrame{Technical Preliminaries}
 
 \begin{frame}{LTI System Model}
+  \slidelabel{1:lti}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
       Channel as Block Model\\
@@ -24,7 +25,7 @@
             \item Time delay $\tau$ of input equates to time delay $\tau$ of output
           \end{itemize}
       \end{itemize}
-      \alert{Remark:} Real channels are inherently dynamic---covered in lecture 2 (coherence time)
+      \alert{Remark:} Real channels are inherently dynamic
     \end{column}
     %
     \begin{column}{0.38\textwidth}
@@ -46,6 +47,7 @@
 \end{frame}
 
 \begin{frame}{Fourier Transformation I}
+  \slidelabel{1:fourier-1}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
       From Impulse Response to Transfer Function\\
@@ -85,6 +87,7 @@
 \end{frame}
 
 \begin{frame}{Fourier Transformation II}
+  \slidelabel{1:fourier-2}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
       Time-Frequency Uncertainty\\
@@ -104,7 +107,7 @@
       \end{itemize}
 
       \vspace{0.3em}
-      \alert{Remark:} An optimal pulse must balance finite duration and low spectral sidelobes---covered in lecture 2 (root-raised-cosine)
+      \alert{Remark:} An optimal pulse must balance finite duration and low spectral sidelobes---covered with 3G (root-raised-cosine)
     \end{column}
 
     \begin{column}{0.38\textwidth}
@@ -126,6 +129,7 @@
 \end{frame}
 
 \begin{frame}{Fourier Transformation III}
+  \slidelabel{1:fourier-3}
   \centering
   Live demo: Frequency spectrum from the computer microphone
   \begin{itemize}
@@ -134,7 +138,7 @@
 \end{frame}
 
 \begin{frame}{Fourier Transformation IV}
-  \label{1:FT4}
+  \slidelabel{1:fourier-4}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
       Essential Fourier Properties\\
@@ -178,6 +182,7 @@
 \end{frame}
 
 \begin{frame}{Complex Baseband I}
+  \slidelabel{1:baseband-1}
   \begin{columns}[onlytextwidth]
     \begin{column}{0.58\textwidth}
       Why Complex Signals for Real Waves?\\
@@ -219,6 +224,7 @@
 \end{frame}
 
 \begin{frame}{Complex Baseband II}
+  \slidelabel{1:baseband-2}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
       Cartesian Decomposition of \gls{acro:bb}\\
@@ -248,6 +254,7 @@
 \end{frame}
 
 \begin{frame}{Why do we have Digital Communication Systems?}
+  \slidelabel{1:why-digital}
   Disadvantages of Analog Systems
   \begin{itemize}
     \item Requires two physical signal traces for $I$ and $Q$
@@ -264,6 +271,7 @@
 \end{frame}
 
 \begin{frame}{Discrete Fourier Transformation I}
+  \slidelabel{1:dft-1}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.5\textwidth}
       Discrete Counterpart of the \gls{acro:ft}\\
@@ -306,18 +314,19 @@
 \end{frame}
 
 \begin{frame}{Discrete Fourier Transformation II}
+  \slidelabel{1:dft-2}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
       \vspace{0.8em}
       \begin{itemize}
         \item Time Shifting
           \begin{itemize}
-            \item Compare to \gls{acro:ft} (Slide \ref{1:FT4})
+            \item Compare to \gls{acro:ft} (\cref{1:fourier-4})
             \item $x\big[(n - n_0) \bmod N\big]= X[k] \, e^{-j \frac{2\pi}{N} k n_0}$
           \end{itemize}
         \item Frequency Shifting
           \begin{itemize}
-            \item Compare to \gls{acro:ft} (Slide \ref{1:FT4})
+            \item Compare to \gls{acro:ft} (\cref{1:fourier-4})
             \item $X\big[(k - k_0) \bmod N\big] = x[n] \, e^{j \frac{2\pi}{N} k_0 n}$
           \end{itemize}
         \item Convolution Discrepancy Compared to \gls{acro:ft}
@@ -339,6 +348,7 @@
 \end{frame}
 
 \begin{frame}{Discrete Fourier Transformation III}
+  \slidelabel{1:dft-3}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.56\textwidth}
       \Gls{acro:dft} is a linear transformation
@@ -388,6 +398,7 @@
 \end{frame}
 
 \begin{frame}{Spatial Processing I}
+  \slidelabel{1:spatial-1}
   \begin{columns}[onlytextwidth]
     \begin{column}{0.48\textwidth}
       \begin{itemize}
@@ -426,6 +437,7 @@
 \end{frame}
 
 \begin{frame}{Spatial Processing II}
+  \slidelabel{1:spatial-2}
   \begin{columns}[onlytextwidth]
     \begin{column}{0.48\textwidth}
       \Gls{acro:ula}
@@ -454,6 +466,7 @@
 \end{frame}
 
 \begin{frame}{Spatial Processing III}
+  \slidelabel{1:spatial-3}
   \begin{columns}[onlytextwidth]
     \begin{column}{0.48\textwidth}
       Bartlett Beamformer
@@ -481,6 +494,7 @@
 \end{frame}
 
 \begin{frame}{Spatial Processing IV}
+  \slidelabel{1:spatial-4}
   \centering
   Live demo: Bartlett beamformer visualization
   \begin{itemize}
@@ -493,7 +507,7 @@
 \subsectionFrame{Standardization Preliminaries}
 
 \begin{frame}{Radio Spectrum}
-  \label{1:Spectrum}
+  \slidelabel{1:spectrum}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.56\textwidth}
       What is the Radio Spectrum?
@@ -530,6 +544,7 @@
 \end{frame}
 
 \begin{frame}{Radio Spectrum by \gls{acro:itu}}
+  \slidelabel{1:spectrum-itu}
   \begin{figure}
     \includegraphics[width=1\linewidth]{images/section-1/radio-spectrum-itu.png}
     \caption{Radio Spectrum and \gls{acro:itu} Frequency Bands~\cite{radio-spectrum-itu}}
@@ -537,6 +552,7 @@
 \end{frame}
 
 \begin{frame}{Radio Spectrum Allocation USA}
+  \slidelabel{1:spectrum-usa}
   \begin{figure}
     \includegraphics[width=0.7\linewidth]{images/section-1/radio-spectrum-usa.jpg}
     \caption{Radio Spectrum Allocation USA~\cite{radio-spectrum-usa}}
@@ -544,6 +560,7 @@
 \end{frame}
 
 \begin{frame}{Allocation Example I}
+  \slidelabel{1:allocation-1}
   \begin{figure}
     \includegraphics[width=0.9\linewidth]{images/section-1/radio-spectrum-usa-300.png}
     \caption{Radio Spectrum Allocation USA @\qty{300}{\mega\hertz}~\cite{radio-spectrum-usa}}
@@ -559,6 +576,7 @@
 \end{frame}
 
 \begin{frame}{Allocation Example II}
+  \slidelabel{1:allocation-2}
   \begin{columns}
     \begin{column}{0.56\textwidth}
       Frequency band \SIrange{2.4}{2.5}{\giga\hertz}
@@ -585,6 +603,7 @@
 \end{frame}
 
 \begin{frame}{ITU}
+  \slidelabel{1:itu}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
       \begin{itemize}
@@ -609,6 +628,7 @@
 \end{frame}
 
 \begin{frame}{Standards}
+  \slidelabel{1:standards}
   \begin{columns}[onlytextwidth]
     \begin{column}{0.48\textwidth}
       \begin{itemize}
@@ -638,6 +658,7 @@
 
 
 \begin{frame}{Standardization Bodies I}
+  \slidelabel{1:bodies-1}
   Standardization bodies develop, approve, and publish standards.
   \begin{columns}[onlytextwidth]
     \begin{column}{0.6\textwidth}
@@ -686,6 +707,7 @@
 \end{frame}
 
 \begin{frame}{Standardization Bodies II}
+  \slidelabel{1:bodies-2}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.5\textwidth}
       \Gls{acro:ieee}
@@ -720,6 +742,7 @@
 \end{frame}
 
 \begin{frame}{Standardization Process I}
+  \slidelabel{1:process-1}
   \begin{columns}
     \begin{column}{0.48\textwidth}
       Types of standardization process
@@ -743,6 +766,7 @@
 \end{frame}
 
 \begin{frame}{Standardization Process II}
+  \slidelabel{1:process-2}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
       Standards are versioned through releases, e.g., \gls{acro:3gpp}
@@ -776,6 +800,7 @@
 \end{frame}
 
 \begin{frame}{Standardization Process III}
+  \slidelabel{1:process-3}
   \begin{figure}
     \includegraphics[width=1.0\linewidth]{images/section-1/3gpp-process.jpg}
     \caption{Standardization Process in \gls{acro:3gpp} (simplified)~\cite{gemini-imagen}}
@@ -783,6 +808,7 @@
 \end{frame}
 
 \begin{frame}{Standardization Process IV}
+  \slidelabel{1:process-4}
   \begin{figure}
     \includegraphics[width=0.8\linewidth]{images/section-1/3gpp-releases.jpg}
     \caption{Releases in \gls{acro:3gpp} over Time~\cite{gemini-imagen}}
@@ -790,6 +816,7 @@
 \end{frame}
 
 \begin{frame}{Patents I}
+  \slidelabel{1:patents-1}
   Standards and patents intersect in radio systems, because standards often rely on patented innovations.
   \begin{columns}[onlytextwidth]
     \begin{column}{0.55\textwidth}
@@ -826,6 +853,7 @@
 \end{frame}
 
 \begin{frame}{Patents II}
+  \slidelabel{1:patents-2}
   \begin{columns}[onlytextwidth]
     \begin{column}{0.6\textwidth}
       \Gls{acro:sep}

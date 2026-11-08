@@ -95,5 +95,8 @@ The `scripts/` directory contains interactive Python demonstrations, grouped by 
 ### `scripts/section-2/` (Evolution of Cellular Standards)
 
 - `cellular-sir.py` - Co-channel SIR and channels per cell versus cluster size
+- `cdma-spreading.py` - CDMA spreading and despreading: Walsh vs. random codes, scrambling, multiple access interference, and spectrum, with adjustable spreading factor, users, power, and Eb/N0
+- `pulse-shapes.py` - Rectangular, triangular, Gaussian, and root-raised-cosine pulses: time domain, spectrum, 99 % bandwidth, and intersymbol interference, with adjustable roll-off, BT, and truncation
+- `raised_cosine.py` - Generates the raised-cosine figure (time and frequency domain) for the slides
 - `gmsk-8psk.py` - GMSK vs. 8-PSK (EDGE) at the GSM symbol rate: constellation, envelope, spectrum, and bit error rate, with adjustable SNR and amplifier backoff
 

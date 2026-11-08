@@ -1,6 +1,7 @@
 \subsectionFrame{Introduction to Mobile Communication}
 
 \begin{frame}{What Makes Mobile Communication Hard?}
+  \slidelabel{2:challenges}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
       Requirements
@@ -13,7 +14,7 @@
       \vspace{0.4em}
       Constraints
       \begin{itemize}
-        \item Radio spectrum is a finite resource (slide \ref{1:Spectrum})
+        \item Radio spectrum is a finite resource (\cref{1:spectrum})
         \item All users in an area share the same medium
         \item Terminals must work with the networks they encounter
       \end{itemize}
@@ -30,6 +31,7 @@
 \end{frame}
 
 \begin{frame}{Generations at a Glance}
+  \slidelabel{2:generations}
   \centering
   \begin{tabular}{llll}
     \toprule
@@ -50,6 +52,7 @@
 \subsectionFrame{0G and the Capacity Problem}
 
 \begin{frame}{0G: Mobile Radio Telephony}
+  \slidelabel{2:0g-telephony}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.54\textwidth}
       United States~\cite{young-amps}
@@ -90,6 +93,7 @@
 \end{frame}
 
 \begin{frame}{0G: The Capacity Bottleneck}
+  \slidelabel{2:0g-bottleneck}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.5\textwidth}
       \begin{itemize}
@@ -113,6 +117,7 @@
 \subsectionFrame{The Cellular Concept}
 
 \begin{frame}{Cellular Concept I}
+  \slidelabel{2:cellular-1}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
       Frequency Reuse
@@ -148,6 +153,7 @@
 \end{frame}
 
 \begin{frame}{Cellular Concept II}
+  \slidelabel{2:cellular-2}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
       Reuse Geometry
@@ -190,6 +196,7 @@
 \end{frame}
 
 \begin{frame}{Cellular Concept III}
+  \slidelabel{2:cellular-3}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.54\textwidth}
       Co-Channel Interference
@@ -226,6 +233,7 @@
 \end{frame}
 
 \begin{frame}{Cellular Concept IV}
+  \slidelabel{2:cellular-4}
   \centering
   Live demo: \gls{acro:sir} and capacity versus cluster size
   \begin{itemize}
@@ -237,6 +245,7 @@
 \subsectionFrame{1G: Analog Cellular Systems}
 
 \begin{frame}{Frequency Division Multiple Access}
+  \slidelabel{2:fdma}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.54\textwidth}
       \Gls{acro:fdma}
@@ -265,6 +274,7 @@
 \end{frame}
 
 \begin{frame}{1G Systems}
+  \slidelabel{2:1g-systems}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.56\textwidth}
       \centering
@@ -300,6 +310,7 @@
 \end{frame}
 
 \begin{frame}{Limits of 1G}
+  \slidelabel{2:1g-limits}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
       \begin{itemize}
@@ -336,6 +347,7 @@
 \subsectionFrame{2G: Digital Cellular Systems}
 
 \begin{frame}{Analog vs.\ Digital}
+  \slidelabel{2:analog-digital}
   \centering
   \begin{tabular}{lll}
     \toprule
@@ -357,6 +369,7 @@
 \end{frame}
 
 \begin{frame}{Time Division Multiple Access}
+  \slidelabel{2:tdma}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.54\textwidth}
       \Gls{acro:tdma}
@@ -386,6 +399,7 @@
 \end{frame}
 
 \begin{frame}{GSM Air Interface}
+  \slidelabel{2:gsm-air}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.54\textwidth}
       \centering
@@ -417,6 +431,7 @@
 \end{frame}
 
 \begin{frame}{From Speech to Burst}
+  \slidelabel{2:gsm-speech}
   \centering
   \input{images/section-2/speech-chain}
 
@@ -462,6 +477,7 @@
 \end{frame}
 
 \begin{frame}{GSM Frame and Burst Structure}
+  \slidelabel{2:gsm-frame}
   \centering
   \input{images/section-2/gsm-burst}
 
@@ -476,6 +492,7 @@
 \end{frame}
 
 \begin{frame}{Normal Burst}
+  \slidelabel{2:gsm-normal-burst}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.60\textwidth}
       \centering
@@ -516,6 +533,7 @@
 \end{frame}
 
 \begin{frame}{Why Different Bursts?}
+  \slidelabel{2:gsm-why-bursts}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
       Normal Burst Assumes a Synchronized Terminal
@@ -547,6 +565,7 @@
 \end{frame}
 
 \begin{frame}{GSM Burst Types}
+  \slidelabel{2:gsm-burst-types}
   \centering
   \input{images/section-2/gsm-burst-types}
 
@@ -561,6 +580,7 @@
 \end{frame}
 
 \begin{frame}{Access Burst and Cell Size}
+  \slidelabel{2:gsm-access-burst}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
       Problem
@@ -601,6 +621,7 @@
 \end{frame}
 
 \begin{frame}{Timing Advance in Operation}
+  \slidelabel{2:gsm-timing-advance}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.54\textwidth}
       Closed Control Loop~\cite{etsi.145.001.v18}
@@ -629,9 +650,10 @@
 \end{frame}
 
 \begin{frame}{Capacity Gain of Digital}
+  \slidelabel{2:gsm-capacity}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.56\textwidth}
-      Comparison for $n = 4$ (Cellular Concept III)
+      Comparison for $n = 4$ (\cref{2:cellular-3})
 
       \centering
       \footnotesize
@@ -670,6 +692,7 @@
 \end{frame}
 
 \begin{frame}{Data in 2G: GPRS and EDGE}
+  \slidelabel{2:gprs-edge}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.6\textwidth}
       Problem
@@ -710,7 +733,7 @@
       \raggedright
       \vspace{0.5em}
       \begin{block}{Price of 8-PSK}
-        No constant envelope, linear amplifiers required (compare \gls{acro:gmsk} on the Normal Burst slide)
+        No constant envelope, linear amplifiers required (compare \gls{acro:gmsk}, \cref{2:gsm-normal-burst})
       \end{block}
       \alert{Remark:} \qty{200}{\kilo\hertz} carriers and \gls{acro:tdma} slots remain the limit.
     \end{column}
@@ -718,6 +741,7 @@
 \end{frame}
 
 \begin{frame}{GSM Beyond the Air Interface}
+  \slidelabel{2:gsm-beyond}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.54\textwidth}
       New Capabilities
@@ -753,6 +777,7 @@
 \subsectionFrame{ETSI and the GSM Standard}
 
 \begin{frame}{From CEPT to ETSI}
+  \slidelabel{2:etsi}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
       \begin{tabular}{ll}
@@ -783,6 +808,7 @@
 \end{frame}
 
 \begin{frame}{ETSI and Patents: From SEP to FRAND}
+  \slidelabel{2:etsi-patents}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.58\textwidth}
       The Problem
@@ -815,6 +841,7 @@
 \end{frame}
 
 \begin{frame}{Summary: Why Cellular and Digital?}
+  \slidelabel{2:summary-2g}
   \centering
   \begin{tabular}{lll}
     \toprule
@@ -835,5 +862,632 @@
       \item \Gls{acro:tdma} slots and \qty{200}{\kilo\hertz} carriers limit the data rate
     \end{itemize}
     Is there another way to share the channel?
+  \end{block}
+\end{frame}
+
+\subsectionFrame{3G: Mobile Broadband}
+
+\begin{frame}{From Voice to Mobile Internet}
+  \slidelabel{2:3g-motivation}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.58\textwidth}
+      Changing Demand
+      \begin{itemize}
+        \item Internet goes mobile: e-mail, web browsing, navigation
+        \item First smartphones still rely on 2G: the first iPhone (2007) supports only \gls{acro:edge}~\cite{apple-iphone-2007}
+        \item 2008: iPhone 3G, app stores, and the first Android phones~\cite{apple-iphone3g-2008,eweek-g1}
+        \item Assisted GPS: satellite positioning supported by the network
+      \end{itemize}
+      \vspace{0.4em}
+      Limits of 2G (\cref{2:summary-2g})
+      \begin{itemize}
+        \item \qty{200}{\kilo\hertz} carriers and 8 slots cap the data rate
+        \item Network designed around circuit-switched voice
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \begin{block}{IMT-2000 Requirements (\acrshort{acro:itu}-R)~\cite{itu-m2039}}
+        \centering
+        \begin{tabular}{ll}
+          \toprule
+          \textbf{Environment} & \textbf{Data rate} \\
+          \midrule
+          Vehicular & \qty{144}{\kilo\bit\per\second} \\
+          Pedestrian & \qty{384}{\kilo\bit\per\second} \\
+          Indoor & \qty{2}{\mega\bit\per\second} \\
+          \bottomrule
+        \end{tabular}
+      \end{block}
+      \begin{alertblock}{Central Question}
+        How can many users share one wideband carrier flexibly?
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{IMT-2000: One Family, Several Standards}
+  \slidelabel{2:imt-2000}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.50\textwidth}
+      Role of the \gls{acro:itu} (\cref{1:bodies-1})
+      \begin{itemize}
+        \item \Gls{acro:itu}-R defines requirements and evaluates candidates
+        \item The technology itself is specified by other bodies
+        \item Several candidates accepted into the IMT-2000 family
+      \end{itemize}
+      \vspace{0.4em}
+      Why no Single Global Standard?
+      \begin{itemize}
+        \item Different 2G bases: \gls{acro:gsm} vs.\ IS-95
+        \item Operators want an evolution path from their installed network
+        \item Patent dispute between Ericsson and Qualcomm (resolved 1999)~\cite{qualcomm-ericsson-1999}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \centering
+      \footnotesize
+      \begin{tabular}{lll}
+        \toprule
+        \textbf{Member} & \textbf{Body} & \textbf{Origin} \\
+        \midrule
+        \acrshort{acro:wcdma} (\acrshort{acro:umts}) & \acrshort{acro:3gpp} & \acrshort{acro:gsm} regions, Japan \\
+        CDMA2000 & \acrshort{acro:3gpp2} & IS-95 (USA, Korea) \\
+        TD-SCDMA & \acrshort{acro:3gpp} & China \\
+        \bottomrule
+      \end{tabular}
+
+      \normalsize
+      \raggedright
+      \vspace{0.5em}
+      \alert{Remark:} Same pattern for 5G: \acrshort{acro:3gpp} \acrshort{acro:nr} is submitted to \acrshort{acro:itu}-R as IMT-2020.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\subsectionFrame{3GPP: A Global Standardization Body}
+
+\begin{frame}{Formation of 3GPP}
+  \slidelabel{2:3gpp-formation}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.56\textwidth}
+      Motivation
+      \begin{itemize}
+        \item Specify 3G once for all regions instead of in parallel
+        \item Build on the \gls{acro:gsm} core network, add a new radio access
+        \item 1998: regional bodies sign the \gls{acro:3gpp} agreement~\cite{3gpp-intro}
+      \end{itemize}
+      \vspace{0.4em}
+      How Companies Participate
+      \begin{itemize}
+        \item Membership via one of the organizational partners
+        \item Specifications written in \gls{acro:3gpp}, transposed by each partner (e.g., \gls{acro:3gpp} TS 25.211 $\rightarrow$ \gls{acro:etsi} TS 125 211)
+        \item \Gls{acro:gsm} maintenance moved into \gls{acro:3gpp} as well
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \footnotesize
+      \begin{tabular}{ll}
+        \toprule
+        \textbf{Organizational Partner}~\cite{3gpp-intro} & \textbf{Region} \\
+        \midrule
+        \acrshort{acro:etsi} & Europe \\
+        \acrshort{acro:arib}, \acrshort{acro:ttc} & Japan \\
+        \acrshort{acro:tta} & Korea \\
+        \acrshort{acro:atis} (formerly T1) & USA \\
+        \acrshort{acro:ccsa} (formerly CWTS) & China \\
+        \acrshort{acro:tsdsi} (since 2015) & India \\
+        \bottomrule
+      \end{tabular}
+
+      \normalsize
+      \raggedright
+      \vspace{0.5em}
+      \begin{block}{Parallel Track: \gls{acro:3gpp2}}
+        Formed shortly after by \gls{acro:tia} and Asian partners to evolve IS-95 into CDMA2000; its operators later moved to \gls{acro:lte}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Working Groups and Specifications}
+  \slidelabel{2:3gpp-groups}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.56\textwidth}
+      Organization
+      \begin{itemize}
+        \item Project Coordination Group: overall time plan
+        \item Three Technical Specification Groups~\cite{3gpp-intro}
+          \begin{itemize}
+            \item \acrshort{acro:ran}: radio access network
+            \item SA: service and system aspects, architecture
+            \item CT: core network and terminals
+          \end{itemize}
+        \item Working groups, e.g., RAN1 physical layer, RAN2 radio protocols, RAN4 radio performance, RAN5 conformance testing
+      \end{itemize}
+      \vspace{0.4em}
+      Working Method
+      \begin{itemize}
+        \item Companies submit contributions to meetings
+        \item Decisions by consensus
+        \item Approved specifications change only via change requests
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \begin{block}{Reading a Spec Number~\cite{3gpp-spec-series,3gpp-version-numbering}}
+        \centering
+        TS \textbf{ss}.nnn V\textbf{x}.y.z
+        \raggedright
+        \begin{itemize}
+          \item TS: specification (normative), TR: report (studies)
+          \item ss: series, e.g., 25 \gls{acro:umts} radio, 36 \gls{acro:lte} radio, 38 \gls{acro:nr} radio, 45 \gls{acro:gsm} radio
+          \item nnn: document within the series, e.g., 25.2xx physical layer (25.211 physical channels), 25.3xx protocols; 8xx/9xx: technical reports
+          \item x: release (from Rel-4 on), y: technical, z: editorial changes
+        \end{itemize}
+      \end{block}
+      \alert{Remark:} Our \gls{acro:gsm} reference TS 45.001 V18.0.0 belongs to Release 18: \gls{acro:gsm} is still maintained.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Releases in Practice}
+  \slidelabel{2:3gpp-releases}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.52\textwidth}
+      Three Stages per Feature
+      \begin{itemize}
+        \item Stage 1: service requirements (what?)
+        \item Stage 2: architecture and functions (how, overall?)
+        \item Stage 3: detailed protocols (bit level)
+        \item Each stage is frozen, afterwards only corrections
+      \end{itemize}
+      \vspace{0.4em}
+      Backward Compatibility
+      \begin{itemize}
+        \item New releases must not break older terminals
+        \item Terminals report their capabilities, network enables features accordingly
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \footnotesize
+      \begin{tabular}{lll}
+        \toprule
+        \textbf{Release} & \textbf{Year}~\cite{devopedia-3gpp-release} & \textbf{Key Feature} \\
+        \midrule
+        Rel-99 & 2000 & \acrshort{acro:umts} (\acrshort{acro:wcdma}) \\
+        Rel-4 & 2001 & TD-SCDMA \\
+        Rel-5 & 2002 & \acrshort{acro:hsdpa}, IP Multimedia \\
+        Rel-6 & 2004 & \acrshort{acro:hsupa} \\
+        Rel-7 & 2007 & HSPA+ (64\acrshort{acro:qam}, \acrshort{acro:mimo}) \\
+        Rel-8 & 2008 & \acrshort{acro:lte}, dual-carrier HSPA+ \\
+        \bottomrule
+      \end{tabular}
+
+      \normalsize
+      \raggedright
+      \vspace{0.5em}
+      \alert{Remark:} Compare the release timeline on \cref{1:process-4}.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\subsectionFrame{Code Division Multiple Access}
+
+\begin{frame}{Code Division Multiple Access I}
+  \slidelabel{2:cdma-1}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.54\textwidth}
+      Principle
+      \begin{itemize}
+        \item All users transmit at the same time on the same frequency
+        \item Each user multiplies its data with an individual code
+        \item Code chips are much shorter than data bits
+        \item Receiver separates users by correlating with the code
+      \end{itemize}
+      \vspace{0.4em}
+      Origin: IS-95
+      \begin{itemize}
+        \item First commercial \gls{acro:cdma} system (1995), developed by Qualcomm~\cite{cdg-cdma-10years}
+        \item \qty{1.25}{\mega\hertz} carriers, \num{1.2288} Mchip/s
+        \item Introduced power control, soft handover, and rake receivers
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{figure}
+        \centering
+        \input{images/section-2/cdma-resources}
+        \caption{Time-frequency resources in \gls{acro:cdma}}
+      \end{figure}
+      \alert{Remark:} Compare \gls{acro:fdma} (\cref{2:fdma}) and \gls{acro:tdma} (\cref{2:tdma}): there, users are separated in frequency or time.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Code Division Multiple Access II}
+  \slidelabel{2:cdma-2}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.52\textwidth}
+      Spreading
+      \begin{itemize}
+        \item Data symbol $b \in \{\pm 1\}$ times code $\mathbf{c} \in \{\pm 1\}^G$
+        \item Spreading factor = processing gain $G = R_\mathrm{c}/R_\mathrm{b}$
+        \item Short chips give a wide spectrum (\cref{1:fourier-2})
+      \end{itemize}
+      \vspace{0.4em}
+      Despreading
+      \begin{itemize}
+        \item Correlate received chips with own code:
+          \begin{equation*}
+            \hat{b} = \frac{1}{G}\langle \mathbf{r}, \mathbf{c} \rangle
+          \end{equation*}
+        \item Orthogonal codes: $\langle \mathbf{c}_A, \mathbf{c}_B \rangle = 0$, other users vanish
+        \item Noise and non-orthogonal interference are reduced by $G$
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{Example with $G = 4$}
+        \centering
+        \footnotesize
+        \begin{tabular}{l|rrrr}
+          $\mathbf{c}_A$ & $+1$ & $-1$ & $+1$ & $-1$ \\
+          $\mathbf{c}_B$ & $+1$ & $+1$ & $-1$ & $-1$ \\
+          \hline
+          $b_A \mathbf{c}_A$, $b_A = +1$ & $+1$ & $-1$ & $+1$ & $-1$ \\
+          $b_B \mathbf{c}_B$, $b_B = -1$ & $-1$ & $-1$ & $+1$ & $+1$ \\
+          \hline
+          $\mathbf{r}$ & $0$ & $-2$ & $+2$ & $0$ \\
+        \end{tabular}
+
+        \vspace{0.4em}
+        $\frac{1}{4}\langle \mathbf{r}, \mathbf{c}_A \rangle = +1$, \quad $\frac{1}{4}\langle \mathbf{r}, \mathbf{c}_B \rangle = -1$
+      \end{block}
+      \alert{Remark:} Orthogonal codes are rows of a Hadamard matrix, just as complex exponentials are rows of the \gls{acro:dft} matrix.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Code Division Multiple Access III}
+  \slidelabel{2:cdma-3}
+  \centering
+  Live demo: spreading, despreading, and multiple access interference
+  \begin{itemize}
+    \item scripts/section-2/cdma-spreading.py
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{UMTS Air Interface}
+  \slidelabel{2:umts-air}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.56\textwidth}
+      \centering
+      \footnotesize
+      \begin{tabular}{ll}
+        \toprule
+        \textbf{Parameter} & \textbf{Value (\acrshort{acro:umts} \acrshort{acro:fdd}, Band I)}~\cite{ts25101,ts25201} \\
+        \midrule
+        Uplink band & \qtyrange{1920}{1980}{\mega\hertz} \\
+        Downlink band & \qtyrange{2110}{2170}{\mega\hertz} \\
+        Carrier spacing & \qty{5}{\mega\hertz} \\
+        Chip rate & \num{3.84} Mchip/s \\
+        Frame & \qty{10}{\milli\second}, 15 slots \\
+        Spreading factor & 4--256 (uplink), 4--512 (downlink) \\
+        Modulation & \acrshort{acro:bpsk} on I and Q (uplink), \acrshort{acro:qpsk} (downlink) \\
+        \bottomrule
+      \end{tabular}
+
+      \normalsize
+      \raggedright
+      \vspace{0.5em}
+      \begin{itemize}
+        \item One carrier serves all users of a cell
+        \item 25 times wider than a \gls{acro:gsm} carrier
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \begin{block}{Pulse Shaping}
+        \begin{itemize}
+          \item Root-raised-cosine pulse, roll-off $\alpha = 0.22$
+          \item Same filter in transmitter and receiver: raised cosine overall
+          \item No interference between chips at the sampling instants (Nyquist)
+        \end{itemize}
+        \[ B = (1 + \alpha)\, R_\mathrm{c} \approx \qty{4.68}{\mega\hertz} \]
+      \end{block}
+      \alert{Remark:} Why this pulse? See \cref{2:pulse-shaping-1}.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Pulse Shaping I}
+  \slidelabel{2:pulse-shaping-1}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.5\textwidth}
+      Goal (\cref{1:fourier-2})
+      \begin{itemize}
+        \item Short in time and narrow in frequency
+        \item No interference between symbols at the sampling instants $kT$
+      \end{itemize}
+      \vspace{0.4em}
+      Root-Raised-Cosine Pulse
+      \begin{itemize}
+        \item Same filter in transmitter and receiver
+        \item Together: raised cosine, zero at all $kT$, $k \neq 0$
+        \item Roll-off $\alpha$: bandwidth $(1+\alpha)/T$ vs.\ pulse length
+        \item \Gls{acro:umts}: $\alpha = 0.22$
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \centering
+      \includegraphics[width=0.9\linewidth]{images/section-2/raised_cosine.pdf}
+    \end{column}
+  \end{columns}
+  \begin{block}{Root-Raised-Cosine Impulse Response~\cite{ts25101}}
+    \[
+      h_\text{RRC}(t) = \frac{\sin\!\left(\pi \frac{t}{T}(1-\alpha)\right) + 4\alpha\frac{t}{T}\cos\!\left(\pi \frac{t}{T}(1+\alpha)\right)}{\pi \frac{t}{T}\left(1 - \left(4\alpha\frac{t}{T}\right)^2\right)}
+    \]
+  \end{block}
+\end{frame}
+
+\begin{frame}{Pulse Shaping II}
+  \slidelabel{2:pulse-shaping-2}
+  \centering
+  Live demo: rectangular, triangular, Gaussian, and root-raised-cosine pulses in time and frequency
+  \begin{itemize}
+    \item scripts/section-2/pulse-shapes.py
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Near-Far Problem}
+  \slidelabel{2:near-far}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.56\textwidth}
+      Downlink: Codes Stay Orthogonal
+      \begin{itemize}
+        \item Base station sends all users chip-aligned
+        \item Signals reach a terminal through the same channel with the same delay
+        \item Other users vanish after despreading (\cref{2:cdma-2})
+      \end{itemize}
+      \vspace{0.4em}
+      Uplink: Codes Lose Orthogonality
+      \begin{itemize}
+        \item Terminals at different distances: arrival times differ by fractions of a chip ($T_\mathrm{c} \approx \qty{0.26}{\micro\second} \approx \qty{78}{\meter}$)
+        \item Orthogonality only holds without time offset
+        \item Uplink uses a pseudo-random scrambling code per terminal: never orthogonal, each other user leaves $\approx 1/G$ of its power
+      \end{itemize}
+      \alert{Remark:} Residual interference is harmless only if all users arrive with similar power.
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \input{images/section-2/near-far}
+      \begin{block}{Example: Equal Transmit Power}
+        \begin{itemize}
+          \item Path loss $P \propto d^{-4}$ (\cref{2:cellular-3})
+          \item A at \qty{100}{\meter}, B at \qty{2}{\kilo\meter}: $P_A/P_B = 20^4 \approx \qty{52}{\decibel}$
+          \item Despreading suppresses A by $G \approx 315 \approx \qty{25}{\decibel}$
+          \item A still \qty{27}{\decibel} above B: B is lost
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Power Control}
+  \slidelabel{2:power-control}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.56\textwidth}
+      Goal
+      \begin{itemize}
+        \item Every terminal arrives with just the power its service needs
+        \item Near terminals transmit less, far terminals more
+      \end{itemize}
+      \vspace{0.4em}
+      Three Control Loops
+      \begin{itemize}
+        \item Open loop (first access): terminal estimates the path loss from the downlink, sends short preambles with increasing power until acknowledged
+        \item Closed loop: base station compares the \gls{acro:sir} with a target and sends an up/down command every slot (\qty{1500}{\hertz}, $\pm\qty{1}{\decibel}$)~\cite{ts25214}
+        \item Outer loop: network adapts the \gls{acro:sir} target to the required block error rate
+      \end{itemize}
+      \alert{Remark:} \Gls{acro:gsm} aligns users in time (\gls{acro:ta}, \cref{2:gsm-timing-advance}), \gls{acro:umts} aligns them in power.
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \begin{block}{Side Effects}
+        Longer battery life and less interference for everyone
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Multipath and the Rake Receiver}
+  \slidelabel{2:rake}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.52\textwidth}
+      Multipath in a Wideband System
+      \begin{itemize}
+        \item Chip duration $T_\mathrm{c} = 1/R_\mathrm{c} \approx \qty{0.26}{\micro\second}$, i.e., $\approx\qty{78}{\meter}$ path difference
+        \item Paths more than one chip apart are resolvable
+        \item Received signal: delayed and weighted copies, taps of the \gls{acro:cir} $h(t)$ (\cref{1:lti})
+      \end{itemize}
+      \vspace{0.4em}
+      Rake Receiver
+      \begin{itemize}
+        \item One finger per strong path: delay $\tau_l$, despread, weight $h_l^*$
+        \item Coherent combination (maximum ratio combining)
+        \item Multipath turns from a problem into diversity
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{figure}
+        \centering
+        \resizebox{\linewidth}{!}{\input{images/section-2/rake}}
+        \caption{Rake receiver with three fingers}
+      \end{figure}
+      \alert{Remark:} Same structure as the Bartlett beamformer (\cref{1:spatial-3}), with weights over delay instead of space.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Reuse 1 and Soft Handover}
+  \slidelabel{2:reuse-1}
+  Frequency Reuse 1
+  \begin{itemize}
+    \item All cells use the same carrier: $N = 1$ (\crefrange{2:cellular-1}{2:cellular-3})
+    \item Other cells add interference, reduced by the processing gain
+    \item Code planning instead of frequency planning
+  \end{itemize}
+  \vspace{0.4em}
+  Soft Handover
+  \begin{itemize}
+    \item At the cell edge, terminal connected to two or three cells
+    \item Downlink: signals combined in the rake receiver
+    \item Uplink: network selects the best received frame
+  \end{itemize}
+  \vspace{0.4em}
+  Cell Breathing
+  \begin{itemize}
+    \item More users, more interference: coverage shrinks
+  \end{itemize}
+\end{frame}
+
+
+\subsectionFrame{3G Evolution and Market}
+
+\begin{frame}{Data Evolution: HSPA}
+  \slidelabel{2:hspa}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.58\textwidth}
+      Problem
+      \begin{itemize}
+        \item Rel-99: dedicated channel per user with fixed spreading factor and power control
+        \item Inefficient for bursty internet traffic
+      \end{itemize}
+      \Gls{acro:hsdpa} (Rel-5)
+      \begin{itemize}
+        \item Shared downlink channel, base station schedules users every \qty{2}{\milli\second}
+        \item Link adaptation: modulation and coding follow the channel
+        \item Fast retransmissions (\gls{acro:harq})
+      \end{itemize}
+      \Gls{acro:hsupa} (Rel-6), HSPA+ (Rel-7, Rel-8)
+      \begin{itemize}
+        \item Same principles in the uplink, then 64-\gls{acro:qam}, \gls{acro:mimo}, dual carrier
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \centering
+      \footnotesize
+      \begin{tabular}{llr}
+        \toprule
+        \textbf{System} & \textbf{Release} & \textbf{Peak downlink}~\cite{rs-hspa} \\
+        \midrule
+        \acrshort{acro:wcdma} & Rel-99 & \qty{0.384}{\mega\bit\per\second} \\
+        \acrshort{acro:hsdpa} & Rel-5 & \qty{14.4}{\mega\bit\per\second} \\
+        HSPA+ & Rel-7 & \qty{28}{\mega\bit\per\second} \\
+        DC-HSPA+ & Rel-8 & \qty{42}{\mega\bit\per\second} \\
+        \bottomrule
+      \end{tabular}
+
+      \normalsize
+      \raggedright
+      \vspace{0.5em}
+      \begin{block}{Key Insight}
+        Scheduling and link adaptation replace per-user power control: a step towards \gls{acro:lte}.
+      \end{block}
+      \alert{Remark:} Compare \gls{acro:gprs}/\gls{acro:edge} on \cref{2:gprs-edge}.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{3G Beyond the Air Interface}
+  \slidelabel{2:3g-beyond}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.56\textwidth}
+      Services
+      \begin{itemize}
+        \item Mobile internet, app stores, navigation
+        \item Video telephony promoted as key service, but rarely used
+      \end{itemize}
+      \vspace{0.4em}
+      Rollout
+      \begin{itemize}
+        \item 2000: German spectrum auction, six licenses for about 50 billion euros, two licensees later gave up~\cite{heise-umts-auction,teltarif-umts-2004}
+        \item 2001: first commercial \gls{acro:wcdma} network (NTT DoCoMo, Japan)~\cite{register-foma}
+        \item 2004: commercial \gls{acro:umts} launch in Germany~\cite{macwelt-vodafone-umts}
+        \item 2021: 3G switched off in Germany, while 2G remains as fallback for voice and machines~\cite{winfuture-3g-off}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \begin{block}{Other 3G Systems}
+        \begin{itemize}
+          \item CDMA2000 (\gls{acro:3gpp2}): evolution of IS-95, USA and Korea
+          \item TD-SCDMA: time-division duplex, China Mobile from 2009~\cite{china-3g-licenses}
+        \end{itemize}
+      \end{block}
+      \begin{alertblock}{Key Insight}
+        Expensive licenses, slow start: 3G took off only with smartphones and \gls{acro:hspa}.
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{CDMA and Patents}
+  \slidelabel{2:cdma-patents}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.56\textwidth}
+      Qualcomm and \gls{acro:cdma}
+      \begin{itemize}
+        \item Fundamental \gls{acro:cdma} patents since the IS-95 era
+        \item Licensing model: royalties based on the device price, plus chipset sales
+        \item Many \glspl{acro:sep} in both CDMA2000 and \gls{acro:wcdma}
+      \end{itemize}
+      \vspace{0.4em}
+      Standardization Blocked by Patents
+      \begin{itemize}
+        \item Late 1990s: Ericsson and Qualcomm dispute over \gls{acro:wcdma} vs.\ CDMA2000
+        \item \Gls{acro:itu} requires licensing commitments for its standards
+        \item March 1999: cross-licensing agreement, Ericsson buys Qualcomm's infrastructure business~\cite{qualcomm-ericsson-1999}
+        \item Path cleared for both 3G families in IMT-2000
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \begin{block}{Recall: \gls{acro:sep} and \gls{acro:frand}}
+        \begin{itemize}
+          \item Essential patents cannot be avoided (\cref{1:patents-2})
+          \item \Gls{acro:frand} commitment enables the standard
+          \item Terms negotiated bilaterally, disputes possible (\gls{acro:etsi} \gls{acro:ipr} policy, \cref{2:etsi-patents})
+        \end{itemize}
+      \end{block}
+      \begin{alertblock}{Key Insight}
+        Patents influence which technologies become standards, not only who earns money.
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Summary: Why CDMA, and What Next?}
+  \slidelabel{2:summary-3g}
+  \centering
+  \footnotesize
+  \begin{tabular}{lll}
+    \toprule
+    \textbf{Shift} & \textbf{Bottleneck} & \textbf{Solution} \\
+    \midrule
+    Cellular (0G $\rightarrow$ 1G) & Channels usable only once per region & Frequency reuse in cells \\
+    Digital (1G $\rightarrow$ 2G) & High required \acrshort{acro:sir}, no security & Coding, \acrshort{acro:tdma}, encryption \\
+    Common standard & National, incompatible systems & \acrshort{acro:gsm} and \acrshort{acro:etsi} \\
+    Packet data (2G $\rightarrow$ 2.5G) & Slot held for whole connection & \acrshort{acro:gprs}, \acrshort{acro:edge} \\
+    Mobile broadband (2G $\rightarrow$ 3G) & Narrow carriers, regional standards & \acrshort{acro:wcdma}, \acrshort{acro:3gpp} \\
+    Packet data (3G $\rightarrow$ 3.5G) & Dedicated channel per user & \acrshort{acro:hspa}: scheduling, link adaptation \\
+    \bottomrule
+  \end{tabular}
+
+  \normalsize
+  \vspace{1em}
+  \begin{block}{Next: \gls{acro:ofdm} and 4G}
+    \begin{itemize}
+      \item Wider carriers (\qty{20}{\mega\hertz} and more) mean shorter chips and many resolvable paths
+      \item Rake receiver complexity and interference between paths grow
+    \end{itemize}
+    Can a frequency-selective channel be split into many flat ones?
   \end{block}
 \end{frame}

@@ -1,0 +1,35 @@
+\begin{tikzpicture}[
+    >=Stealth,
+    thick,
+    block/.style={draw=blue!85!black, fill=blue!10, rounded corners=2pt, minimum width=1.0cm, minimum height=0.5cm, font=\scriptsize, align=center},
+    sum/.style={circle, draw=black, fill=gray!15, inner sep=0pt, minimum size=0.6cm, font=\normalsize}
+]
+    % Channel impulse response with three resolvable paths
+    \draw[->, thin] (0,2.6) -- (3.6,2.6) node[below, font=\tiny] {$\tau$};
+    \foreach \t/\h/\l in {0.4/0.75/1, 1.5/0.5/2, 2.7/0.3/3} {
+        \draw[red!80!black] (\t,2.6) -- (\t,{2.6+\h});
+        \filldraw[red!80!black] (\t,{2.6+\h}) circle (1.2pt);
+        \node[font=\tiny, below] at (\t,2.6) {$\tau_{\l}$};
+    }
+    \node[font=\tiny, anchor=west] at (3.0,3.2) {$|h_l|$};
+    \draw[<->, thin] (0.4,3.5) -- (0.66,3.5) node[midway, above, font=\tiny] {$T_\mathrm{c}$};
+
+    % Fingers: delay, despread, weight
+    \node[font=\scriptsize] (r) at (-0.6,0.6) {$r(t)$};
+    \foreach \f/\y in {1/1.4, 2/0.6, 3/-0.4} {
+        \node[block] (d\f) at (0.9,\y) {delay $\tau_{\f}$};
+        \node[block] (s\f) at (2.25,\y) {despread};
+        \node[block] (w\f) at (3.6,\y) {$\times\,h_{\f}^*$};
+        \draw[->] (d\f) -- (s\f);
+        \draw[->] (s\f) -- (w\f);
+        \draw[->] (r.east) -- ++(0.15,0) |- (d\f.west);
+    }
+
+    % Maximum ratio combining
+    \node[sum] (adder) at (4.8,0.6) {$\Sigma$};
+    \draw[->] (w1.east) -| (adder.north);
+    \draw[->] (w2.east) -- (adder.west);
+    \draw[->] (w3.east) -| (adder.south);
+    \draw[->, very thick, blue!85!black] (adder.east) -- ++(0.6,0)
+        node[right, font=\footnotesize, black] {$\hat{b}$};
+\end{tikzpicture}

@@ -52,6 +52,13 @@
 \usepackage[skins,theorems]{tcolorbox}
 \tcbset{highlight math style={enhanced,colframe=blue,colback=white,arc=0pt,boxrule=1pt}}
 
+% Slide references: \slidelabel{key} inside a frame, \cref{key} gives "Slide 2.7"
+% (beamer does not \refstepcounter the frame number, so \slidelabel does it)
+\usepackage[capitalise]{cleveref}
+\crefname{framenumber}{Slide}{Slides}
+\Crefname{framenumber}{Slide}{Slides}
+\newcommand{\slidelabel}[1]{\addtocounter{framenumber}{-1}\refstepcounter{framenumber}\label{#1}}
+
 
 \title[Radio Standards \quad WS\,2026]{Radio Standards}
 \subtitle{WS 2026}
@@ -89,6 +96,7 @@
 % !!!!! conflicts with %\usepackage{appendixnumberbeamer}
 \usepackage{chngcntr}
 \counterwithin{framenumber}{section}% Number frames within \section
+\def\theHframenumber{\thesection.\arabic{framenumber}}% unique hyperref anchors per section
 
 \begin{document}
 
@@ -112,10 +120,12 @@
 \sectionFrame{Evolution of Cellular Standards} \input{sections/02_cellular}
 
 \begin{frame}[allowframebreaks]{References}
+  \slidelabel{rs:references}
   \printbibliography
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Acronyms}
+  \slidelabel{rs:acronyms}
   \printnoidxglossary[type=\acronymtype, title={}]
 \end{frame}
 

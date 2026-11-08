@@ -1,0 +1,11 @@
+\begin{tikzpicture}[>=latex]
+    % All users occupy the full time-frequency plane, separated by codes
+    \foreach \k/\col/\name in {2/green!20/User 3, 1/red!20/User 2, 0/blue!20/User 1} {
+        \draw[fill=\col] ({0.3*\k},{0.15+0.3*\k}) rectangle ({3.2+0.3*\k},{1.9+0.3*\k});
+        \node[font=\tiny, anchor=north east, inner sep=1.5pt] at ({3.2+0.3*\k},{1.9+0.3*\k}) {\name};
+    }
+    \node[font=\scriptsize] at (1.6,1.0) {same $t$ and $f$};
+    \draw[->, thick] (0,0) -- (4.4,0) node[below, font=\scriptsize] {$t$};
+    \draw[->, thick] (0,0) -- (0,2.75) node[left, font=\scriptsize] {$f$};
+    \draw[->, thick] (3.5,0.2) -- (4.2,0.9) node[right, font=\scriptsize] {code};
+\end{tikzpicture}
