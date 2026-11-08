@@ -1,0 +1,24 @@
+\begin{tikzpicture}[
+    >=latex,
+    stage/.style={draw=blue!85!black, fill=blue!10, rounded corners=2pt, minimum width=1.85cm, minimum height=0.8cm, text width=1.75cm, font=\scriptsize, align=center},
+    rate/.style={font=\tiny, text=red!80!black}
+]
+    % Transmit chain of a GSM full-rate speech call
+    \node[stage, fill=gray!10, draw=gray!70] (sp) at (0,0) {Speech\\[-1pt]\tiny \qty{8}{\kilo\hertz}, 13 bit};
+    \node[stage] (codec) at (2.25,0) {Speech codec\\[-1pt]\tiny 260 bit / \qty{20}{\milli\second}};
+    \node[stage] (cc) at (4.5,0) {Channel coding\\[-1pt]\tiny 456 bit / \qty{20}{\milli\second}};
+    \node[stage] (il) at (6.75,0) {Interleaving\\[-1pt]\tiny over 8 bursts};
+    \node[stage] (enc) at (9.0,0) {Encryption\\[-1pt]\tiny per burst};
+    \node[stage] (mod) at (11.25,0) {Burst + \acrshort{acro:gmsk}\\[-1pt]\tiny normal burst};
+
+    \draw[->, thick] (sp) -- (codec);
+    \draw[->, thick] (codec) -- (cc);
+    \draw[->, thick] (cc) -- (il);
+    \draw[->, thick] (il) -- (enc);
+    \draw[->, thick] (enc) -- (mod);
+
+    % Bit rates between the stages
+    \node[rate] at (1.125,-0.62) {\qty{104}{\kilo\bit\per\second}};
+    \node[rate] at (3.375,-0.62) {\qty{13}{\kilo\bit\per\second}};
+    \node[rate] at (5.625,-0.62) {\qty{22.8}{\kilo\bit\per\second}};
+\end{tikzpicture}

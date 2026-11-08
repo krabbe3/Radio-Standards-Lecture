@@ -391,7 +391,7 @@
       \centering
       \begin{tabular}{ll}
         \toprule
-        \textbf{Parameter} & \textbf{Value (GSM 900)} \\
+        \textbf{Parameter} & \textbf{Value (GSM 900)}~\cite{etsi.145.001.v18} \\
         \midrule
         Uplink band & \qtyrange{890}{915}{\mega\hertz} \\
         Downlink band & \qtyrange{935}{960}{\mega\hertz} \\
@@ -412,6 +412,51 @@
           \item Protects \qty{13}{\kilo\bit\per\second} speech with channel coding
         \end{itemize}
       \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{From Speech to Burst}
+  \centering
+  \input{images/section-2/speech-chain}
+
+  \vspace{0.5em}
+  \raggedright
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.54\textwidth}
+      Unequal Error Protection~\cite{etsi.145.001.v18}
+
+      \centering
+      \footnotesize
+      \begin{tabular}{lrl}
+        \toprule
+        \textbf{Class} & \textbf{Bits} & \textbf{Protection} \\
+        \midrule
+        Ia & 50 & 3 parity bits, convolutional code rate $1/2$ \\
+        Ib & 132 & Convolutional code rate $1/2$ \\
+        II & 78 & None \\
+        \bottomrule
+      \end{tabular}
+
+      \normalsize
+      \raggedright
+      \begin{itemize}
+        \item $(50 + 3 + 132 + 4) \cdot 2 + 78 = 456$ bits per \qty{20}{\milli\second}
+        \item 4 tail bits terminate the convolutional code
+        \item Only bits important for speech quality are protected
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{Interleaving}
+        \begin{itemize}
+          \item 456 bits spread over 8 bursts, 57 bits each
+          \item One lost burst only hits every 8th bit of a speech frame
+          \item Scattered errors are corrected by the convolutional code
+        \end{itemize}
+      \end{block}
+      \begin{alertblock}{Key Insight}
+        Coding and interleaving explain why \gls{acro:gsm} tolerates an \gls{acro:sir} of about \qty{9}{\decibel}.
+      \end{alertblock}
     \end{column}
   \end{columns}
 \end{frame}
@@ -440,9 +485,9 @@
         \textbf{Bit Number} & \textbf{Length} & \textbf{Content} \\
         \midrule
         0--2 & 3 & Tail bits \\
-        3--60 & 58 & Encrypted bits \\
+        3--60 & 58 & Encrypted bits (57 data, 1 stealing flag) \\
         61--86 & 26 & Training sequence bits \\
-        87--144 & 58 & Encrypted bits \\
+        87--144 & 58 & Encrypted bits (1 stealing flag, 57 data) \\
         145--147 & 3 & Tail bits \\
         148-- & 8.25 & Guard period \\
         \bottomrule
@@ -450,7 +495,7 @@
 
       \vspace{0.3em}
       \normalsize
-      Normal burst for \gls{acro:gmsk}
+      Normal burst for \gls{acro:gmsk}~\cite{etsi.145.001.v18}
     \end{column}
     \begin{column}{0.36\textwidth}
       \begin{block}{GMSK}
@@ -537,7 +582,7 @@
     \end{column}
     \begin{column}{0.38\textwidth}
       \begin{block}{Maximum Cell Radius}
-        Bit period
+        Bit period~\cite{etsi.145.001.v18}
         \[ T_\mathrm{b} = \tfrac{48}{13}\,\unit{\micro\second} \approx \qty{3.69}{\micro\second} \]
         Guard period of access burst
         \[ T_\text{guard} = 68.25\,T_\mathrm{b} \approx \qty{252}{\micro\second} \]
@@ -558,7 +603,7 @@
 \begin{frame}{Timing Advance in Operation}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.54\textwidth}
-      Closed Control Loop
+      Closed Control Loop~\cite{etsi.145.001.v18}
       \begin{enumerate}
         \item Terminal derives uplink timing from downlink, uplink lags by 3 slots
         \item Without \gls{acro:ta}, bursts arrive late by $\tau = 2d/c$
@@ -579,6 +624,95 @@
         \input{images/section-2/timing-advance}
         \caption{Burst arrival at the base station}
       \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Capacity Gain of Digital}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.56\textwidth}
+      Comparison for $n = 4$ (Cellular Concept III)
+
+      \centering
+      \footnotesize
+      \begin{tabular}{lll}
+        \toprule
+        & \textbf{\acrshort{acro:amps}} & \textbf{\acrshort{acro:gsm}} \\
+        \midrule
+        Required \acrshort{acro:sir} & $\approx\qty{18}{\decibel}$ & $\approx\qty{9}{\decibel}$ \\
+        Cluster size $N$ & 7 & 3--4 \\
+        Bandwidth per call $B_\text{call}$ & \qty{30}{\kilo\hertz} & \qty{200}{\kilo\hertz}$/8 = \qty{25}{\kilo\hertz}$ \\
+        Calls per cell per \unit{\mega\hertz} & $\approx 4.8$ & $\approx 10$--$13$ \\
+        \bottomrule
+      \end{tabular}
+
+      \normalsize
+      \raggedright
+      \begin{itemize}
+        \item Calls per cell per \unit{\mega\hertz}: $1/(B_\text{call} \cdot N)$
+        \item Gain of about 2--3
+        \item Mainly from smaller $N$ ($k = K/N$), hardly from narrower channels
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \begin{block}{Interference Countermeasures}
+        \begin{itemize}
+          \item Slow frequency hopping: new carrier every \gls{acro:tdma} frame ($\approx 217$ hops/s), averages fading and interference~\cite{etsi.145.001.v18}
+          \item Power control: each link uses only the power it needs
+          \item Discontinuous transmission: send only during speech activity
+        \end{itemize}
+      \end{block}
+      \begin{alertblock}{Key Insight}
+        Digital gains capacity by tolerating more interference, which allows tighter reuse.
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Data in 2G: GPRS and EDGE}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.6\textwidth}
+      Problem
+      \begin{itemize}
+        \item Circuit-switched data: \qty{9.6}{\kilo\bit\per\second} in one slot
+        \item Slot reserved for the whole connection, even when idle
+      \end{itemize}
+      \vspace{0.4em}
+      \Gls{acro:gprs}
+      \begin{itemize}
+        \item Packet switching: slots assigned only while data is queued
+        \item One user may bundle several slots
+      \end{itemize}
+      \vspace{0.4em}
+      \Gls{acro:edge}
+      \begin{itemize}
+        \item \Gls{acro:psk} with 8 phases (8-PSK): 3 bits per symbol instead of 1~\cite{etsi.145.001.v18}
+        \item Same symbol rate, same \qty{200}{\kilo\hertz} carrier, same slots
+        \item Link adaptation up to \qty{59.2}{\kilo\bit\per\second} per slot
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \centering
+      \footnotesize
+      \begin{tabular}{lllr}
+        \toprule
+        & \textbf{Modulation} & \multicolumn{2}{c}{\textbf{kbit/s}} \\
+        \cmidrule(l){3-4}
+        & & \textbf{Slot} & \textbf{8 slots} \\
+        \midrule
+        Circuit-sw. & \acrshort{acro:gmsk} & 9.6 & -- \\
+        \acrshort{acro:gprs} & \acrshort{acro:gmsk} & 21.4 & 171.2 \\
+        \acrshort{acro:edge} & 8-PSK & 59.2 & 473.6 \\
+        \bottomrule
+      \end{tabular}
+
+      \normalsize
+      \raggedright
+      \vspace{0.5em}
+      \begin{block}{Price of 8-PSK}
+        No constant envelope, linear amplifiers required (compare \gls{acro:gmsk} on the Normal Burst slide)
+      \end{block}
+      \alert{Remark:} \qty{200}{\kilo\hertz} carriers and \gls{acro:tdma} slots remain the limit.
     \end{column}
   \end{columns}
 \end{frame}
@@ -689,6 +823,7 @@
     Cellular (0G $\rightarrow$ 1G) & Channels usable only once per region & Frequency reuse in cells \\
     Digital (1G $\rightarrow$ 2G) & High required \gls{acro:sir}, no security & Coding, \gls{acro:tdma}, encryption \\
     Common standard & National, incompatible systems & \Gls{acro:gsm} and \gls{acro:etsi} \\
+    Packet data (2G $\rightarrow$ 2.5G) & Slot held for whole connection & \Gls{acro:gprs}, \gls{acro:edge} \\
     \bottomrule
   \end{tabular}
 
@@ -697,7 +832,7 @@
     \begin{itemize}
       \item Voice is solved
       \item Data demand is rising
-      \item \Gls{acro:tdma} slots are too
+      \item \Gls{acro:tdma} slots and \qty{200}{\kilo\hertz} carriers limit the data rate
     \end{itemize}
     Is there another way to share the channel?
   \end{block}
