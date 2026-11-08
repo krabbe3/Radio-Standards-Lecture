@@ -121,6 +121,7 @@
         \item Each cell uses a subset of the available channels
         \item A cluster of $N$ cells uses all channels once
         \item Distant cells reuse the same channels
+        \item Smaller $N$ gives more channels per cell
         \item Concept formulated by D.\,H.\ Ring in 1947, first deployed decades later
       \end{itemize}
       \vspace{0.4em}
@@ -136,27 +137,69 @@
         \input{images/section-2/cluster}
         \caption{Reuse pattern for $N=7$}
       \end{figure}
+      \begin{block}{Channels per Cell}
+        \begin{itemize}
+          \item $K$ total channels, cluster size $N$\\
+          \item $k = K/N$ channels per cell
+        \end{itemize}
+      \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Cellular Concept II}
   \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.54\textwidth}
+    \begin{column}{0.58\textwidth}
       Reuse Geometry
       \begin{itemize}
-        \item Symmetric hexagonal grid only allows $N = i^2 + ij + j^2$ with $i,j \in \mathbb{N}_0$, $(i,j) \neq (0,0)$
-        \item Co-channel reuse ratio $D/R = \sqrt{3N}$
+        \item Hexagonal cells with radius $R$ (center to corner)
+        \item Neighboring cell centers are $\sqrt{3}R$ apart
+        \item Nearest co-channel cell: move $i$ cells along one axis, turn by \ang{60}, move $j$ cells
+        \item Law of cosines with enclosed angle \ang{120}:
+          \begin{align*}
+            D^2 &= 3R^2\left(i^2 + j^2 - 2ij\cos 120^\circ\right) \\
+                &= 3R^2\left(i^2 + ij + j^2\right)
+          \end{align*}
       \end{itemize}
       \vspace{0.4em}
+      Cluster Size
+      \begin{itemize}
+        \item Co-channel cells form a larger hexagonal grid with center spacing $D$
+        \item Each large hexagon holds exactly one cluster
+        \item Hexagon area scales with the square of the center spacing:
+          \begin{equation*}
+            N = \frac{A_\text{large}}{A_\text{cell}} = \left(\frac{D}{\sqrt{3}R}\right)^2 = i^2 + ij + j^2
+          \end{equation*}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \begin{figure}
+        \centering
+        \input{images/section-2/hex-reuse}
+        \caption{Nearest co-channel cell for $i=2$, $j=1$}
+      \end{figure}
+      \begin{block}{Co-Channel Reuse Ratio}
+        \begin{itemize}
+          \item$N = i^2 + ij + j^2$
+          \item$i,j \in \mathbb{N}_0$, $(i,j) \neq (0,0)$ \\
+          \item$D/R = \sqrt{3N}$
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Cellular Concept III}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.54\textwidth}
       Co-Channel Interference
       \begin{itemize}
         \item Received power decays as $P \propto d^{-n}$ with path loss exponent $n$ ($n=2$ free space, $n \approx 3$--$5$ urban)
         \item First tier: six interferers at distance $\approx D$
         \item User at the cell edge, distance $R$ to serving site
-        \item Independent of $R$ and of the transmit power
+        \item \Gls{acro:sir} depends only on $D/R = \sqrt{3N}$, independent of $R$ and of the transmit power
       \end{itemize}
-      \alert{Tradeoff:} Small $N$ gives more channels per cell but less \gls{acro:sir}.
+      \alert{Tradeoff:} Small $N$ gives more channels per cell ($k = K/N$) but a smaller $D/R$ and thus a lower \gls{acro:sir}.
     \end{column}
     \begin{column}{0.42\textwidth}
       \begin{block}{Downlink \gls{acro:sir} Estimate}
@@ -182,7 +225,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Cellular Concept III}
+\begin{frame}{Cellular Concept IV}
   \centering
   Live demo: \gls{acro:sir} and capacity versus cluster size
   \begin{itemize}
