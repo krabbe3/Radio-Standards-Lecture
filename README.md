@@ -33,7 +33,8 @@ radio-standards/
 │   ├── images/         # Figures and diagrams
 │   └── references.bib  # Bibliography
 ├── scripts/            # Python demonstration scripts
-│   └── section-0/      # Introductory demos (beamforming, spectrograms)
+│   ├── section-1/      # Preliminaries (Fourier, beamforming)
+│   └── section-2/      # Evolution of cellular standards (reuse, modulation)
 ```
 
 ## Prerequisites
@@ -82,10 +83,17 @@ On Linux, `sounddevice` requires the PortAudio library. Install it via your pack
 
 ## Demo Scripts
 
-The `scripts/section-0/` directory contains interactive Python demonstrations:
+The `scripts/` directory contains interactive Python demonstrations, grouped by lecture section.
+
+### `scripts/section-1/` (Preliminaries)
 
 - `live-spectrogram.py` - Real-time FFT visualization from microphone input
 - `bartlett.py` - Bartlett beamformer visualization
 - `bartlett-multi-doa.py` - Multiple direction-of-arrival estimation
 - `rect_sinc.py` - Rectangular pulse and sinc function demonstration
+
+### `scripts/section-2/` (Evolution of Cellular Standards)
+
+- `cellular-sir.py` - Co-channel SIR and channels per cell versus cluster size
+- `gmsk-8psk.py` - GMSK vs. 8-PSK (EDGE) at the GSM symbol rate: constellation, envelope, spectrum, and bit error rate, with adjustable SNR and amplifier backoff
 

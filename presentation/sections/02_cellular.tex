@@ -449,7 +449,7 @@
     \begin{column}{0.42\textwidth}
       \begin{block}{Interleaving}
         \begin{itemize}
-          \item 456 bits spread over 8 bursts, 57 bits each
+          \item 456 bits spread over 8 half-bursts of 57 bits
           \item One lost burst only hits every 8th bit of a speech frame
           \item Scattered errors are corrected by the convolutional code
         \end{itemize}
@@ -608,7 +608,7 @@
         \item Terminal derives uplink timing from downlink, uplink lags by 3 slots
         \item Without \gls{acro:ta}, bursts arrive late by $\tau = 2d/c$
         \item Base station measures $\tau$ on the access burst via its sync sequence
-        \item Base station signals $\mathrm{TA} = \operatorname{round}(\tau/T_\mathrm{b}) \in \{0, \dots, 63\}$ as 6 bit number
+        \item Base station signals $\mathrm{TA} = \operatorname{round}(\tau/T_\mathrm{b}) \in \{0, \dots, 63\}$ as a 6-bit number
         \item Terminal sends every burst $\mathrm{TA}\cdot T_\mathrm{b}$ earlier
         \item Base station tracks arrival times via the training sequence and updates \gls{acro:ta} about every \qty{480}{\milli\second}
       \end{enumerate}
@@ -730,8 +730,8 @@
       \vspace{0.4em}
       Rollout
       \begin{itemize}
-        \item First GSM call: 1 July 1991 in Finland
-        \item Germany: D-Netz regular operation from 1992
+        \item First GSM call: 1 July 1991 in Finland~\cite{nokia-gsm}
+        \item Germany: D-Netz regular operation from 1992~\cite{telekom-gsm}
       \end{itemize}
     \end{column}
     \begin{column}{0.42\textwidth}
@@ -757,7 +757,7 @@
     \begin{column}{0.58\textwidth}
       \begin{tabular}{ll}
         \toprule
-        \textbf{Year} & \textbf{Milestone} \\
+        \textbf{Year} & \textbf{Milestone}~\cite{etsi-history,3gpp-gsm-history} \\
         \midrule
         1982 & \acrshort{acro:cept} forms Groupe Spécial Mobile \\
         1988 & \Gls{acro:etsi} created (January) \\
@@ -795,7 +795,7 @@
       Finding a Policy
       \begin{itemize}
         \item Early 1990s: licensing in advance as a condition of membership
-        \item 1993: never in effect after criticism and a formal complaint
+        \item 1993: policy withdrawn after criticism
         \item November 1994: simplified \gls{acro:ipr} policy approved
       \end{itemize}
     \end{column}
@@ -808,7 +808,7 @@
         \end{itemize}
       \end{block}
       \begin{alertblock}{Scale}
-        More than \num{23500} patents declared essential to \gls{acro:gsm}
+        More than \num{23500} patents declared essential to \gls{acro:gsm} and 3G~\cite{sep-factsheet}
       \end{alertblock}
     \end{column}
   \end{columns}
