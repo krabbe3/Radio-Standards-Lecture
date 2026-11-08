@@ -1,0 +1,54 @@
+\begin{tikzpicture}[>=latex, x=0.064cm, y=1cm]
+    % Field: start bit, length in bits, row offset, fill color, label
+    \def\field#1#2#3#4#5{
+        \draw[fill=#4] (#1,#3) rectangle ({#1+#2},{#3+0.4});
+        \node[font=\tiny] at ({#1+#2/2},{#3+0.2}) {#5};
+    }
+
+    % Normal burst
+    \node[anchor=east, font=\scriptsize] at (-2,2.6) {Normal};
+    \field{0}{3}{2.4}{gray!25}{}
+    \field{3}{58}{2.4}{blue!25}{58 encrypted}
+    \field{61}{26}{2.4}{orange!40}{26 training}
+    \field{87}{58}{2.4}{blue!25}{58 encrypted}
+    \field{145}{3}{2.4}{gray!25}{}
+    \field{148}{8.25}{2.4}{white}{}
+
+    % Frequency correction burst
+    \node[anchor=east, font=\scriptsize] at (-2,2.0) {Frequency correction};
+    \field{0}{3}{1.8}{gray!25}{}
+    \field{3}{142}{1.8}{green!25}{142 fixed bits (all zeros)}
+    \field{145}{3}{1.8}{gray!25}{}
+    \field{148}{8.25}{1.8}{white}{}
+
+    % Synchronization burst
+    \node[anchor=east, font=\scriptsize] at (-2,1.4) {Synchronization};
+    \field{0}{3}{1.2}{gray!25}{}
+    \field{3}{39}{1.2}{blue!25}{39 encrypted}
+    \field{42}{64}{1.2}{orange!40}{64 extended training}
+    \field{106}{39}{1.2}{blue!25}{39 encrypted}
+    \field{145}{3}{1.2}{gray!25}{}
+    \field{148}{8.25}{1.2}{white}{}
+
+    % Access burst
+    \node[anchor=east, font=\scriptsize] at (-2,0.8) {Access};
+    \field{0}{8}{0.6}{gray!25}{8}
+    \field{8}{41}{0.6}{orange!40}{41 sync sequence}
+    \field{49}{36}{0.6}{blue!25}{36 encrypted}
+    \field{85}{3}{0.6}{gray!25}{}
+    \field{88}{68.25}{0.6}{white}{68.25 extended guard}
+
+    % Dummy burst
+    \node[anchor=east, font=\scriptsize] at (-2,0.2) {Dummy};
+    \field{0}{3}{0}{gray!25}{}
+    \field{3}{142}{0}{green!25}{142 fixed bits (mixed pattern)}
+    \field{145}{3}{0}{gray!25}{}
+    \field{148}{8.25}{0}{white}{}
+
+    % Guard period start of all other bursts
+    \draw[densely dashed, red!80!black] (148,-0.1) -- (148,2.95);
+
+    % Slot length
+    \draw[<->] (0,-0.25) -- (156.25,-0.25)
+        node[midway, below, font=\scriptsize] {\num{156.25} bit periods $\approx\qty{576.9}{\micro\second}$ (to scale, gray: tail bits)};
+\end{tikzpicture}

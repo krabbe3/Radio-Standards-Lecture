@@ -470,6 +470,119 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Why Different Bursts?}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.58\textwidth}
+      Normal Burst Assumes a Synchronized Terminal
+      \begin{itemize}
+        \item Carrier frequency known, oscillator corrected
+        \item Slot and frame timing known
+        \item Timing advance known, guard period only \num{8.25} bits
+      \end{itemize}
+      \vspace{0.4em}
+      Terminal after Switch-On Knows None of This
+      \begin{itemize}
+        \item Where is a carrier, how far off is my oscillator?\\
+          $\rightarrow$ Frequency correction burst (downlink)
+        \item Where does the frame start, which frame, which base station?\\
+          $\rightarrow$ Synchronization burst (downlink)
+        \item How to reach the network without a timing advance?\\
+          $\rightarrow$ Access burst (uplink)
+      \end{itemize}
+      \alert{Remark:} Dummy bursts fill unused slots on the beacon carrier of each cell. Constant power allows neighbor cell measurements before handover.
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \begin{figure}
+        \centering
+        \input{images/section-2/gsm-sync-flow}
+        \caption{Bursts used by a terminal after switch-on}
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{GSM Burst Types}
+  \centering
+  \input{images/section-2/gsm-burst-types}
+
+  \vspace{0.5em}
+  \raggedright
+  \begin{itemize}
+    \item Frequency correction: all zeros make \gls{acro:gmsk} a pure tone \qty{67.7}{\kilo\hertz} above the carrier, easy to find and to correct the oscillator
+    \item Synchronization: extended training sequence for coarse timing, carries frame number and base station identity
+    \item Access: timing advance still unknown, guard period extended to \num{68.25} bits
+    \item Dummy: fixed pattern without user data, keeps the beacon carrier at constant power
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Access Burst and Cell Size}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.58\textwidth}
+      Problem
+      \begin{itemize}
+        \item Base station expects bursts aligned to its slot grid
+        \item Round-trip delay to a terminal at distance $d$: $\tau = 2d/c$
+        \item Normal operation: timing advance compensates $\tau$
+        \item First access: timing advance unknown, burst arrives late by $\tau$
+        \item Normal guard period: \num{8.25} bits $\approx\qty{30}{\micro\second}$, only $d \approx \qty{4.6}{\kilo\meter}$
+      \end{itemize}
+      \vspace{0.4em}
+      Solution
+      \begin{itemize}
+        \item Short access burst of 88 bits, followed by a \num{68.25}-bit guard period
+        \item Late burst must still end within its own slot: $\tau \le T_\text{guard}$
+        \item Base station measures $\tau$ and assigns the timing advance
+      \end{itemize}
+      \alert{Remark:} In \gls{acro:gsm}, timing sets an upper limit on the cell radius.
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \begin{block}{Maximum Cell Radius}
+        Bit period
+        \[ T_\mathrm{b} = \tfrac{48}{13}\,\unit{\micro\second} \approx \qty{3.69}{\micro\second} \]
+        Guard period of access burst
+        \[ T_\text{guard} = 68.25\,T_\mathrm{b} \approx \qty{252}{\micro\second} \]
+        Distance covered within guard period
+        \[ d_\text{max} = \frac{c\,T_\text{guard}}{2} \approx \qty{37.8}{\kilo\meter} \]
+      \end{block}
+      \begin{block}{Timing Advance Range}
+        \begin{itemize}
+          \item 0 to 63 bit periods
+          \item $d_\text{max} = \dfrac{c \cdot 63\,T_\mathrm{b}}{2} \approx \qty{35}{\kilo\meter}$
+          \item Effective limit $\approx \qty{35}{\kilo\meter}$: the remaining $\approx 5$ guard bits are margin for power ramping, delay spread, and synchronization errors
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Timing Advance in Operation}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.54\textwidth}
+      Closed Control Loop
+      \begin{enumerate}
+        \item Terminal derives uplink timing from downlink, uplink lags by 3 slots
+        \item Without \gls{acro:ta}, bursts arrive late by $\tau = 2d/c$
+        \item Base station measures $\tau$ on the access burst via its sync sequence
+        \item Base station signals $\mathrm{TA} = \operatorname{round}(\tau/T_\mathrm{b}) \in \{0, \dots, 63\}$ as 6 bit number
+        \item Terminal sends every burst $\mathrm{TA}\cdot T_\mathrm{b}$ earlier
+        \item Base station tracks arrival times via the training sequence and updates \gls{acro:ta} about every \qty{480}{\milli\second}
+      \end{enumerate}
+      \vspace{0.4em}
+      Handover
+      \begin{itemize}
+        \item Distance to the new cell differs, \gls{acro:ta} is measured again with access bursts
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{figure}
+        \centering
+        \input{images/section-2/timing-advance}
+        \caption{Burst arrival at the base station}
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
 \begin{frame}{GSM Beyond the Air Interface}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.54\textwidth}
