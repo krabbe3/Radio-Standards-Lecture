@@ -570,6 +570,125 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{When Is Which Burst Sent?}
+  \slidelabel{2:gsm-burst-schedule}
+  The burst type is not chosen freely: each logical channel uses one burst type and is mapped to fixed carriers, slots, and frame numbers~\cite{etsi.145.002.v18}
+
+  \vspace{0.5em}
+  \centering
+  \footnotesize
+  \begin{tabular}{llll}
+    \toprule
+    \textbf{Burst} & \textbf{Logical Channel} & \textbf{Where} & \textbf{How Often} \\
+    \midrule
+    Frequency correction & \acrshort{acro:fcch} & DL, C0, slot 0 & Fixed: 5 per 51 frames ($\approx$ every \qty{46}{\milli\second}) \\
+    Synchronization & \acrshort{acro:sch} & DL, C0, slot 0 & Fixed: frame after each \acrshort{acro:fcch} \\
+    Normal & \acrshort{acro:tch}, \acrshort{acro:sacch}, \acrshort{acro:bcch}, \acrshort{acro:ccch}, \ldots & DL and UL & Fixed position in 26- or 51-multiframe \\
+    Access & \acrshort{acro:rach}, handover access & UL & Event-driven, randomized repetition \\
+    Dummy & none & DL, C0 & Whenever a C0 slot has nothing else to send \\
+    \bottomrule
+  \end{tabular}
+
+  \normalsize
+  \raggedright
+  \vspace{0.5em}
+  \begin{itemize}
+    \item Network-to-all (broadcast, sync): strictly periodic, terminals must find it without asking
+    \item Dedicated (traffic, signaling): periodic once a channel is assigned
+    \item Terminal-initiated (access): only rules, not a schedule
+  \end{itemize}
+  \alert{Remark:} C0 is the beacon (\acrshort{acro:bcch}) carrier of a cell. Every terminal in the cell knows its frequency.
+\end{frame}
+
+\begin{frame}{Beacon Carrier: The 51-Multiframe}
+  \slidelabel{2:gsm-51-multiframe}
+  \centering
+  \input{images/section-2/gsm-51-multiframe}
+
+  \vspace{0.3em}
+  \raggedright
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.54\textwidth}
+      \begin{itemize}
+        \item \acrshort{acro:fcch} in frames 0, 10, 20, 30, 40, \acrshort{acro:sch} one frame later~\cite{etsi.145.002.v18}
+        \item $5/\qty{235.4}{\milli\second} \approx 21$ \acrshort{acro:fcch} and \acrshort{acro:sch} bursts per second
+        \item \acrshort{acro:sch} carries \acrshort{acro:bsic} and a reduced frame number: the terminal learns which of the 5 positions it saw and thus the full timing
+        \item Uplink slot 0: every frame open for access bursts
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{Frame Hierarchy}
+        \begin{itemize}
+          \item Superframe: $26 \cdot 51$ frames $= \qty{6.12}{\second}$
+          \item Hyperframe: \num{2048} superframes $\approx \qty{3.5}{\hour}$
+          \item Frame number used for hopping and ciphering
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Traffic Channel: The 26-Multiframe}
+  \slidelabel{2:gsm-26-multiframe}
+  \centering
+  \input{images/section-2/gsm-26-multiframe}
+
+  \vspace{0.3em}
+  \raggedright
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.54\textwidth}
+      Full-Rate Traffic Channel~\cite{etsi.145.002.v18}
+      \begin{itemize}
+        \item One normal burst per frame in the assigned slot
+        \item 24 \acrshort{acro:tch} bursts per \qty{120}{\milli\second}: 6 speech frames of 456 bits (\cref{2:gsm-speech})
+        \item 1 \acrshort{acro:sacch} burst per multiframe, block of 4 bursts every \qty{480}{\milli\second}: power control, \acrshort{acro:ta} (\cref{2:gsm-timing-advance}), measurement reports
+        \item Urgent signaling (e.g.\ handover): \acrshort{acro:facch} steals \acrshort{acro:tch} bursts, marked by the stealing flags
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{Idle Frame}
+        \begin{itemize}
+          \item Terminal is free for one frame
+          \item Searches \acrshort{acro:fcch}/\acrshort{acro:sch} of neighbor cells
+          \item 26 and 51 are coprime: idle frame slides through the neighbor's 51-multiframe and eventually meets \acrshort{acro:fcch} and \acrshort{acro:sch}
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Event-Driven Bursts: Access and Dummy}
+  \slidelabel{2:gsm-access-dummy}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.54\textwidth}
+      Random Access on the \acrshort{acro:rach}~\cite{etsi.144.018.v18}
+      \begin{itemize}
+        \item Sent only when the terminal needs a channel: call, \acrshort{acro:sms}, location update, paging response
+        \item Slotted ALOHA: collisions possible, no acknowledgment $\rightarrow$ repeat
+        \item First attempt after a random number of \acrshort{acro:rach} slots
+        \item Up to $M+1$ attempts, $M \in \{1, 2, 4, 7\}$ broadcast on \acrshort{acro:bcch}
+        \item Random gap between attempts from $\{S, \dots, S+T-1\}$ slots, $T$ and $S$ also set by the network
+      \end{itemize}
+      Handover Access
+      \begin{itemize}
+        \item Access bursts on the new channel until the new cell answers with the measured \acrshort{acro:ta}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{Dummy Burst}
+        \begin{itemize}
+          \item C0 transmits continuously in all 8 slots
+          \item Unused slot $\rightarrow$ dummy burst
+          \item Neighbor cell measurements need a constant, always present beacon
+        \end{itemize}
+      \end{block}
+      \begin{alertblock}{Key Insight}
+        The standard fixes the schedule of everything the network sends, but only the rules for what terminals send on their own.
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
 \begin{frame}{Access Burst and Cell Size}
   \slidelabel{2:gsm-access-burst}
   \begin{columns}[T,onlytextwidth]
